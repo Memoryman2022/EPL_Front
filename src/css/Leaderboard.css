@@ -24,7 +24,7 @@
 
 .leaderboard-table th,
 .leaderboard-table td {
-  padding: 12px;
+  padding: 8px;
   border: 1px solid #0ef0fb;
   border-radius: 10px;
   box-sizing: border-box;
@@ -65,18 +65,18 @@
 }
 
 .leaderboard-table tr:nth-child(even) {
-  background-color: #0679c1b5;
-  color: #035359;
-  text-shadow: 2px 2px rgb(0, 255, 153);
+  background-color: #012338b5;
+  color: #07e9f9;
 }
 
 .leaderboard-table tr:nth-child(odd) {
   background-color: #070707c9;
-  color: #029578;
+  color: #03ffcd;
 }
 
 .leaderboard-table tr:hover {
-  background-color: #176ee7a0;
+  background-color: #00ffbf;
+  color: #04394c;
 }
 
 .leadbrd-btn {
@@ -87,12 +87,13 @@
   border: none;
   border-radius: 4px;
   background-color: #1c1414;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.9s ease;
 }
 
 .leadbrd-btn:hover {
   background-color: #04394c;
   color: #06c0fe;
+  transition: background-color 0.9s ease;
 }
 
 .movement-icon {
@@ -112,7 +113,15 @@
   vertical-align: middle;
   object-fit: cover;
   border: 2px solid #0feadf;
-  box-shadow: 2px 2px rgb(47, 199, 246);
+}
+.profile-pic:hover {
+  width: 40px; /* Adjust size as needed */
+  height: 40px; /* Adjust size as needed */
+  border-radius: 10%;
+  margin-right: 10px; /* Space between profile pic and name */
+  vertical-align: middle;
+  object-fit: cover;
+  border: 2px solid #04394c;
 }
 
 /* Responsive Styling */

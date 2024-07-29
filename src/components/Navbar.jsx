@@ -18,6 +18,7 @@ function Navbar() {
       authenticateUser();
     }
   }, [isLoggedIn, user, authenticateUser]);
+
   return (
     <div className="navbar">
       <p>THE ENGLISH PREMIER LEAGUE PREDICTOR MODULE</p>

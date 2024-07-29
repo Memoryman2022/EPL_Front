@@ -23,10 +23,11 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route element={<ProtectedRoute />}></Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/user/:userId" element={<UserProfile />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/logout" element={<Logout />} />
+          </Route>
         </Routes>
       </div>
     </div>

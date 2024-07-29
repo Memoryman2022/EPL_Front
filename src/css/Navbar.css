@@ -10,7 +10,6 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  overflow: hidden; /* Add this */
   box-shadow: inset 60px 0 120px rgba(0, 255, 247, 0.347),
     inset -60px 0 120px rgba(0, 255, 255, 0.041);
 }
@@ -39,15 +38,6 @@
     transparent
   );
   animation: pulse 5s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
 }
 
 .navbar-menu {
@@ -91,7 +81,32 @@
 .burger-menu div {
   width: 25px;
   height: 3px;
-  background-color: #333;
+  background-color: #00fff7;
   margin: 4px 0;
   transition: 0.4s;
+}
+
+@media (max-width: 1040px) {
+  .burger-menu {
+    display: flex; /* Show burger menu on smaller screens */
+  }
+
+  .navbar-menu {
+    display: none; /* Hide navbar menu by default on smaller screens */
+    flex-direction: column;
+    position: absolute; /* Position absolutely */
+    top: 100px; /* Below the navbar */
+    right: 0;
+    width: 200px; /* Full width */
+    color: rgb(1, 79, 61);
+    background-color: rgb(2, 223, 168); /* Background color for visibility */
+    box-shadow: 0px 8px 16px 10px rgba(0, 0, 0, 0.2); /* Add shadow for dropdown effect */
+    border-radius: 6px;
+    margin-right: 10px;
+    z-index: 999; /* Ensure it is on top */
+  }
+
+  .navbar-menu.active {
+    display: flex; /* Show navbar menu when active on smaller screens */
+  }
 }
