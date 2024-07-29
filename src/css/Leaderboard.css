@@ -1,0 +1,163 @@
+.leaderboard-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.leaderboard-container {
+  width: 100%;
+  padding: 10px;
+  height: 100%;
+  overflow-y: auto; /* Enable vertical scrolling */
+  box-sizing: border-box;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  background-color: #05fefa;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 12px;
+  border: 1px solid #0ef0fb;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.leaderboard-table th {
+  font-weight: bold;
+  color: #0ef1e6;
+}
+
+.leaderboard-table th.position,
+.leaderboard-table th.score,
+.leaderboard-table td.position,
+.leaderboard-table td.score {
+  width: 50px; /* Adjust this value as needed */
+  text-align: center; /* Center horizontally */
+  vertical-align: middle; /* Center vertically */
+}
+
+.correct-scores {
+  width: 20%;
+  text-align: center;
+}
+
+.correct-outcomes {
+  width: 20%;
+  text-align: center;
+}
+
+.user-score {
+  width: 10%;
+}
+
+.leaderboard-table th.name,
+.leaderboard-table td.name {
+  width: auto; /* Let the name column take the remaining space */
+  position: relative; /* For absolute positioning of icons */
+}
+
+.leaderboard-table tr:nth-child(even) {
+  background-color: #0679c1b5;
+  color: #035359;
+  text-shadow: 2px 2px rgb(0, 255, 153);
+}
+
+.leaderboard-table tr:nth-child(odd) {
+  background-color: #070707c9;
+  color: #029578;
+}
+
+.leaderboard-table tr:hover {
+  background-color: #176ee7a0;
+}
+
+.leadbrd-btn {
+  color: #0ef1e9;
+  padding: 8px 16px; /* Adjust padding for better touch targets */
+  margin: 10px 0; /* Add margin for spacing */
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #1c1414;
+  transition: background-color 0.3s ease;
+}
+
+.leadbrd-btn:hover {
+  background-color: #04394c;
+  color: #06c0fe;
+}
+
+.movement-icon {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 10px; /* Adjust this value as needed */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.profile-pic {
+  width: 40px; /* Adjust size as needed */
+  height: 40px; /* Adjust size as needed */
+  border-radius: 10%;
+  margin-right: 10px; /* Space between profile pic and name */
+  vertical-align: middle;
+  object-fit: cover;
+  border: 2px solid #0feadf;
+  box-shadow: 2px 2px rgb(47, 199, 246);
+}
+
+/* Responsive Styling */
+@media (max-width: 680px) {
+  .leaderboard-container {
+    min-width: 320px;
+    width: 100%;
+    padding: 10px; /* Add padding for smaller screens */
+  }
+
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 8px;
+  }
+
+  .leadbrd-btn {
+    padding: 6px 12px; /* Adjust padding for smaller screens */
+    margin: 5px 0; /* Reduce margin for smaller screens */
+  }
+
+  .profile-pic {
+    width: 30px; /* Adjust size for smaller screens */
+    height: 30px;
+    margin-right: 5px; /* Adjust margin for smaller screens */
+  }
+}
+
+@media (max-width: 420px) {
+  .leaderboard-container {
+    width: 100%;
+  }
+
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 6px;
+  }
+
+  .leadbrd-btn {
+    padding: 4px 8px; /* Further adjust padding for very small screens */
+    margin: 3px 0; /* Reduce margin further */
+  }
+
+  .profile-pic {
+    width: 25px; /* Adjust size for very small screens */
+    height: 25px;
+    margin-right: 3px; /* Adjust margin further */
+  }
+}

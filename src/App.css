@@ -1,0 +1,59 @@
+@font-face {
+  font-family: "Humanist521 BT";
+  src: url("/fonts/Humanist521BT-Bold.woff2") format("woff2"),
+    url("/fonts/Humanist521BT-Bold.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* General Styles */
+body {
+  margin: 0;
+  font-family: "Humanist521 BT", Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  background-color: #000000;
+  color: #00fff7;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the body takes up the full height of the viewport */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+  width: 100%; /* Ensure full width */
+  box-sizing: border-box; /* Include padding and border in element's width and height */
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Ensure the root takes up the remaining space */
+  box-sizing: border-box; /* Include padding and border in element's width and height */
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #e60b0b;
+}

@@ -1,0 +1,185 @@
+/* General container styling */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Keyframes for box shadow rotation animation */
+@keyframes rotateBoxShadow {
+  0% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset -60px 0 120px #0ff;
+  }
+  25% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 -60px 120px #0ff;
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 60px 0 120px #0ff;
+  }
+  75% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 60px 120px #0ff;
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset -60px 0 120px #0ff;
+  }
+}
+
+/* Form styling */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  animation: rotateBoxShadow 5s infinite linear;
+}
+
+.auth-form > * {
+  margin-bottom: 0px;
+}
+
+.auth-form input {
+  padding: 10px;
+  border: 1px solid rgba(2, 255, 242, 0.3);
+  background-color: rgba(15, 15, 15, 0.618);
+  color: #00f6fe;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-form input::placeholder {
+  color: rgba(2, 255, 242, 0.83);
+}
+
+.auth-form input::before {
+  content: attr(placeholder);
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  background-image: linear-gradient(
+    to right,
+    rgb(160, 251, 227),
+    rgba(2, 255, 242, 0.3)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: pulsePlaceholder 3s infinite linear;
+  pointer-events: none; /* Prevents the pseudo-element from blocking input field interactions */
+}
+
+@keyframes pulsePlaceholder {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.auth-btn {
+  color: #02fff2;
+  background-color: rgba(0, 255, 255, 0.1);
+  border: none;
+  padding: 12px;
+  margin-bottom: 0px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.auth-btn:hover {
+  background-color: rgba(0, 255, 255, 0.2);
+}
+
+.auth-form h4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Specific styling for form groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.form-group label {
+  margin: 8px 0px 8px;
+  color: #02fff2;
+}
+
+/* Error message styling */
+.error {
+  color: rgb(0, 187, 255);
+  text-align: center;
+}
+
+/* Modal overlay and content styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: rgb(13, 21, 39);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #02fff2;
+  color: rgb(0, 0, 0);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Typewriter effect styling */
+.typewriter-text {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid;
+  animation: typing 4s steps(44, end);
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Logout specific styling */
+.logout-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-content {
+  color: #a4fcff;
+  background-color: rgba(0, 182, 163, 0.991);
+}
