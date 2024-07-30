@@ -44,23 +44,30 @@
 }
 
 .rbc-event {
-  background-color: #012e55;
-  border-radius: 5px;
+  background-color: #012e5516;
+  border-radius: 2px;
+  font-size: 8px;
 }
 
 .custom-day-wrapper {
   height: 100%;
   width: 100%;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 10px;
+  color: #000; /* Ensure text is visible */
+}
+
+.custom-day-wrapper.has-fixtures {
+  background-color: rgba(1, 228, 171, 0.3);
+  color: aqua;
+  animation: pulse 2.5s infinite;
 }
 
 .custom-day-wrapper:hover {
-  background-color: rgb(1, 228, 171);
-}
-
-.rbc-day-bg {
-  transition: background-color 0.3s;
+  background-color: rgba(1, 228, 171, 0.5); /* Slightly darker green */
 }
 
 .rbc-day-bg:hover {
@@ -83,7 +90,7 @@
     background-color: #04eff77d;
   }
   100% {
-    background-color: #02303737;
+    background-color: #02282e37;
   }
 }
 

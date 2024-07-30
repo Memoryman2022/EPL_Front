@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import UserProfile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
 import FixtureCalendar from "./components/Calender";
+import FixturesByDate from "./components/Fixtures";
 //CSS
 import "./App.css";
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/user/:userId" element={<UserProfile />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/calendar" element={<FixtureCalendar />} />
+            <Route path="/fixtures/:date" element={<FixturesByDate />} />
             <Route path="/logout" element={<Logout />} />
           </Route>
         </Routes>

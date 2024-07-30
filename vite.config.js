@@ -9,4 +9,13 @@ export default defineConfig({
       "react-router-dom": "react-router-dom",
     },
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://api.football-data.org",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 });

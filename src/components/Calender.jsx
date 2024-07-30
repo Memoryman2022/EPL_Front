@@ -4,64 +4,92 @@ import moment from "moment";
 import axios from "axios";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../css/Calendar.css";
+import { useNavigate } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 
 function FixtureCalendar() {
-  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [fixturesByDate, setFixturesByDate] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchFixtures();
-    const intervalId = setInterval(fetchFixtures, 3600000);
+    const intervalId = setInterval(fetchFixtures, 3600000); // Refresh every hour
     return () => clearInterval(intervalId);
   }, []);
 
   const fetchFixtures = async () => {
     try {
-      const response = await axios.get("YOUR_API_ENDPOINT");
-      const fixtureEvents = response.data.map((fixture) => ({
-        title: `${fixture.homeTeam} vs ${fixture.awayTeam}`,
-        start: new Date(fixture.date),
-        end: new Date(fixture.date),
-        allDay: true,
-        resource: fixture.id,
-      }));
-      setEvents(fixtureEvents);
+      const response = await axios.get("/api/v4/competitions/2021/matches", {
+        headers: {
+          "X-Auth-Token": "ab607df2daca41f9963fc2acce71bd52",
+        },
+      });
+
+      const matches = response.data.matches;
+
+      // Organize fixtures by date
+      const fixturesMap = matches.reduce((acc, fixture) => {
+        const date = moment(fixture.utcDate).format("YYYY-MM-DD");
+        if (!acc[date]) acc[date] = [];
+        acc[date].push(fixture);
+        return acc;
+      }, {});
+
+      setFixturesByDate(fixturesMap);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching fixtures:", error);
+      setError(error);
+      setLoading(false);
     }
   };
 
   const handleDayClick = (date) => {
-    console.log("Clicked date:", date);
-    // You can add more functionality here, like opening a modal with fixtures for this day
-  };
-
-  const handleRefresh = () => {
-    fetchFixtures();
+    const formattedDate = moment(date).format("YYYY-MM-DD");
+    if (fixturesByDate[formattedDate]) {
+      navigate(`/fixtures/${formattedDate}`);
+    }
   };
 
   const CustomDayWrapper = ({ children, value }) => {
+    const formattedDate = moment(value).format("YYYY-MM-DD");
+    const hasFixtures =
+      fixturesByDate[formattedDate] && fixturesByDate[formattedDate].length > 0;
     const isCurrentDay = moment(value).isSame(moment(), "day");
+
     return (
       <div
-        className={`custom-day-wrapper ${isCurrentDay ? "current-day" : ""}`}
+        className={`custom-day-wrapper ${isCurrentDay ? "current-day" : ""} ${
+          hasFixtures ? "has-fixtures" : ""
+        }`}
         onClick={() => handleDayClick(value)}
+        style={{
+          position: "relative",
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          cursor: hasFixtures ? "pointer" : "default",
+        }}
       >
-        {children}
+        {hasFixtures ? "Match Day" : children}
       </div>
     );
   };
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error fetching fixtures</p>;
+
   return (
     <div className="fixture-calendar">
-      <button onClick={handleRefresh} className="refresh-button">
-        Refresh Fixtures
-      </button>
       <div style={{ height: "500px" }}>
         <Calendar
           localizer={localizer}
-          events={events}
+          events={[]} // Clear events from calendar display
           startAccessor="start"
           endAccessor="end"
           style={{ height: "100%" }}
