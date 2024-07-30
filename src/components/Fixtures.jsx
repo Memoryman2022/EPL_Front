@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import moment from "moment"; // Import moment library
+import moment from "moment";
+import "../css/Fixtures.css"; // Ensure this path is correct for your project
 
 function FixtureDetails() {
   const { date } = useParams();
@@ -37,14 +38,28 @@ function FixtureDetails() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching fixtures</p>;
 
+  const formattedDate = moment(date).format("DD.MM.YYYY");
+
+  const removeSuffixes = (teamName) => {
+    return teamName.replace(/( FC| AFC)$/, "");
+  };
+
   return (
-    <div>
-      <h1>Fixtures on {date}</h1>
-      <ul>
+    <div className="fixtures-container">
+      <h4>Fixtures {formattedDate}</h4>
+      <ul className="fixtures-list">
         {fixtures.map((fixture) => (
-          <li key={fixture.id}>
-            {fixture.homeTeam.name} vs {fixture.awayTeam.name} -{" "}
-            {moment(fixture.utcDate).format("HH:mm")}
+          <li key={fixture.id} className="fixture-item">
+            <span className="fixture-time">
+              {moment(fixture.utcDate).format("HH:mm")}
+            </span>
+            <span className="fixture-home">
+              {removeSuffixes(fixture.homeTeam.name)}
+            </span>
+            <span className="fixture-vs">vs</span>
+            <span className="fixture-away">
+              {removeSuffixes(fixture.awayTeam.name)}
+            </span>
           </li>
         ))}
       </ul>

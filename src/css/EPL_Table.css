@@ -24,8 +24,12 @@ thead {
 
 thead th {
   padding: 2px;
-  text-align: left;
+  text-align: center;
   font-weight: bold;
+}
+
+thead th.col-team {
+  text-align: left; /* Left align the team name header */
 }
 
 tbody tr:nth-child(even) {
