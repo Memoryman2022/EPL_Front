@@ -1,0 +1,58 @@
+.fixture-calendar {
+  margin: 10px;
+}
+
+.refresh-button {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #01e4ab;
+  color: rgb(1, 74, 78);
+  border: 2px solid aqua;
+  border-radius: 2px;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.rbc-calendar {
+  background-color: #0198932b;
+  border: 3px solid aqua;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rbc-toolbar {
+  padding: 8px;
+}
+
+.rbc-header {
+  background-color: #00ffe1;
+  color: rgb(1, 74, 78);
+  font-weight: bold;
+}
+
+.rbc-btn-group {
+  background-color: #01e4ab;
+  border: 2px solid rgb(0, 251, 255);
+  color: rgb(1, 74, 78);
+}
+
+.rbc-event {
+  background-color: #012e55;
+  border-radius: 5px;
+}
+
+.current-day {
+  animation: pulse 5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #00f2ff3b;
+  }
+  50% {
+    background-color: #04eff77d;
+  }
+  100% {
+    background-color: #02303737;
+  }
+}

@@ -5,12 +5,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Base from "./pages/Base";
 import Logout from "./pages/Logout";
 //COMPONENTS
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserProfile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
+import FixtureCalendar from "./components/Calender";
 //CSS
 import "./App.css";
 
@@ -24,8 +26,10 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route element={<ProtectedRoute />}>
+            <Route path="/base" element={<Base />} />
             <Route path="/user/:userId" element={<UserProfile />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/calender" element={<FixtureCalendar />} />
             <Route path="/logout" element={<Logout />} />
           </Route>
         </Routes>

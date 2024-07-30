@@ -21,7 +21,7 @@ function Navbar() {
 
   return (
     <div className="navbar">
-      <p>THE ENGLISH PREMIER LEAGUE PREDICTOR MODULE</p>
+      <p>THE PREMIER LEAGUE PREDICTOR MODULE</p>
       <div className="burger-menu" onClick={toggleMenu}>
         <div></div>
         <div></div>
