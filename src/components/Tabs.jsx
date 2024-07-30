@@ -1,19 +1,29 @@
 import React, { useState } from "react";
 
-//css
+// css
 import "../css/Tab.css";
 
 const Tabs = ({ tabs }) => {
   const [activeTab, setActiveTab] = useState(0);
+  const [tabOrder, setTabOrder] = useState(tabs.map((_, index) => index)); // Track the order of the tabs
+
+  const handleTabClick = (index) => {
+    const newTabOrder = [...tabOrder];
+    newTabOrder.splice(newTabOrder.indexOf(index), 1);
+    newTabOrder.unshift(index);
+    setTabOrder(newTabOrder);
+    setActiveTab(index);
+  };
 
   const renderTabs = () => {
-    return tabs.map((tab, index) => (
+    return tabOrder.map((tabIndex, displayIndex) => (
       <button
-        key={index}
-        className={`tab-button ${activeTab === index ? "active" : ""}`}
-        onClick={() => setActiveTab(index)}
+        key={tabIndex}
+        className={`tab-button ${activeTab === tabIndex ? "active" : ""}`}
+        onClick={() => handleTabClick(tabIndex)}
+        style={{ order: displayIndex }}
       >
-        {tab.label}
+        {tabs[tabIndex].label}
       </button>
     ));
   };

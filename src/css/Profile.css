@@ -1,17 +1,18 @@
 .user-profile {
-  margin: 10px;
+  /* margin: 10px; */
   height: 170px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  border: 3px solid rgb(5, 245, 221);
+  /* border: 3px solid rgb(5, 245, 221); */
   border-radius: 2px;
-  background-color: rgba(11, 92, 92, 0.276);
+  background-color: rgba(6, 46, 46, 0.276);
 }
 
 .profile-pic-home {
   margin: 6px;
-  border: 5px solid rgba(8, 213, 213, 0.652);
+  border: 5px solid rgba(4, 236, 236, 0.922);
+  border-radius: 2px;
 }
 
 .profile-pic-home img {
@@ -21,6 +22,7 @@
 .user-info {
   margin: 6px;
   margin-right: 34px;
+  margin-bottom: 10px;
   width: 100%;
   color: rgb(167, 254, 227);
 }
@@ -33,7 +35,7 @@
   position: relative;
   height: 29%;
   width: 100%;
-  margin: 2px;
+  margin: 4px;
   border: 2px solid aqua;
   background-color: rgba(11, 92, 92, 0.815);
   clip-path: polygon(27px 0, 100% 0, 100% 100%, 0 100%, 0 30px);

@@ -1,9 +1,10 @@
 .tab-buttons {
   background-color: rgb(3, 2, 2);
-}
-
-.tab-content {
-  background-color: black;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end; /* Align buttons to the right */
+  position: relative;
+  margin: 0px 10px;
 }
 
 .tab-button {
@@ -12,8 +13,29 @@
   border-radius: 3px;
   background-color: rgba(11, 92, 92, 0.815);
   clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%, 0 26px);
+  padding: 0px 20px;
+  font-size: 14px;
+  transition: all 2s ease; /* 2-second transition */
+  outline: none; /* Remove default focus outline */
+  position: relative;
 }
 
-.tab-button:active {
-  border: 5px solid aqua;
+.tab-button:hover {
+  color: rgb(255, 255, 255);
+}
+
+.tab-button:focus {
+  outline: none; /* Remove yellow default border highlight */
+}
+
+.tab-button.active {
+  border: 3px solid rgb(0, 255, 208);
+  height: 45px; /* Set the height for the active tab */
+  background-color: rgba(6, 33, 32, 0.365);
+}
+
+.tab-button:not(.active) {
+  height: 35px; /* Set the height for inactive tabs */
+  font-size: 14px;
+  opacity: 0.8;
 }

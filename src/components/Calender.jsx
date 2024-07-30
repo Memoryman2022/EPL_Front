@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import moment from "moment";
 import axios from "axios";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import "../css/Calendar.css"; // We'll create this file for custom styles
+import "../css/Calendar.css";
 
 const localizer = momentLocalizer(moment);
 
@@ -12,7 +12,7 @@ function FixtureCalendar() {
 
   useEffect(() => {
     fetchFixtures();
-    const intervalId = setInterval(fetchFixtures, 3600000); // Fetch every hour
+    const intervalId = setInterval(fetchFixtures, 3600000);
     return () => clearInterval(intervalId);
   }, []);
 
@@ -32,25 +32,25 @@ function FixtureCalendar() {
     }
   };
 
-  const handleEventClick = (event) => {
-    console.log("Clicked event:", event);
-    // You can add more functionality here, like opening a modal with fixture details
+  const handleDayClick = (date) => {
+    console.log("Clicked date:", date);
+    // You can add more functionality here, like opening a modal with fixtures for this day
   };
 
   const handleRefresh = () => {
     fetchFixtures();
   };
 
-  const customDayPropGetter = (date) => {
-    if (moment(date).isSame(moment(), "day")) {
-      return {
-        className: "current-day",
-        style: {
-          backgroundColor: "#f0f0f0",
-        },
-      };
-    }
-    return {};
+  const CustomDayWrapper = ({ children, value }) => {
+    const isCurrentDay = moment(value).isSame(moment(), "day");
+    return (
+      <div
+        className={`custom-day-wrapper ${isCurrentDay ? "current-day" : ""}`}
+        onClick={() => handleDayClick(value)}
+      >
+        {children}
+      </div>
+    );
   };
 
   return (
@@ -65,8 +65,10 @@ function FixtureCalendar() {
           startAccessor="start"
           endAccessor="end"
           style={{ height: "100%" }}
-          onSelectEvent={handleEventClick}
-          dayPropGetter={customDayPropGetter}
+          components={{
+            dateCellWrapper: CustomDayWrapper,
+          }}
+          views={[Views.MONTH]}
         />
       </div>
     </div>

@@ -12,12 +12,19 @@
   width: 100%;
   cursor: pointer;
   transition: background-color 0.3s;
+  outline: none;
+}
+
+.refresh-button:hover {
+  background-color: #00c292;
+  outline: none;
 }
 
 .rbc-calendar {
   background-color: #0198932b;
   border: 3px solid aqua;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: rgb(2, 187, 197);
 }
 
 .rbc-toolbar {
@@ -25,7 +32,7 @@
 }
 
 .rbc-header {
-  background-color: #00ffe1;
+  background-color: #01e4ab;
   color: rgb(1, 74, 78);
   font-weight: bold;
 }
@@ -39,6 +46,29 @@
 .rbc-event {
   background-color: #012e55;
   border-radius: 5px;
+}
+
+.custom-day-wrapper {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.custom-day-wrapper:hover {
+  background-color: rgb(1, 228, 171);
+}
+
+.rbc-day-bg {
+  transition: background-color 0.3s;
+}
+
+.rbc-day-bg:hover {
+  background-color: rgba(1, 228, 171, 0.845);
+}
+
+.rbc-today {
+  background-color: rgba(0, 242, 255, 0.94);
 }
 
 .current-day {
@@ -55,4 +85,14 @@
   100% {
     background-color: #02303737;
   }
+}
+
+/* Remove yellow highlight (outline) from all clickable elements */
+button,
+input[type="button"],
+input[type="submit"],
+a,
+select,
+textarea {
+  outline: none;
 }
