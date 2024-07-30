@@ -12,7 +12,7 @@ body {
   font-family: "Humanist521 BT", Inter, system-ui, Avenir, Helvetica, Arial,
     sans-serif;
   background-color: #000f0e;
-  color: #00fff7;
+  color: #71fedd;
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensure the body takes up the full height of the viewport */
