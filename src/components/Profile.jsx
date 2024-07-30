@@ -78,6 +78,9 @@ function UserProfile() {
           </span>
         </div>
       </div>
+      <div className="animation-container">
+        <img src="/gifs/kick.gif" alt="Animation" />
+      </div>
     </div>
   );
 }
