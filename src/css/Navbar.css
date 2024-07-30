@@ -13,6 +13,13 @@
   box-shadow: inset 60px 0 120px rgba(0, 255, 247, 0.347),
     inset -60px 0 120px rgba(0, 255, 255, 0.041);
 }
+.navbar img {
+  width: 80px;
+}
+
+.navbar p {
+  margin-left: -80px;
+}
 
 .navbar::before {
   content: "";

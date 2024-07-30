@@ -21,6 +21,7 @@ function Navbar() {
 
   return (
     <div className="navbar">
+      <img src={"/icons/predict.png"} />
       <p>THE PREMIER LEAGUE PREDICTOR MODULE</p>
       <div className="burger-menu" onClick={toggleMenu}>
         <div></div>

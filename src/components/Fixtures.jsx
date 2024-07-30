@@ -48,8 +48,12 @@ function FixtureDetails() {
 
   const formattedDate = moment(date).format("DD.MM.YYYY");
 
-  const removeSuffixes = (teamName) => {
-    return teamName.replace(/( FC| AFC)$/, "");
+  const cleanTeamName = (name) => {
+    // Remove prefixes or suffixes "FC" or "AFC"
+    return name.replace(
+      /(^\s*FC\s*)|(\s*FC\s*$)|(^\s*AFC\s*)|(\s*AFC\s*$)/gi,
+      ""
+    );
   };
 
   return (
@@ -62,11 +66,11 @@ function FixtureDetails() {
               {moment(fixture.utcDate).format("HH:mm")}
             </span>
             <span className="fixture-home">
-              {removeSuffixes(fixture.homeTeam.name)}
+              {cleanTeamName(fixture.homeTeam.name)}
             </span>
             <span className="fixture-vs">vs</span>
             <span className="fixture-away">
-              {removeSuffixes(fixture.awayTeam.name)}
+              {cleanTeamName(fixture.awayTeam.name)}
             </span>
             <div
               className={`prediction-box ${
