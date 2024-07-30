@@ -7,6 +7,7 @@ import "../css/Fixtures.css"; // Ensure this path is correct for your project
 function FixtureDetails() {
   const { date } = useParams();
   const [fixtures, setFixtures] = useState([]);
+  const [predictions, setPredictions] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -35,6 +36,13 @@ function FixtureDetails() {
     }
   };
 
+  const handlePrediction = (fixtureId) => {
+    setPredictions((prev) => ({
+      ...prev,
+      [fixtureId]: !prev[fixtureId],
+    }));
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching fixtures</p>;
 
@@ -60,6 +68,21 @@ function FixtureDetails() {
             <span className="fixture-away">
               {removeSuffixes(fixture.awayTeam.name)}
             </span>
+            <div
+              className={`prediction-box ${
+                predictions[fixture.id] ? "confirmed" : ""
+              }`}
+              onClick={() => handlePrediction(fixture.id)}
+            >
+              <img
+                src={
+                  predictions[fixture.id]
+                    ? "/icons/lock.png"
+                    : "/icons/predict.png"
+                }
+                alt={predictions[fixture.id] ? "Confirmed" : "Predict"}
+              />
+            </div>
           </li>
         ))}
       </ul>
