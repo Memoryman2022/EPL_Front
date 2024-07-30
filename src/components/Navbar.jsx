@@ -37,6 +37,11 @@ function Navbar() {
               </Link>
             </li>
             <li className="menu-list-item">
+              <Link to="/base" onClick={toggleMenu}>
+                Central Hub
+              </Link>
+            </li>
+            <li className="menu-list-item">
               <Link to="/predictions" onClick={toggleMenu}>
                 User Predictions
               </Link>
@@ -49,6 +54,11 @@ function Navbar() {
             <li className="menu-list-item">
               <Link to="/leaderboard" onClick={toggleMenu}>
                 Leaderboard
+              </Link>
+            </li>
+            <li className="menu-list-item">
+              <Link to="/calendar" onClick={toggleMenu}>
+                Calendar
               </Link>
             </li>
 

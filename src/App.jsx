@@ -29,7 +29,7 @@ function App() {
             <Route path="/base" element={<Base />} />
             <Route path="/user/:userId" element={<UserProfile />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/calender" element={<FixtureCalendar />} />
+            <Route path="/calendar" element={<FixtureCalendar />} />
             <Route path="/logout" element={<Logout />} />
           </Route>
         </Routes>
