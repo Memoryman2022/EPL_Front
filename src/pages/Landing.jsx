@@ -17,6 +17,9 @@ const Landing = () => {
 
   return (
     <div className="auth-container">
+      <div className="animation-container">
+        <img src="/gifs/stadium.gif" alt="Animation" />
+      </div>
       <div className="auth-form">
         <button className="auth-btn" onClick={handleLogin}>
           LOGIN

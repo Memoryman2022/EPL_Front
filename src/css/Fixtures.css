@@ -1,23 +1,22 @@
 .fixtures-container {
   margin: 10px;
   padding: 20px;
-  background-color: #05485951;
+  background-color: #0548591b;
   border-radius: 3px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 595px;
+  width: inherit;
+  max-width: 900px;
 }
 
 .fixtures-container h4 {
   text-align: center;
-  margin: 20px;
   margin-top: 0px;
-  color: #04ffee;
+  color: #0af2c0;
 }
 
 .fixtures-list {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 .fixture-item {
@@ -25,9 +24,16 @@
   grid-template-columns: 50px 1fr auto 1fr auto;
   align-items: center;
   padding: 10px;
-  border: 2px solid #03e9c7;
+  margin-bottom: 2px;
+  /* border: 2px solid #03e9c7; */
+  background-color: #0f554b5d;
   gap: 20px; /* Add some spacing between columns */
   clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%, 0 26px);
+}
+
+.fixture-item span {
+  min-width: 40px;
+  margin-bottom: -4px;
 }
 
 .fixture-item:last-child {
@@ -36,13 +42,13 @@
 
 .fixture-time {
   font-weight: bold;
-  color: #a3f9ec;
+  color: #009b87;
   text-align: center;
 }
 
 .fixture-home,
 .fixture-away {
-  color: #2ceef8;
+  color: #02fcd2;
 }
 
 .fixture-vs {
@@ -68,4 +74,27 @@
 
 .prediction-box.confirmed {
   background-color: #040404;
+}
+
+/* Media queries for responsive text size */
+@media (max-width: 480px) {
+  .fixtures-container {
+    padding: 0px;
+    margin: 2px;
+    min-width: 370px;
+  }
+
+  .fixture-item {
+    font-size: 14px; /* Adjust the font size as needed */
+  }
+
+  .fixture-time {
+    font-size: 12px; /* Adjust the font size as needed */
+  }
+
+  .fixture-home,
+  .fixture-away,
+  .fixture-vs {
+    font-size: 12px; /* Adjust the font size as needed */
+  }
 }

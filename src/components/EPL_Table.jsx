@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import ResponsiveTeamName from "../components/ResponsiveTeamName";
 
 //css
 import "../css/EPL_Table.css";
@@ -72,13 +73,6 @@ function EPL_Table() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const cleanTeamName = (name) => {
-    return name.replace(
-      /(^\s*FC\s*)|(\s*FC\s*$)|(^\s*AFC\s*)|(\s*AFC\s*$)/gi,
-      ""
-    );
-  };
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching data</p>;
 
@@ -103,7 +97,7 @@ function EPL_Table() {
               <tr key={index}>
                 <td className="col-position">{team.position ?? "N/A"}</td>
                 <td className="col-team">
-                  {cleanTeamName(team.team?.name) ?? "N/A"}
+                  <ResponsiveTeamName name={team.team?.name ?? "N/A"} />
                 </td>
                 <td className="col-gp">{team.playedGames ?? "N/A"}</td>
                 <td className="col-w">{team.won ?? "N/A"}</td>

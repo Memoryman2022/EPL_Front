@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
+import ResponsiveTeamName from "../components/ResponsiveTeamName";
+// css
 import "../css/Fixtures.css"; // Ensure this path is correct for your project
 
 function FixtureDetails() {
@@ -48,14 +50,6 @@ function FixtureDetails() {
 
   const formattedDate = moment(date).format("DD.MM.YYYY");
 
-  const cleanTeamName = (name) => {
-    // Remove prefixes or suffixes "FC" or "AFC"
-    return name.replace(
-      /(^\s*FC\s*)|(\s*FC\s*$)|(^\s*AFC\s*)|(\s*AFC\s*$)/gi,
-      ""
-    );
-  };
-
   return (
     <div className="fixtures-container">
       <h4>Fixtures {formattedDate}</h4>
@@ -66,11 +60,11 @@ function FixtureDetails() {
               {moment(fixture.utcDate).format("HH:mm")}
             </span>
             <span className="fixture-home">
-              {cleanTeamName(fixture.homeTeam.name)}
+              <ResponsiveTeamName name={fixture.homeTeam.name} />
             </span>
             <span className="fixture-vs">vs</span>
             <span className="fixture-away">
-              {cleanTeamName(fixture.awayTeam.name)}
+              <ResponsiveTeamName name={fixture.awayTeam.name} />
             </span>
             <div
               className={`prediction-box ${
