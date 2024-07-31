@@ -6,6 +6,19 @@ import "../css/Leaderboard.css";
 function Leaderboard({ onUserUpdate }) {
   const [users, setUsers] = useState([]);
   const [previousUsers, setPreviousUsers] = useState([]);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 680);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 680);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -81,7 +94,7 @@ function Leaderboard({ onUserUpdate }) {
               <th className="name">User</th>
               <th className="correct-outcomes">Outcomes</th>
               <th className="correct-scores">Scores</th>
-              <th className="user-score">Points</th>
+              <th className="user-score">{isSmallScreen ? "P" : "Points"}</th>
             </tr>
           </thead>
           <tbody>

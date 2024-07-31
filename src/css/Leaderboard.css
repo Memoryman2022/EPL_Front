@@ -34,6 +34,12 @@
 .leaderboard-table th {
   font-weight: bold;
   color: #0ef1e6;
+  font-size: 1em;
+}
+.leaderboard-table th:hover {
+  font-weight: bold;
+  color: #203534;
+  font-size: 1em;
 }
 
 .leaderboard-table th.position,
@@ -132,7 +138,9 @@
     width: 100%;
     padding: 10px; /* Add padding for smaller screens */
   }
-
+  .leaderboard-table th {
+    font-size: 1em; /* Adjust font size for smaller screens */
+  }
   .leaderboard-table th,
   .leaderboard-table td {
     padding: 8px;
@@ -154,7 +162,9 @@
   .leaderboard-container {
     width: 100%;
   }
-
+  .leaderboard-table th {
+    font-size: 0.8em; /* Further adjust font size for very small screens */
+  }
   .leaderboard-table th,
   .leaderboard-table td {
     padding: 6px;
