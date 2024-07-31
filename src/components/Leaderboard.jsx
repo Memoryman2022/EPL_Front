@@ -77,7 +77,7 @@ function Leaderboard({ onUserUpdate }) {
         <table className="leaderboard-table">
           <thead>
             <tr>
-              <th className="position">Position</th>
+              <th className="position"></th>
               <th className="name">User</th>
               <th className="correct-outcomes">Outcomes</th>
               <th className="correct-scores">Scores</th>

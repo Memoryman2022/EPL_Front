@@ -25,6 +25,9 @@ function Login() {
   }, [isLoggedIn, user, navigate]);
   return (
     <div className="auth-container">
+      <div className="animation-container">
+        <img src="/gifs/stadium.gif" alt="Animation" />
+      </div>
       <form onSubmit={handleSubmit} className="auth-form">
         <div className="form-group">
           <input

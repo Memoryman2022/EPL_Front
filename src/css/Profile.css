@@ -1,18 +1,57 @@
+@keyframes pulseBorder {
+  0% {
+    border-color: rgba(5, 245, 221, 0.2);
+    box-shadow: 0 0 5px rgba(5, 245, 221, 0.2), 0 0 10px rgba(5, 245, 221, 0.2),
+      0 0 10px rgba(5, 245, 221, 0.2);
+  }
+  50% {
+    border-color: rgba(5, 245, 221, 0.97);
+    box-shadow: 0 0 10px rgba(5, 245, 221, 0.8), 0 0 10px rgba(5, 245, 221, 0.8),
+      0 0 7px rgba(5, 245, 221, 0.8);
+  }
+  100% {
+    border-color: rgba(5, 245, 221, 0.2);
+    box-shadow: 0 0 5px rgba(5, 245, 221, 0.2), 0 0 10px rgba(5, 245, 221, 0.2),
+      0 0 7px rgba(5, 245, 221, 0.2);
+  }
+}
+
+@keyframes randomPulse {
+  0% {
+    border-color: rgba(8, 188, 146, 0.569);
+    box-shadow: 0 0 5px rgba(1, 100, 100, 0.2), 0 0 15px rgba(1, 100, 100, 0.2),
+      0 0 10px rgba(1, 100, 100, 0.2);
+  }
+  50% {
+    border-color: rgba(8, 234, 234, 0.935);
+    box-shadow: 0 0 10px rgba(1, 100, 100, 0.8), 0 0 30px rgba(1, 100, 100, 0.8),
+      0 0 5px rgba(1, 100, 100, 0.8);
+  }
+  100% {
+    border-color: rgba(8, 188, 146, 0.569);
+    box-shadow: 0 0 5px rgba(1, 100, 100, 0.2), 0 0 15px rgba(1, 100, 100, 0.2),
+      0 0 5px rgba(1, 100, 100, 0.2);
+  }
+}
+
 .user-profile {
-  /* margin: 10px; */
   height: 170px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  /* border: 3px solid rgb(5, 245, 221); */
+  margin: 10px;
+  border: 3px solid rgba(5, 245, 221, 0.957);
   border-radius: 2px;
-  background-color: rgba(6, 46, 46, 0.276);
+  margin-bottom: 20px;
+  max-width: 900px;
+  animation: pulseBorder 18s infinite;
 }
 
 .profile-pic-home {
   margin: 6px;
-  border: 5px solid rgba(4, 236, 236, 0.922);
+  border: 2px solid rgba(4, 250, 250, 0.993);
   border-radius: 2px;
+  animation: randomPulse 16s infinite;
 }
 
 .profile-pic-home img {
@@ -35,8 +74,7 @@
   position: relative;
   height: 29%;
   width: 100%;
-  margin: 4px;
-  border: 2px solid aqua;
+  margin: 7px;
   background-color: rgba(11, 92, 92, 0.815);
   clip-path: polygon(27px 0, 100% 0, 100% 100%, 0 100%, 0 30px);
 }
@@ -48,7 +86,7 @@
   left: -2px; /* Adjust to match the border width */
   width: 25px; /* Adjust size as needed */
   height: 25px; /* Adjust size as needed */
-  background-color: rgba(11, 92, 92, 0.276); /* Match the background color */
+  background-color: rgba(0, 0, 0, 0.945); /* Match the background color */
   border-top: 2px solid aqua;
   border-left: 2px solid aqua;
   clip-path: polygon(0 0, 100% 0, 0 100%);
@@ -60,6 +98,12 @@
 }
 
 .animation-container img {
-  max-width: 100%;
+  max-height: 170px;
   height: auto;
+}
+.label {
+  padding: 6px;
+}
+.value {
+  padding: 6px;
 }

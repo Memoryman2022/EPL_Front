@@ -1,13 +1,17 @@
 /* General container styling */
 .auth-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: start;
   align-items: center;
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
 }
 
+.animation-container {
+  max-width: 600px;
+}
 /* Keyframes for box shadow rotation animation */
 @keyframes rotateBoxShadow {
   0% {

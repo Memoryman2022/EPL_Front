@@ -7,6 +7,10 @@ import "../css/Navbar.css";
 
 function Navbar() {
   const [menuActive, setMenuActive] = useState(false);
+  const [navbarText, setNavbarText] = useState(
+    "THE PREMIER LEAGUE PREDICTOR MODULE"
+  );
+
   const { isLoggedIn, user, authenticateUser } = useContext(AuthContext);
 
   const toggleMenu = () => {
@@ -19,10 +23,24 @@ function Navbar() {
     }
   }, [isLoggedIn, user, authenticateUser]);
 
+  const handleResize = () => {
+    if (window.innerWidth <= 560) {
+      setNavbarText("THE EPL PREDICTOR MODULE");
+    } else {
+      setNavbarText("THE PREMIER LEAGUE PREDICTOR MODULE");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Set initial state based on current window size
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="navbar">
       <img src={"/icons/predict.png"} />
-      <p>THE PREMIER LEAGUE PREDICTOR MODULE</p>
+      <p>{navbarText}</p>
       <div className="burger-menu" onClick={toggleMenu}>
         <div></div>
         <div></div>
