@@ -3,8 +3,8 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: 100%;
-  min-width: 400px;
+  width: 96%;
+  min-width: 375px;
 }
 
 /* Add a wrapper for the fixture calendar to ensure full width */
@@ -12,15 +12,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 600px;
-  box-sizing: border-box;
+  width: 96%;
+  max-width: 900px;
 }
 
 .fixture-calendar {
   width: 100%;
   max-width: 100%; /* Ensure it can take full width */
-  margin: 10px;
-  box-sizing: border-box;
 }
 
 .calendar-container {
@@ -30,24 +28,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for better visibility */
   border-radius: 8px; /* Optional rounded corners */
   overflow: hidden; /* Ensure no overflow */
-}
-
-.refresh-button {
-  margin-bottom: 10px;
-  padding: 10px 20px;
-  background-color: #01e4ab;
-  color: rgb(1, 74, 78);
-  border: 2px solid aqua;
-  border-radius: 2px;
-  width: 100%;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  outline: none;
-}
-
-.refresh-button:hover {
-  background-color: #00c292;
-  outline: none;
 }
 
 .rbc-calendar {
@@ -68,13 +48,13 @@
 }
 
 .rbc-btn-group {
-  background-color: #01e4ab;
-  border: 2px solid rgb(0, 251, 255);
-  color: rgb(1, 74, 78);
+  background-color: #02fac0c3;
+  border: 2px solid rgb(6, 91, 93);
+  color: rgb(0, 5, 5);
 }
 
 .rbc-event {
-  background-color: #012e5516;
+  background-color: #012e5535;
   border-radius: 2px;
   font-size: 8px;
 }
@@ -91,7 +71,7 @@
 }
 
 .custom-day-wrapper.has-fixtures {
-  background-color: rgba(1, 228, 171, 0.3);
+  background-color: rgba(1, 228, 171, 0.391);
   color: aqua;
   animation: pulse 2.5s infinite;
 }
