@@ -53,11 +53,6 @@ function Navbar() {
         {isLoggedIn ? (
           <>
             <li className="menu-list-item">
-              <Link to={user ? `/user/${user._id}` : "/"} onClick={toggleMenu}>
-                User Profile
-              </Link>
-            </li>
-            <li className="menu-list-item">
               <Link to="/base" onClick={toggleMenu}>
                 Central Hub
               </Link>
@@ -70,16 +65,6 @@ function Navbar() {
             <li className="menu-list-item">
               <Link to="/final-predictions" onClick={toggleMenu}>
                 Confirmed Predictions
-              </Link>
-            </li>
-            <li className="menu-list-item">
-              <Link to="/leaderboard" onClick={toggleMenu}>
-                Leaderboard
-              </Link>
-            </li>
-            <li className="menu-list-item">
-              <Link to="/calendar" onClick={toggleMenu}>
-                Calendar
               </Link>
             </li>
 

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../authContext/authContext";
+import { useNavigate } from "react-router-dom";
 //css
 import "../css/Forms.css";
 
@@ -10,10 +11,12 @@ function Register() {
   const [profileImage, setProfileImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const { registerUser, authError } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     await registerUser(userName, email, password, profileImage);
+    navigate("/base"); // Redirect to /base upon successful registration
   };
 
   const handleImageChange = (e) => {
@@ -33,7 +36,7 @@ function Register() {
 
   return (
     <div className="auth-container">
-      <div className="animation-container">
+      <div className="animation-container-log">
         <img src="/gifs/stadium.gif" alt="Animation" />
       </div>
       <div className="auth-form">

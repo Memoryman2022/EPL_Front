@@ -16,7 +16,7 @@ const Logout = () => {
 
   return (
     <div className="auth-container">
-      <div className="animation-container">
+      <div className="animation-container-log">
         <img src="/gifs/stadium.gif" alt="Animation" />
       </div>
       <div className="auth-form">

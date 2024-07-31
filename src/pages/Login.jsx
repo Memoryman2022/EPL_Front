@@ -8,24 +8,24 @@ import "../css/Forms.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { loginUser, authError, isLoading, isLoggedIn, user } =
+  const { loginUser, authError, isLoading, isLoggedIn } =
     useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Call the login function from the context
     await loginUser(email, password);
   };
 
   useEffect(() => {
-    if (isLoggedIn && user && user._id) {
-      navigate(`/user/${user._id}`); // Redirect to the user's unique home page
+    if (isLoggedIn) {
+      navigate("/base"); // Redirect to /base upon successful login
     }
-  }, [isLoggedIn, user, navigate]);
+  }, [isLoggedIn, navigate]);
+
   return (
     <div className="auth-container">
-      <div className="animation-container">
+      <div className="animation-container-log">
         <img src="/gifs/stadium.gif" alt="Animation" />
       </div>
       <form onSubmit={handleSubmit} className="auth-form">
@@ -57,4 +57,5 @@ function Login() {
     </div>
   );
 }
+
 export default Login;

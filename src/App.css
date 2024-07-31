@@ -20,10 +20,7 @@ body {
   width: 100%; /* Ensure full width */
   box-sizing: border-box; /* Include padding and border in element's width and height */
 }
-.bastard {
-  display: flex;
-  flex-direction: column;
-}
+
 .login-container {
   display: flex;
   flex-direction: column;

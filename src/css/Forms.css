@@ -4,13 +4,16 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
+  width: 100%;
+  position: relative;
 }
-
-.animation-container {
-  max-width: 600px;
+.animation-container-log {
+  height: 40vh;
+}
+.animation-container-log img {
+  width: 100%;
 }
 /* Keyframes for box shadow rotation animation */
 @keyframes rotateBoxShadow {
@@ -41,6 +44,7 @@
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   animation: rotateBoxShadow 5s infinite linear;
+  position: relative;
 }
 
 .auth-form > * {
@@ -186,4 +190,18 @@
 .modal-content {
   color: #a4fcff;
   background-color: rgba(0, 182, 163, 0.991);
+}
+
+@media (max-width: 480px) {
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 200px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    animation: rotateBoxShadow 5s infinite linear;
+    position: relative;
+  }
 }
