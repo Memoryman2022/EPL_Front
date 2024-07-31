@@ -8,6 +8,10 @@ function EPL_Table() {
   const [standings, setStandings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [headers, setHeaders] = useState({
+    position: "Position",
+    points: "Points",
+  });
 
   useEffect(() => {
     const fetchStandings = async () => {
@@ -43,8 +47,32 @@ function EPL_Table() {
     fetchStandings();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 600) {
+        setHeaders({
+          position: "",
+          points: "P",
+        });
+      } else {
+        setHeaders({
+          position: "Position",
+          points: "Points",
+        });
+      }
+    };
+
+    // Set initial header text based on the current window size
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const cleanTeamName = (name) => {
-    // Remove prefixes or suffixes "FC" or "AFC"
     return name.replace(
       /(^\s*FC\s*)|(\s*FC\s*$)|(^\s*AFC\s*)|(\s*AFC\s*$)/gi,
       ""
@@ -59,14 +87,14 @@ function EPL_Table() {
       <table>
         <thead>
           <tr>
-            <th className="col-position">Position</th>
+            <th className="col-position">{headers.position}</th>
             <th className="col-team">Team</th>
             <th className="col-gp">GP</th>
             <th className="col-w">W</th>
             <th className="col-d">D</th>
             <th className="col-l">L</th>
             <th className="col-gd">+/-</th>
-            <th className="col-points">Points</th>
+            <th className="col-points">{headers.points}</th>
           </tr>
         </thead>
         <tbody>

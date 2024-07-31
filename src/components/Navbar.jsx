@@ -24,7 +24,9 @@ function Navbar() {
   }, [isLoggedIn, user, authenticateUser]);
 
   const handleResize = () => {
-    if (window.innerWidth <= 560) {
+    if (window.innerWidth <= 400) {
+      setNavbarText("PREDICTOR MODULE");
+    } else if (window.innerWidth <= 560) {
       setNavbarText("THE EPL PREDICTOR MODULE");
     } else {
       setNavbarText("THE PREMIER LEAGUE PREDICTOR MODULE");

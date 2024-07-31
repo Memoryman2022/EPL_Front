@@ -37,10 +37,17 @@
   border: 3px solid rgb(0, 255, 208);
   height: 45px; /* Set the height for the active tab */
   background-color: rgba(6, 33, 32, 0.365);
+  color: #92feec;
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.5);
 }
 
 .tab-button:not(.active) {
   height: 35px; /* Set the height for inactive tabs */
   font-size: 14px;
   opacity: 0.8;
+}
+@media (max-width: 500px) {
+  .tab-button {
+    padding: 5px;
+  }
 }

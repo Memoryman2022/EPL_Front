@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  height: 80px; /* Set a fixed height */
   padding: 0 20px;
   box-sizing: border-box;
   position: sticky;
@@ -12,14 +12,18 @@
   z-index: 1000;
   box-shadow: inset 60px 0 120px rgba(0, 255, 247, 0.347),
     inset -60px 0 120px rgba(0, 255, 255, 0.041);
+  background-color: #000f0e; /* Optional background color for better visibility */
 }
+
 .navbar img {
-  width: 80px;
+  max-height: 80%; /* Ensure image fits within the navbar height */
+  width: auto; /* Maintain aspect ratio */
+  margin: 0; /* Reset any default margins */
 }
 
 .navbar p {
   position: absolute;
-  margin-left: 120px;
+  margin-left: 80px;
 }
 
 .navbar::before {

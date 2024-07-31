@@ -1,6 +1,6 @@
 @keyframes pulseBorder {
   0% {
-    border-color: rgba(5, 245, 221, 0.2);
+    border-color: rgba(5, 245, 221, 0.899);
     box-shadow: 0 0 5px rgba(5, 245, 221, 0.2), 0 0 10px rgba(5, 245, 221, 0.2),
       0 0 10px rgba(5, 245, 221, 0.2);
   }
@@ -10,7 +10,7 @@
       0 0 7px rgba(5, 245, 221, 0.8);
   }
   100% {
-    border-color: rgba(5, 245, 221, 0.2);
+    border-color: rgba(5, 245, 221, 0.924);
     box-shadow: 0 0 5px rgba(5, 245, 221, 0.2), 0 0 10px rgba(5, 245, 221, 0.2),
       0 0 7px rgba(5, 245, 221, 0.2);
   }
@@ -18,7 +18,7 @@
 
 @keyframes randomPulse {
   0% {
-    border-color: rgba(8, 188, 146, 0.569);
+    border-color: rgba(9, 241, 187, 0.938);
     box-shadow: 0 0 5px rgba(1, 100, 100, 0.2), 0 0 15px rgba(1, 100, 100, 0.2),
       0 0 10px rgba(1, 100, 100, 0.2);
   }
@@ -28,7 +28,7 @@
       0 0 5px rgba(1, 100, 100, 0.8);
   }
   100% {
-    border-color: rgba(8, 188, 146, 0.569);
+    border-color: rgba(9, 243, 188, 0.879);
     box-shadow: 0 0 5px rgba(1, 100, 100, 0.2), 0 0 15px rgba(1, 100, 100, 0.2),
       0 0 5px rgba(1, 100, 100, 0.2);
   }
@@ -100,7 +100,7 @@
 
 .animation-container img {
   height: 100%;
-  max-width: 270px;
+  max-width: 280px;
   margin: 5px;
 }
 .label {
@@ -109,4 +109,45 @@
 }
 .value {
   padding: 8px;
+}
+@media (max-width: 500px) {
+  .animation-container {
+    position: absolute; /* Ensure it's positioned absolutely */
+    left: 9%; /* Center horizontally */
+    bottom: -60%;
+    z-index: -1; /* Place it behind the profile */
+  }
+  .animation-container img {
+    max-width: 100%;
+
+    margin: 5px;
+  }
+
+  .user-profile {
+    position: relative;
+    height: 100px;
+    /* Adjust positioning */
+    z-index: 1; /* Ensure it stays above the animation */
+  }
+
+  .user-info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0px 10px 0px 10px;
+    position: relative;
+    height: 29%;
+    width: 100%;
+    margin: 4px;
+    background-color: rgba(11, 92, 92, 0.815);
+    clip-path: polygon(27px 0, 100% 0, 100% 100%, 0 100%, 0 30px);
+  }
+
+  .label {
+    padding: 0px;
+    padding-left: 20px;
+  }
+  .value {
+    padding: 0px;
+  }
 }
