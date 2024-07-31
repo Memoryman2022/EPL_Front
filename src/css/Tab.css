@@ -1,3 +1,8 @@
+.tabs-container {
+  width: 100%;
+  max-width: 900px;
+}
+
 .tab-buttons {
   background-color: rgb(3, 2, 2);
   display: flex;

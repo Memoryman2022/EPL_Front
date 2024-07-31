@@ -85,19 +85,23 @@ function FixtureCalendar() {
   if (error) return <p>Error fetching fixtures</p>;
 
   return (
-    <div className="fixture-calendar">
-      <div style={{ height: "500px" }}>
-        <Calendar
-          localizer={localizer}
-          events={[]} // Clear events from calendar display
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: "100%" }}
-          components={{
-            dateCellWrapper: CustomDayWrapper,
-          }}
-          views={[Views.MONTH]}
-        />
+    <div className="tab-container">
+      <div className="fixture-calendar-wrapper">
+        <div className="fixture-calendar">
+          <div className="calendar-container">
+            <Calendar
+              localizer={localizer}
+              events={[]} // Clear events from calendar display
+              startAccessor="start"
+              endAccessor="end"
+              style={{ height: "100%" }}
+              components={{
+                dateCellWrapper: CustomDayWrapper,
+              }}
+              views={[Views.MONTH]}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

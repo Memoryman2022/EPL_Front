@@ -1,5 +1,34 @@
+/* Ensure the parent container uses flex layout */
+.tab-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Add a wrapper for the fixture calendar to ensure full width */
+.fixture-calendar-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .fixture-calendar {
+  width: 100%;
+  max-width: 100%; /* Ensure it can take full width */
   margin: 10px;
+  box-sizing: border-box;
+}
+
+.calendar-container {
+  width: 100%;
+  max-width: 900px;
+  height: 60vh; /* 60% of the viewport height */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for better visibility */
+  border-radius: 8px; /* Optional rounded corners */
+  overflow: hidden; /* Ensure no overflow */
 }
 
 .refresh-button {

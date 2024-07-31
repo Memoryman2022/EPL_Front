@@ -5,7 +5,7 @@ import UserProfile from "../components/Profile";
 import Tabs from "../components/Tabs";
 
 //css
-
+import "../css/base.css";
 function Base() {
   const tabs = [
     { label: "Premier League Table", content: <EPL_Table /> },
