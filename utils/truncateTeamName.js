@@ -27,6 +27,10 @@ export const truncateTeamName = (name) => {
     return "Notts Forest";
   }
 
+  if (words[0] === "Wolverhampton") {
+    return "Wolves";
+  }
+
   // Return the full name for exceptions or the first word otherwise
   if (exceptions.includes(words[0])) {
     return cleanedName;

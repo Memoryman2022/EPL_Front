@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ResponsiveTeamName from "../components/ResponsiveTeamName";
-
 //css
 import "../css/EPL_Table.css";
 

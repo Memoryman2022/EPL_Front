@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Leaderboard from "../components/Leaderboard";
-import EPL_Table from "../components/EPL_Table";
-import FixtureCalendar from "../components/Calender";
 import UserProfile from "../components/Profile";
 import Tabs from "../components/Tabs";
+import EPL_Table from "../components/EPL_Table";
+import Leaderboard from "../components/Leaderboard";
+import FixtureCalendar from "../components/Calender";
 
 //css
 import "../css/base.css";

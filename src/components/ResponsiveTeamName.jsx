@@ -7,7 +7,7 @@ const ResponsiveTeamName = ({ name }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 680) {
+      if (window.innerWidth <= 725) {
         setTruncatedName(truncateTeamName(name));
       } else {
         setTruncatedName(name);
