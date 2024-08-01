@@ -1,0 +1,33 @@
+/* src/css/DropdownMenu.css */
+.dropdown-menu {
+  grid-column: 1 / -1; /* Span all columns */
+  background-color: #022e365d; /* Match the background color */
+  padding: 10px 10px 10px 20px; /* Match the padding */
+  /* border: 2px solid #03e9c7; */
+  transition: max-height 3s ease, opacity 1.5s ease; /* Animate the height and opacity */
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  font-size: 14px;
+}
+
+.dropdown-menu.open {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 2px;
+  clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%, 0 26px);
+}
+
+.dropdown-menu .close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: #02fdc3;
+}
+
+.dropdown-menu p {
+  margin: 0;
+  color: #2effbd; /* Match the text color */
+}

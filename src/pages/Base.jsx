@@ -4,12 +4,15 @@ import Tabs from "../components/Tabs";
 import EPL_Table from "../components/EPL_Table";
 import Leaderboard from "../components/Leaderboard";
 import FixtureCalendar from "../components/Calender";
+import FixtureDetails from "../components/Fixtures";
 
 //css
 import "../css/base.css";
 
 function Base() {
   const [tabLabel, setTabLabel] = useState("Premier League Table");
+  const [selectedFixtures, setSelectedFixtures] = useState([]);
+  const [selectedDate, setSelectedDate] = useState("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -30,10 +33,18 @@ function Base() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const handleDateSelect = (fixtures, date) => {
+    setSelectedFixtures(fixtures);
+    setSelectedDate(date);
+  };
+
   const tabs = [
     { label: tabLabel, content: <EPL_Table /> },
     { label: "Leaderboard", content: <Leaderboard /> },
-    { label: "Calendar", content: <FixtureCalendar /> },
+    {
+      label: "Calendar",
+      content: <FixtureCalendar onDateSelect={handleDateSelect} />,
+    },
   ];
 
   return (
@@ -42,6 +53,9 @@ function Base() {
       <div>
         <Tabs tabs={tabs} />
       </div>
+      {selectedFixtures.length > 0 && (
+        <FixtureDetails fixtures={selectedFixtures} date={selectedDate} />
+      )}
     </div>
   );
 }

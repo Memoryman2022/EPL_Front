@@ -1,15 +1,7 @@
 .fixtures-container {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 10px;
-  padding: 20px;
-  background-color: #0548591b;
-  border-radius: 3px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: inherit;
-  max-width: 900px;
+  margin: 20px;
+  max-width: 600px;
 }
 
 .fixtures-container h4 {
@@ -21,6 +13,7 @@
 .fixtures-list {
   list-style: none;
   padding: 0;
+  position: relative;
 }
 
 .fixture-item {
@@ -28,11 +21,13 @@
   grid-template-columns: 50px 1fr auto 1fr auto;
   align-items: center;
   padding: 10px;
+  padding-left: 20px;
   margin-bottom: 2px;
   /* border: 2px solid #03e9c7; */
   background-color: #0f554b5d;
   gap: 20px; /* Add some spacing between columns */
   clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%, 0 26px);
+  position: relative;
 }
 
 .fixture-item span {
@@ -80,12 +75,15 @@
   background-color: #040404;
 }
 
+.dropdown-container {
+  grid-column: 1 / -1; /* Span all columns */
+}
+
 /* Media queries for responsive text size */
 @media (max-width: 480px) {
   .fixtures-container {
     padding: 0px;
-    margin: 2px;
-    min-width: 370px;
+    margin: 20px 3px;
   }
 
   .fixture-item {

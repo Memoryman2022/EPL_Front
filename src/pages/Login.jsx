@@ -19,7 +19,7 @@ function Login() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/base"); // Redirect to /base upon successful login
+      navigate("/base");
     }
   }, [isLoggedIn, navigate]);
 

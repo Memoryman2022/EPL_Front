@@ -89,7 +89,7 @@ function AuthProviderWrapper(props) {
         storeUserId(userId);
         setUser(user);
         setIsLoggedIn(true);
-        navigate(`/user/${userId}`);
+        navigate(`/base`);
       } else {
         setAuthError("No token or userId received");
       }
@@ -126,7 +126,7 @@ function AuthProviderWrapper(props) {
         storeUserId(userId);
         setUser(user);
         setIsLoggedIn(true);
-        navigate(`/user/${userId}`);
+        navigate(`/base`);
         await authenticateUser();
       } else {
         setAuthError("No token or userId received");
@@ -144,7 +144,7 @@ function AuthProviderWrapper(props) {
     removeUserId();
     setIsLoggedIn(false);
     setUser(null);
-    navigate("/login");
+    navigate("/");
   };
 
   useEffect(() => {
