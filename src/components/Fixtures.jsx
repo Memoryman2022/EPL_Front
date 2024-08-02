@@ -40,12 +40,16 @@ function FixtureDetails() {
     }
   };
 
-  const handlePrediction = (fixtureId) => {
+  const handlePredictionClick = (fixtureId) => {
+    setOpenDropdown(openDropdown === fixtureId ? null : fixtureId);
+  };
+
+  const handleConfirm = (fixtureId, homeScore, awayScore) => {
     setPredictions((prev) => ({
       ...prev,
-      [fixtureId]: !prev[fixtureId],
+      [fixtureId]: { homeScore, awayScore },
     }));
-    setOpenDropdown(openDropdown === fixtureId ? null : fixtureId);
+    setOpenDropdown(null);
   };
 
   if (loading) return <p>Loading...</p>;
@@ -59,7 +63,10 @@ function FixtureDetails() {
       <ul className="fixtures-list">
         {fixtures.map((fixture) => (
           <React.Fragment key={fixture.id}>
-            <li className="fixture-item">
+            <li
+              className="fixture-item"
+              onClick={() => handlePredictionClick(fixture.id)}
+            >
               <span className="fixture-time">
                 {moment(fixture.utcDate).format("HH:mm")}
               </span>
@@ -74,7 +81,6 @@ function FixtureDetails() {
                 className={`prediction-box ${
                   predictions[fixture.id] ? "confirmed" : ""
                 }`}
-                onClick={() => handlePrediction(fixture.id)}
               >
                 <img
                   src={
@@ -91,7 +97,8 @@ function FixtureDetails() {
                 <DropdownMenu
                   isOpen={openDropdown === fixture.id}
                   onClose={() => setOpenDropdown(null)}
-                  fixture={fixture}
+                  fixture={{ ...fixture, image: "/icons/predict.png" }} // Pass the confirm image URL
+                  onConfirm={handleConfirm}
                 />
               </li>
             )}

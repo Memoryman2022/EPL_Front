@@ -1,9 +1,18 @@
-import React, { useEffect, useRef } from "react";
-import ResponsiveTeamName from "../components/ResponsiveTeamName";
+import React, { useState, useEffect, useRef } from "react";
 import "../css/DDP.css"; // Ensure the CSS file path is correct
 
-function DropdownMenu({ isOpen, onClose, fixture }) {
+function DropdownMenu({ isOpen, onClose, fixture, onConfirm }) {
   const dropdownRef = useRef(null);
+  const [homeScore, setHomeScore] = useState("");
+  const [awayScore, setAwayScore] = useState("");
+
+  const handleScoreChange = (team, score) => {
+    if (team === "home") {
+      setHomeScore(score);
+    } else if (team === "away") {
+      setAwayScore(score);
+    }
+  };
 
   useEffect(() => {
     const dropdown = dropdownRef.current;
@@ -16,15 +25,40 @@ function DropdownMenu({ isOpen, onClose, fixture }) {
     }
   }, [isOpen]);
 
+  const handleConfirm = () => {
+    onConfirm(fixture.id, homeScore, awayScore);
+  };
+
   return (
     <div ref={dropdownRef} className={`dropdown-menu ${isOpen ? "open" : ""}`}>
-      <p>
-        INPUT SCORE: <ResponsiveTeamName name={fixture.homeTeam.name} /> vs{" "}
-        <ResponsiveTeamName name={fixture.awayTeam.name} />
-      </p>
-      <button className="close-btn" onClick={onClose}>
-        CONFIRM
-      </button>
+      <p className="dropdown-text">SCORE INPUT:</p>
+
+      <div className="dropdown-home">
+        <input
+          type="number"
+          className="score-input"
+          value={homeScore}
+          onChange={(e) => handleScoreChange("home", e.target.value)}
+        />
+      </div>
+      <span className="dropdown-vs">-</span>
+      <div className="dropdown-away">
+        <input
+          type="number"
+          className="score-input"
+          value={awayScore}
+          onChange={(e) => handleScoreChange("away", e.target.value)}
+        />
+      </div>
+
+      <div className="prediction-box">
+        <img
+          src={fixture.image}
+          alt="Confirm"
+          className="confirm-img"
+          onClick={handleConfirm}
+        />
+      </div>
     </div>
   );
 }

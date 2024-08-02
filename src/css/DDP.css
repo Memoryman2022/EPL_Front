@@ -1,33 +1,176 @@
-/* src/css/DropdownMenu.css */
+/* Dropdown Menu Styling */
 .dropdown-menu {
   grid-column: 1 / -1; /* Span all columns */
   background-color: #022e365d; /* Match the background color */
   padding: 10px 10px 10px 20px; /* Match the padding */
-  /* border: 2px solid #03e9c7; */
   transition: max-height 3s ease, opacity 1.5s ease; /* Animate the height and opacity */
   overflow: hidden;
   max-height: 0;
   opacity: 0;
-  font-size: 14px;
+  font-size: 10px;
 }
 
+/* Dropdown Menu Open */
 .dropdown-menu.open {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 50px 1fr auto 1fr auto; /* Ensure columns fit content */
+  align-items: center;
+  padding: 10px;
+  padding-left: 20px;
   margin-bottom: 2px;
+  border: 2px solid #00fdd7;
+  border-radius: 2px;
+  background-color: #090909b2;
+  gap: 25px; /* Add some spacing between columns */
   clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%, 0 26px);
+  position: relative;
+  overflow: hidden;
 }
 
-.dropdown-menu .close-btn {
-  background: none;
-  border: none;
+/* Ensure dropdown items fit within grid */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center items */
+}
+
+/* Keyframes for box-shadow animation */
+@keyframes boxShadowAnimation {
+  0% {
+    box-shadow: 0 0 0 #00fdd7;
+  }
+  50% {
+    box-shadow: 0 0 15px #00fdd7;
+  }
+  100% {
+    box-shadow: 0 0 0 #00fdd7;
+  }
+}
+
+/* Score input styling */
+.score-input {
+  background: linear-gradient(
+    to right,
+    #000000,
+    #0002023b
+  ); /* Transition from black to specified color */
+  box-shadow: 0 0 5px #00fdd7; /* Uniform box-shadow */
+  border: none; /* Ensure border does not interfere */
+  border-radius: 5px;
+  color: #04ff9a; /* Default text color */
+  padding: 5px;
+  font-size: 12px; /* Adjust font size as needed */
+  transition: color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  animation: boxShadowAnimation 3s ease-in-out infinite;
+  outline: none;
+}
+
+/* On hover */
+.score-input:hover {
+  background: #00fdd7; /* Light teal color */
+  color: #004d00; /* Dark green text color */
+  box-shadow: 0 0 10px #00fdd7; /* Increased box-shadow intensity */
+  animation: boxShadowAnimation 1s ease-in-out infinite; /* Ensure infinite animation on hover */
+}
+
+/* On focus */
+.score-input:focus {
+  background: #00fdd7; /* Light teal color */
+  color: #004d2c; /* Dark green text color */
+  box-shadow: 0 0 10px #00fdd7;
+  outline: none; /* Remove default outline */
+  animation: boxShadowAnimation 1s ease-in-out infinite; /* Ensure infinite animation on focus */
+}
+
+/* Remove transitions after input */
+.score-input:focus:not(:placeholder-shown) {
+  transition: none; /* Disable transition effects when input is focused and has text */
+  box-shadow: 0 0 5px #00fdd7; /* Ensure box-shadow is uniform when input is not empty */
+  animation: none; /* Disable animation when input has text */
+}
+
+.dropdown-text {
+  font-weight: bold;
+  color: #03c9ae;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.dropdown-home {
+  justify-self: end;
+}
+
+.dropdown-home,
+.dropdown-away {
+  color: #02fcd2;
+}
+
+.dropdown-vs {
+  text-align: center;
+  color: #ffffff;
+  font-size: 22px;
+}
+
+.prediction-box {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #000000fc;
   cursor: pointer;
-  font-size: 12px;
-  color: #02fdc3;
 }
 
-.dropdown-menu p {
-  margin: 0;
-  color: #2effbd; /* Match the text color */
+.prediction-box:hover {
+  background-color: #02dec5fc;
+  box-shadow: 0 0 10px teal;
+}
+
+.prediction-box img {
+  width: 20px;
+  height: 20px;
+}
+
+.prediction-box.confirmed {
+  background-color: #040404;
+}
+
+.dropdown-container {
+  grid-column: 1 / -1; /* Span all columns */
+}
+
+/* Media queries for responsive text size */
+@media (max-width: 480px) {
+  .dropdowns-container {
+    padding: 0px;
+    margin: 20px 3px;
+  }
+
+  .dropdown-item {
+    font-size: 14px;
+  }
+
+  .dropdown-time {
+    font-size: 12px; /* Adjust the font size as needed */
+  }
+
+  .dropdown-home,
+  .dropdown-away,
+  .dropdown-vs {
+    font-size: 12px; /* Adjust the font size as needed */
+  }
+}
+
+/* Additional Media Query for Specific Widths */
+@media (max-width: 385px) {
+  .dropdown-menu.open {
+    grid-template-columns: 50px 1fr auto 1fr; /* Adjust grid template for smaller screens */
+    gap: 10px; /* Reduce gap if needed */
+    padding-left: 10px; /* Adjust padding if needed */
+  }
+
+  .prediction-box {
+    position: static; /* Ensure it's not affected by relative positioning */
+  }
 }

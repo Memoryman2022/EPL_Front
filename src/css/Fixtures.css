@@ -2,6 +2,7 @@
   align-items: center;
   margin: 20px;
   max-width: 600px;
+  min-width: 369px;
 }
 
 .fixtures-container h4 {
@@ -17,6 +18,7 @@
 }
 
 .fixture-item {
+  font-size: 14px;
   display: grid;
   grid-template-columns: 50px 1fr auto 1fr auto;
   align-items: center;
@@ -43,6 +45,10 @@
   font-weight: bold;
   color: #009b87;
   text-align: center;
+}
+
+.fixture-home {
+  justify-self: end;
 }
 
 .fixture-home,
@@ -84,10 +90,6 @@
   .fixtures-container {
     padding: 0px;
     margin: 20px 3px;
-  }
-
-  .fixture-item {
-    font-size: 14px; /* Adjust the font size as needed */
   }
 
   .fixture-time {
