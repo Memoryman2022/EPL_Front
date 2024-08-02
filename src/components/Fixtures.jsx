@@ -59,7 +59,7 @@ function FixtureDetails() {
 
   return (
     <div className="fixtures-container">
-      <h4>Fixtures {formattedDate}</h4>
+      <h5>FIXTURES FOR {formattedDate}</h5>
       <ul className="fixtures-list">
         {fixtures.map((fixture) => (
           <React.Fragment key={fixture.id}>
