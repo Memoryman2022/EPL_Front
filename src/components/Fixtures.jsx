@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { API_URL } from "../config/index";
 import axios from "axios";
 import moment from "moment";
 import ResponsiveTeamName from "../components/ResponsiveTeamName";
 import DropdownMenu from "../components/DDP";
-// css
-import "../css/Fixtures.css"; // Ensure this path is correct for your project
+import { AuthContext } from "../authContext/authContext";
+//css
+import "../css/Fixtures.css";
 
 function FixtureDetails() {
   const { date } = useParams();
+  const { user } = useContext(AuthContext); // Access user from context
   const [fixtures, setFixtures] = useState([]);
   const [predictions, setPredictions] = useState({});
   const [loading, setLoading] = useState(true);
@@ -44,12 +47,54 @@ function FixtureDetails() {
     setOpenDropdown(openDropdown === fixtureId ? null : fixtureId);
   };
 
-  const handleConfirm = (fixtureId, homeScore, awayScore) => {
-    setPredictions((prev) => ({
-      ...prev,
-      [fixtureId]: { homeScore, awayScore },
-    }));
-    setOpenDropdown(null);
+  const calculateOutcome = (homeScore, awayScore) => {
+    if (homeScore > awayScore) return "homeWin";
+    if (homeScore < awayScore) return "awayWin";
+    return "draw";
+  };
+
+  const handleConfirm = async (fixtureId, homeScore, awayScore) => {
+    if (homeScore === "" || awayScore === "") {
+      alert("Please enter both home and away scores.");
+      return;
+    }
+    const outcome = calculateOutcome(homeScore, awayScore);
+    const userId = user.userId; // Get userId from context
+
+    // Debugging logs
+    console.log("User ID:", userId);
+    console.log("User Object:", user);
+
+    const payload = {
+      fixtureId,
+      userId, // Include userId in the payload
+      homeScore,
+      awayScore,
+      outcome,
+    };
+
+    console.log("Payload to send:", payload); // Debugging log
+
+    try {
+      // Ensure the token is included in the request headers
+      const token = localStorage.getItem("jwtToken");
+      const response = await axios.post(`${API_URL}/predictions`, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setPredictions((prev) => ({
+        ...prev,
+        [fixtureId]: { homeScore, awayScore, outcome },
+      }));
+
+      setOpenDropdown(null);
+      console.log("Prediction saved:", response.data);
+    } catch (error) {
+      console.error("Error saving prediction:", error);
+      alert("Failed to save prediction. Please try again.");
+    }
   };
 
   if (loading) return <p>Loading...</p>;
