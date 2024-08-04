@@ -123,9 +123,9 @@ function UserPredictions({ fixtureId }) {
                 <div className="prediction-info">
                   <p> {prediction.homeScore}</p>
                   <p> {prediction.awayScore}</p>
-                  <div className="outcome-box">
-                    {getOutcomeLabel(prediction.outcome)}
-                  </div>
+                </div>
+                <div className="outcome-box">
+                  {getOutcomeLabel(prediction.outcome)}
                 </div>
               </div>
             </li>

@@ -63,7 +63,7 @@ function Navbar() {
               </Link>
             </li>
             <li className="menu-list-item">
-              <Link to="/final-predictions" onClick={toggleMenu}>
+              <Link to="/confirmed-predictions" onClick={toggleMenu}>
                 Confirmed Predictions
               </Link>
             </li>

@@ -14,6 +14,7 @@ import UserProfile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
 import FixtureCalendar from "./components/Calender";
 import FixturesByDate from "./components/Fixtures";
+// import ConfirmedPredictions from "./components/ConfirmedPredictions";
 //CSS
 import "./App.css";
 
@@ -32,6 +33,10 @@ function App() {
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/calendar" element={<FixtureCalendar />} />
             <Route path="/fixtures/:date" element={<FixturesByDate />} />
+            {/* <Route
+              path="/confirmed-predictions"
+              element={<ConfirmedPredictions />}
+            /> */}
             <Route path="/logout" element={<Logout />} />
           </Route>
         </Routes>

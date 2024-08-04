@@ -33,17 +33,10 @@
   align-items: center;
 }
 
-.user-profile {
-  margin-right: 10px;
-  height: 40px;
-  margin: 0px;
-  margin-left: 5px;
-  animation: none;
-}
-
 .prediction-info {
   display: flex;
   flex-direction: row;
+  height: 30px;
 }
 
 .profile-picture {
@@ -59,7 +52,7 @@
 }
 
 .outcome-box {
-  width: 50px;
+  width: 30px;
   height: 30px;
   display: flex;
   align-items: center;
