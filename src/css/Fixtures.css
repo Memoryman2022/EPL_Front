@@ -10,7 +10,7 @@
 .fixtures-container h5 {
   text-align: center;
   margin-top: 0px;
-  color: #139578;
+  color: #0c7c8d;
 }
 
 .fixtures-list {
@@ -55,12 +55,12 @@
 
 .fixture-home,
 .fixture-away {
-  color: #02fcd2;
+  color: #059b87;
 }
 
 .fixture-vs {
   text-align: center;
-  color: #ffffff;
+  color: #babbbc;
 }
 
 .prediction-box {

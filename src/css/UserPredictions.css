@@ -1,13 +1,14 @@
 /* User Predictions Container */
 .user-predictions-container {
   background-color: #022e365d; /* Match the background color */
-  padding: 10px;
+  padding: 10px 10px 0 20px;
   border-radius: 3px; /* Match border-radius */
-  border: 2px solid #00fdd7; /* Match border color */
+  border: 2px solid #0e7a6a; /* Match border color */
   margin-bottom: 2px; /* Space between predictions */
   font-size: 10px; /* Match font size */
   clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%, 0 26px);
   padding-left: 20px;
+  color: #bbbaba;
 }
 .user-predictions-container ul {
   padding: 0px;
@@ -17,7 +18,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 1px solid #00fdd7;
+  border-bottom: 1px solid #159c88;
   margin-bottom: 5px;
   border-radius: 2px;
 }
@@ -44,7 +45,8 @@
 
 .profile-picture-CP {
   height: 50px;
-  border: 2px solid rgb(5, 169, 136);
+  border: 2px solid rgb(5, 197, 158);
+  border-radius: 3px;
   object-fit: cover;
   overflow: hidden;
 }
@@ -64,18 +66,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: rgb(209, 79, 4);
 }
 
 .pred-H4 {
   display: flex;
   flex-direction: column;
-  margin: -2px 4px 4px;
-  color: #00ffdd;
+  margin: -2px 4px 8px;
+  color: #04d5b9;
   font-size: 10px;
   align-items: center;
   justify-content: center;
   background-color: rgb(2, 86, 59);
   width: 100%;
+  border-radius: 3px;
 }
 
 .outcome-box {
@@ -87,4 +91,5 @@
   border-radius: 50%;
   background-color: #000000fc;
   font-size: 16px;
+  color: rgb(0, 255, 170);
 }
