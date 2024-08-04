@@ -1,0 +1,70 @@
+/* User Predictions Container */
+.user-predictions-container {
+  background-color: #022e365d; /* Match the background color */
+  padding: 10px;
+  border-radius: 3px; /* Match border-radius */
+  border: 2px solid #00fdd7; /* Match border color */
+  margin-bottom: 2px; /* Space between predictions */
+  font-size: 10px; /* Match font size */
+  clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%, 0 26px);
+  padding-left: 20px;
+}
+.user-predictions-container ul {
+  padding: 0px;
+}
+/* Prediction Item Styling */
+.user-prediction-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #00fdd7;
+  margin-bottom: 2px;
+  border-radius: 2px;
+}
+
+/* Prediction Details */
+.prediction-details {
+  display: grid;
+  grid-template-columns: auto 2fr auto 1fr auto;
+  gap: 20px;
+  padding: 10px;
+  padding-left: 20px;
+  margin-bottom: 2px;
+  align-items: center;
+}
+
+.user-profile {
+  margin-right: 10px;
+  height: 40px;
+  margin: 0px;
+  margin-left: 5px;
+  animation: none;
+}
+
+.prediction-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-picture {
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.prediction-details h4,
+.prediction-details p {
+  margin: 14px;
+  color: #03c9ae;
+  font-size: 14px;
+}
+
+.outcome-box {
+  width: 50px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #000000fc;
+  font-size: 16px;
+}

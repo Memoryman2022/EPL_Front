@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { API_URL } from "../config/index";
 import axios from "axios";
 import moment from "moment";
 import ResponsiveTeamName from "../components/ResponsiveTeamName";
 import DropdownMenu from "../components/DDP";
+import UserPredictions from "../components/UserPredictions";
 import { AuthContext } from "../authContext/authContext";
+import { API_URL } from "../config/index"; // Ensure this path is correct
+
 //css
 import "../css/Fixtures.css";
 
@@ -72,7 +74,11 @@ function FixtureDetails() {
   };
 
   const handlePredictionClick = (fixtureId) => {
-    if (!predictions[fixtureId]) {
+    if (predictions[fixtureId]) {
+      // Fixture is locked, so show UserPredictions
+      setOpenDropdown(openDropdown === fixtureId ? null : fixtureId);
+    } else {
+      // Fixture is not locked, so show DropdownMenu
       setOpenDropdown(openDropdown === fixtureId ? null : fixtureId);
     }
   };
@@ -164,12 +170,19 @@ function FixtureDetails() {
             </li>
             {openDropdown === fixture.id && (
               <li className="dropdown-container">
-                <DropdownMenu
-                  isOpen={openDropdown === fixture.id}
-                  onClose={() => setOpenDropdown(null)}
-                  fixture={{ ...fixture, image: "/icons/predict.png" }} // Pass the confirm image URL
-                  onConfirm={handleConfirm}
-                />
+                {!predictions[fixture.id] ? (
+                  <DropdownMenu
+                    isOpen={openDropdown === fixture.id}
+                    onClose={() => setOpenDropdown(null)}
+                    fixture={{ ...fixture, image: "/icons/predict.png" }}
+                    onConfirm={handleConfirm}
+                  />
+                ) : (
+                  <div className="user-prediction-dropdown">
+                    <UserPredictions fixtureId={fixture.id} />{" "}
+                    {/* Pass fixtureId to UserPredictions */}
+                  </div>
+                )}
               </li>
             )}
           </React.Fragment>

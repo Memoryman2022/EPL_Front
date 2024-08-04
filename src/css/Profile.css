@@ -43,8 +43,6 @@
   border: 3px solid rgba(5, 245, 221, 0.957);
   border-radius: 2px;
   margin-bottom: 10px;
-  width: 96%;
-
   max-width: 900px;
   animation: pulseBorder 18s infinite;
   overflow: hidden;
