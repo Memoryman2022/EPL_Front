@@ -59,7 +59,6 @@ function AuthProviderWrapper(props) {
       });
       setIsLoggedIn(true);
       setUser(response.data);
-      console.log("User authenticated:", response.data);
     } catch (error) {
       if (error.response?.status === 401) {
         await refreshToken();
@@ -82,7 +81,6 @@ function AuthProviderWrapper(props) {
         email,
         password,
       });
-      console.log("Response from login:", response.data);
       const { token, userId, user } = response.data;
       if (token && userId && user) {
         storeToken(token);

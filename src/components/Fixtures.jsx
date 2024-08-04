@@ -11,7 +11,7 @@ import "../css/Fixtures.css";
 
 function FixtureDetails() {
   const { date } = useParams();
-  const { user } = useContext(AuthContext); // Access user from context
+  const { user } = useContext(AuthContext);
   const [fixtures, setFixtures] = useState([]);
   const [predictions, setPredictions] = useState({});
   const [loading, setLoading] = useState(true);
@@ -20,7 +20,8 @@ function FixtureDetails() {
 
   useEffect(() => {
     fetchFixtures();
-  }, [date]);
+    fetchPredictions();
+  }, [date, user]);
 
   const fetchFixtures = async () => {
     try {
@@ -43,8 +44,37 @@ function FixtureDetails() {
     }
   };
 
+  const fetchPredictions = async () => {
+    try {
+      const token = localStorage.getItem("jwtToken");
+      if (!token) {
+        console.error("No JWT token found");
+        return;
+      }
+      const response = await axios.get(
+        `${API_URL}/predictions/${user.userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const userPredictions = response.data.reduce((acc, prediction) => {
+        acc[prediction.fixtureId] = prediction;
+        return acc;
+      }, {});
+
+      setPredictions(userPredictions);
+    } catch (error) {
+      console.error("Error fetching predictions:", error);
+    }
+  };
+
   const handlePredictionClick = (fixtureId) => {
-    setOpenDropdown(openDropdown === fixtureId ? null : fixtureId);
+    if (!predictions[fixtureId]) {
+      setOpenDropdown(openDropdown === fixtureId ? null : fixtureId);
+    }
   };
 
   const calculateOutcome = (homeScore, awayScore) => {
@@ -59,24 +89,19 @@ function FixtureDetails() {
       return;
     }
     const outcome = calculateOutcome(homeScore, awayScore);
-    const userId = user.userId; // Get userId from context
-
-    // Debugging logs
-    console.log("User ID:", userId);
-    console.log("User Object:", user);
+    const userId = user?.userId;
 
     const payload = {
       fixtureId,
-      userId, // Include userId in the payload
+      userId,
       homeScore,
       awayScore,
       outcome,
     };
 
-    console.log("Payload to send:", payload); // Debugging log
+    console.log("Payload to send:", payload);
 
     try {
-      // Ensure the token is included in the request headers
       const token = localStorage.getItem("jwtToken");
       const response = await axios.post(`${API_URL}/predictions`, payload, {
         headers: {

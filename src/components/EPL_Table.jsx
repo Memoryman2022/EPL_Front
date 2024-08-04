@@ -24,13 +24,13 @@ function EPL_Table() {
       };
       try {
         const response = await axios.request(options);
-        console.log("API Response:", response.data); // Log the entire API response
+        // console.log("API Response:", response.data);
 
         // Inspect the response structure to find the exact path to the standings
         if (response.data && response.data.standings) {
           // Assuming the first standings object contains the table data
           const standingsData = response.data.standings[0]?.table || [];
-          console.log("Standings Data:", standingsData); // Log the parsed standings data
+          // console.log("Standings Data:", standingsData);
           setStandings(standingsData);
         } else {
           console.error("Standings data not found in the response");
