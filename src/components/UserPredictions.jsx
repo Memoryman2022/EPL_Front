@@ -99,7 +99,7 @@ function UserPredictions({ fixtureId }) {
 
   return (
     <div className="user-predictions-container">
-      <h4>CONFIRMED PREDICTIONS</h4>
+      <h4 className="pred-H4">CONFIRMED PREDICTIONS</h4>
       {sortedPredictions.length === 0 ? (
         <p>No predictions found for this fixture.</p>
       ) : (
@@ -107,7 +107,7 @@ function UserPredictions({ fixtureId }) {
           {sortedPredictions.map((prediction) => (
             <li key={prediction._id} className="user-prediction-item">
               <div className="prediction-details">
-                <div className="user-profile">
+                <div className="user-profile-CP">
                   <img
                     src={
                       userProfiles[prediction.userId]?.profileImage
@@ -117,13 +117,16 @@ function UserPredictions({ fixtureId }) {
                         : "/default-profile.png"
                     }
                     alt="User Profile"
-                    className="profile-picture"
+                    className="profile-picture-CP"
                   />
                 </div>
-                <div className="prediction-info">
-                  <p> {prediction.homeScore}</p>
-                  <p> {prediction.awayScore}</p>
-                </div>
+                {/* <div className="user-name"></div>
+                <div classname="user-points"></div> */}
+
+                <div className="score-digit"> {prediction.homeScore}</div>
+                <div>-</div>
+                <div className="score-digit"> {prediction.awayScore}</div>
+
                 <div className="outcome-box">
                   {getOutcomeLabel(prediction.outcome)}
                 </div>
