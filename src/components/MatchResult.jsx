@@ -19,7 +19,7 @@ const getOutcomeLabel = (outcome) => {
 
 const MatchResult = ({ fixtureId }) => {
   const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -61,6 +61,8 @@ const MatchResult = ({ fixtureId }) => {
 
   if (loading) return <div>Loading result...</div>;
   if (error) return <div>{error}</div>;
+
+  if (!result) return null;
 
   return (
     <div class="confirmed-results-container">

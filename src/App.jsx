@@ -22,7 +22,7 @@ function App() {
   return (
     <div>
       <Navbar />
-      <div>
+      <div className="BIG">
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Register />} />

@@ -5,11 +5,10 @@ import moment from "moment";
 import ResponsiveTeamName from "../components/ResponsiveTeamName";
 import DropdownMenu from "../components/DDP";
 import UserPredictions from "../components/UserPredictions";
-import MatchResult from "../components/MatchResult"; // Import the new component
+import MatchResult from "../components/MatchResult";
 import { AuthContext } from "../authContext/authContext";
 import { API_URL } from "../config/index"; // Ensure this path is correct
 
-//css
 import "../css/Fixtures.css";
 
 function FixtureDetails() {
@@ -20,6 +19,7 @@ function FixtureDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [selectedFixtureId, setSelectedFixtureId] = useState(null);
 
   useEffect(() => {
     fetchFixtures();
@@ -76,12 +76,11 @@ function FixtureDetails() {
 
   const handlePredictionClick = (fixtureId) => {
     if (predictions[fixtureId]) {
-      // Fixture is locked, so show UserPredictions
       setOpenDropdown(openDropdown === fixtureId ? null : fixtureId);
     } else {
-      // Fixture is not locked, so show DropdownMenu
       setOpenDropdown(openDropdown === fixtureId ? null : fixtureId);
     }
+    setSelectedFixtureId(fixtureId); // Set the selected fixture ID
   };
 
   const calculateOutcome = (homeScore, awayScore) => {
@@ -106,8 +105,6 @@ function FixtureDetails() {
       outcome,
     };
 
-    console.log("Payload to send:", payload);
-
     try {
       const token = localStorage.getItem("jwtToken");
       const response = await axios.post(`${API_URL}/predictions`, payload, {
@@ -122,7 +119,6 @@ function FixtureDetails() {
       }));
 
       setOpenDropdown(null);
-      console.log("Prediction saved:", response.data);
     } catch (error) {
       console.error("Error saving prediction:", error);
       alert("Failed to save prediction. Please try again.");
@@ -169,7 +165,9 @@ function FixtureDetails() {
                 />
               </div>
             </li>
-            <MatchResult fixtureId={fixture.id} />
+            {selectedFixtureId === fixture.id && (
+              <MatchResult fixtureId={fixture.id} />
+            )}
             {openDropdown === fixture.id && (
               <li className="dropdown-container">
                 {!predictions[fixture.id] ? (
@@ -181,8 +179,7 @@ function FixtureDetails() {
                   />
                 ) : (
                   <div className="user-prediction-dropdown">
-                    <UserPredictions fixtureId={fixture.id} />{" "}
-                    {/* Pass fixtureId to UserPredictions */}
+                    <UserPredictions fixtureId={fixture.id} />
                   </div>
                 )}
               </li>

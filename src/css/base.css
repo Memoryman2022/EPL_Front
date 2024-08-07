@@ -1,7 +1,6 @@
-.Base-container {
-  display: block;
+/* .Base-container {
+  display: flex;
   flex-direction: column;
-
-  justify-content: start; /* Center horizontally */
-  align-items: center; /* Center vertically, optional */
-}
+  justify-content: start;
+  align-items: center;
+} */
