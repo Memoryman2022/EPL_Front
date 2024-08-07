@@ -1,6 +1,5 @@
-/* User Predictions Container */
 .user-predictions-container {
-  background-color: #022e365d; /* Match the background color */
+  background-color: #022e362f; /* Match the background color */
   padding: 10px 10px 0 20px;
   border-radius: 3px; /* Match border-radius */
   border: 2px solid #0e7a6a; /* Match border color */
@@ -16,7 +15,7 @@
 /* Prediction Item Styling */
 .user-prediction-item {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   border-bottom: 1px solid #159c88;
   margin-bottom: 5px;
@@ -27,28 +26,31 @@
 .prediction-details {
   display: grid;
   grid-template-columns: auto 1fr auto 1fr auto;
-  padding-left: 5px;
   width: 100%;
   font-size: 14px;
   align-items: center;
 }
 
-.prediction-info {
-  display: flex;
-  flex-direction: row;
-  height: 30px;
-}
-
 .user-profile-CP {
-  width: 45px;
+  width: 40px;
+  height: 50px;
+  overflow: hidden;
+  padding: 4px 4px 4px 1px;
 }
 
 .profile-picture-CP {
-  height: 50px;
-  border: 2px solid rgb(5, 197, 158);
-  border-radius: 3px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  overflow: hidden;
+  border: 1px solid rgb(4, 200, 200);
+  border-radius: 1px;
+}
+
+.user-name {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #bbbaba;
+  text-align: center;
 }
 
 .prediction-details h4,
@@ -66,7 +68,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(209, 79, 4);
+  color: rgb(211, 80, 4);
 }
 
 .pred-H4 {
@@ -92,4 +94,17 @@
   background-color: #000000fc;
   font-size: 16px;
   color: rgb(0, 255, 170);
+}
+
+/* User Points */
+.user-points {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+  background-color: #022e3600;
+  color: #e55e04;
+  /* border-top: 1px solid #159c88; */
+  font-size: 12px;
 }

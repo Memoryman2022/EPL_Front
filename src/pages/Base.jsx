@@ -5,7 +5,6 @@ import EPL_Table from "../components/EPL_Table";
 import Leaderboard from "../components/Leaderboard";
 import FixtureCalendar from "../components/Calender";
 import FixtureDetails from "../components/Fixtures";
-import UserPredictions from "../components/UserPredictions";
 
 //css
 import "../css/base.css";
@@ -46,7 +45,6 @@ function Base() {
       label: "Calendar",
       content: <FixtureCalendar onDateSelect={handleDateSelect} />,
     },
-    { label: "Confirmed", content: <UserPredictions /> },
   ];
 
   return (

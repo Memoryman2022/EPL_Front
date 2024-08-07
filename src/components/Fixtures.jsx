@@ -5,6 +5,7 @@ import moment from "moment";
 import ResponsiveTeamName from "../components/ResponsiveTeamName";
 import DropdownMenu from "../components/DDP";
 import UserPredictions from "../components/UserPredictions";
+import MatchResult from "../components/MatchResult"; // Import the new component
 import { AuthContext } from "../authContext/authContext";
 import { API_URL } from "../config/index"; // Ensure this path is correct
 
@@ -168,6 +169,7 @@ function FixtureDetails() {
                 />
               </div>
             </li>
+            <MatchResult fixtureId={fixture.id} />
             {openDropdown === fixture.id && (
               <li className="dropdown-container">
                 {!predictions[fixture.id] ? (

@@ -1,0 +1,59 @@
+.confirmed-results-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #023943; /* Match the background color */
+  border-radius: 3px; /* Match border-radius */
+  border: 2px solid #0e7a6a47; /* Match border color */
+  margin-bottom: 2px; /* Space between predictions */
+  font-size: 14px; /* Adjust font size if needed */
+  padding: 10px; /* Add padding if needed */
+  clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%, 0 26px);
+  padding-left: 20px;
+  color: #bbbaba;
+}
+
+.result-header {
+  display: flex;
+  flex-direction: column;
+  margin: -2px 4px 8px;
+  color: #04d5b9;
+  font-size: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(2, 64, 86);
+  width: 100%;
+  border-radius: 3px;
+}
+
+.match-result {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content horizontally */
+  font-size: 14px;
+  color: #09e1b2;
+  height: 25px;
+  position: relative;
+  margin-left: 10px;
+}
+
+.match-result-score {
+  font-weight: bold;
+  color: #02fad9;
+  text-align: center;
+  margin-left: 16px;
+  margin-right: -20px;
+  letter-spacing: 29px;
+}
+
+.match-result-outcome {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #000000fc;
+  cursor: pointer;
+  position: absolute; /* Absolute positioning */
+  right: 0; /* Align to the right */
+}

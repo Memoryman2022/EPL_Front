@@ -27,7 +27,7 @@ function UserPredictions({ fixtureId }) {
 
   useEffect(() => {
     if (isLoggedIn && user) {
-      fetchPredictions(fixtureId); // Pass fixtureId to fetch predictions for a specific fixture
+      fetchPredictions(fixtureId);
     } else {
       setError("User not authenticated");
       setLoading(false);
@@ -120,8 +120,6 @@ function UserPredictions({ fixtureId }) {
                     className="profile-picture-CP"
                   />
                 </div>
-                {/* <div className="user-name"></div>
-                <div classname="user-points"></div> */}
 
                 <div className="score-digit"> {prediction.homeScore}</div>
                 <div>-</div>
