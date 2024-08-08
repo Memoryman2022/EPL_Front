@@ -23,7 +23,7 @@
 .tab-button {
   color: aquamarine;
   border: 2px solid aqua;
-  border-radius: 3px;
+  border-radius: 2px;
   background-color: rgba(11, 92, 92, 0.815);
   clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%, 0 26px);
   padding: 0px 20px;
@@ -42,20 +42,22 @@
 }
 
 .tab-button.active {
+  width: 100px;
   border: 3px solid rgb(0, 255, 208);
   height: 45px; /* Set the height for the active tab */
-  background-color: rgba(6, 33, 32, 0.365);
+  background-color: rgba(6, 61, 59, 0.809);
   color: #92feec;
   box-shadow: 0 4px 8px rgba(255, 0, 0, 0.5);
 }
 
 .tab-button:not(.active) {
   height: 35px; /* Set the height for inactive tabs */
-  font-size: 14px;
+  font-size: 12px;
   opacity: 0.8;
 }
 @media (max-width: 500px) {
   .tab-button {
     padding: 5px;
+    width: 90px;
   }
 }
