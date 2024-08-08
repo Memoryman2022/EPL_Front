@@ -51,6 +51,7 @@
 
 /* MatchResult.css */
 .error-message {
+  width: 100%;
   color: #0ef3f3; /* Text color */
   font-size: 10px; /* Adjust the font size */
   text-align: start; /* Center the text */

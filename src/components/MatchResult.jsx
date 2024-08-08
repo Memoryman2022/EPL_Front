@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { API_URL } from "../config/index"; // Ensure this path is correct
-//css
-import "../css/MatchResult.css"; // Create this CSS file for styling
+import { API_URL } from "../config/index";
+import "../css/MatchResult.css";
 
 const getOutcomeLabel = (outcome) => {
   switch (outcome) {
@@ -23,18 +22,16 @@ const MatchResult = ({ fixtureId }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    let isMounted = true; // Flag to indicate if component is mounted
+    let isMounted = true;
 
     const fetchResult = async () => {
       setLoading(true);
       try {
-        // Get token from local storage
         const token = localStorage.getItem("jwtToken");
 
-        // Fetch match result with token in the header
         const response = await axios.get(`${API_URL}/results/${fixtureId}`, {
           headers: {
-            Authorization: `Bearer ${token}`, // Include token in the header
+            Authorization: `Bearer ${token}`,
           },
         });
 
@@ -44,23 +41,21 @@ const MatchResult = ({ fixtureId }) => {
         }
       } catch (error) {
         if (isMounted) {
-          console.error("Error fetching match result:", error);
-          setError("RESULT PENDING...");
-          // Trigger the typewriter effect after setting the error
-          setTimeout(() => {
-            const errorMessage = document.querySelector(".error-message");
-            if (errorMessage) {
-              errorMessage.style.width = "100%";
-            }
-          }, 100); // Delay to ensure the element is rendered
+          if (error.response && error.response.status === 404) {
+            // Result not found, show "RESULT PENDING..."
+            setError("RESULT PENDING...");
+          } else {
+            // Handle other types of errors
+            console.error("Error fetching match result:", error);
+            setError("An error occurred. Please try again later.");
+          }
+          setLoading(false);
         }
-        setLoading(false);
       }
     };
 
     fetchResult();
 
-    // Cleanup function to set isMounted to false
     return () => {
       isMounted = false;
     };

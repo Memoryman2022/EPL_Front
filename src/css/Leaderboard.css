@@ -46,7 +46,7 @@
 .leaderboard-table th.score,
 .leaderboard-table td.position,
 .leaderboard-table td.score {
-  width: 50px; /* Adjust this value as needed */
+  width: 35px; /* Adjust this value as needed */
   text-align: center; /* Center horizontally */
   vertical-align: middle; /* Center vertically */
 }
