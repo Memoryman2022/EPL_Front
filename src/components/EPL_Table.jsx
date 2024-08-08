@@ -81,7 +81,7 @@ function EPL_Table() {
         <thead>
           <tr>
             <th className="col-position">{headers.position}</th>
-            <th className="col-team">Team</th>
+            <th className="col-team">TEAM</th>
             <th className="col-gp">GP</th>
             <th className="col-w">W</th>
             <th className="col-d">D</th>

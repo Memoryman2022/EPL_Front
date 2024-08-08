@@ -18,7 +18,7 @@ body {
   font-family: "Humanist521 BT", Inter, system-ui, Avenir, Helvetica, Arial,
     sans-serif;
   background-color: #000f0e;
-  color: #71fedd;
+  color: #05fcc3;
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensure the body takes up the full height of the viewport */

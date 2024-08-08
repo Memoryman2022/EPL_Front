@@ -1,8 +1,9 @@
 .table-container {
   margin: 10px;
-  background-color: #00000020;
+  background-color: #1981d100;
   border-radius: 2px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
 }
 
 .table-container h2 {
@@ -29,15 +30,16 @@ thead th {
 }
 
 thead th.col-team {
-  text-align: left; /* Left align the team name header */
+  text-align: left;
+  font-size: 10px;
 }
 
 tbody tr:nth-child(even) {
-  background-color: #02287430;
+  background-color: #079ff030;
 }
 
 tbody tr:hover {
-  background-color: #129fb280;
+  background-color: #0c727f80;
 }
 
 tbody td {
