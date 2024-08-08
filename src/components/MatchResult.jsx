@@ -45,9 +45,16 @@ const MatchResult = ({ fixtureId }) => {
       } catch (error) {
         if (isMounted) {
           console.error("Error fetching match result:", error);
-          setError("Failed to fetch match result");
-          setLoading(false);
+          setError("RESULT PENDING...");
+          // Trigger the typewriter effect after setting the error
+          setTimeout(() => {
+            const errorMessage = document.querySelector(".error-message");
+            if (errorMessage) {
+              errorMessage.style.width = "100%";
+            }
+          }, 100); // Delay to ensure the element is rendered
         }
+        setLoading(false);
       }
     };
 
@@ -60,14 +67,14 @@ const MatchResult = ({ fixtureId }) => {
   }, [fixtureId]);
 
   if (loading) return <div>Loading result...</div>;
-  if (error) return <div>{error}</div>;
+  if (error) return <div className="error-message" data-text={error}></div>;
 
   if (!result) return null;
 
   return (
-    <div class="confirmed-results-container">
-      <h4 class="result-header">CONFIRMED RESULT</h4>
-      <div class="match-result">
+    <div className="confirmed-results-container">
+      <h4 className="result-header">____RESULT</h4>
+      <div className="match-result">
         <span className="match-result-score">
           {result.homeScore} - {result.awayScore}
         </span>

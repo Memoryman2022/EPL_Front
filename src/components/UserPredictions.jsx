@@ -99,7 +99,7 @@ function UserPredictions({ fixtureId }) {
 
   return (
     <div className="user-predictions-container">
-      <h4 className="pred-H4">CONFIRMED PREDICTIONS</h4>
+      <h4 className="pred-H4">____PREDICTIONS</h4>
       {sortedPredictions.length === 0 ? (
         <p>No predictions found for this fixture.</p>
       ) : (
@@ -120,10 +120,12 @@ function UserPredictions({ fixtureId }) {
                     className="profile-picture-CP"
                   />
                 </div>
-
-                <div className="score-digit"> {prediction.homeScore}</div>
+                <span className="score-digit">
+                  {prediction.homeScore} - {prediction.awayScore}
+                </span>
+                {/* <div className="score-digit"> {prediction.homeScore}</div>
                 <div>-</div>
-                <div className="score-digit"> {prediction.awayScore}</div>
+                <div className="score-digit"> {prediction.awayScore}</div> */}
 
                 <div className="outcome-box">
                   {getOutcomeLabel(prediction.outcome)}
