@@ -39,10 +39,10 @@ function Base() {
   };
 
   const tabs = [
-    { label: tabLabel, content: <EPL_Table /> },
-    { label: "Leaderboard", content: <Leaderboard /> },
+    { label: "EPL TABLE", content: <EPL_Table /> },
+    { label: "LEADERBOARD", content: <Leaderboard /> },
     {
-      label: "Calendar",
+      label: "CALENDAR",
       content: <FixtureCalendar onDateSelect={handleDateSelect} />,
     },
   ];

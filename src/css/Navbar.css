@@ -107,7 +107,7 @@
     display: none; /* Hide navbar menu by default on smaller screens */
     flex-direction: column;
     position: absolute; /* Position absolutely */
-    top: 100px; /* Below the navbar */
+    top: 81px; /* Below the navbar */
     right: 0;
     width: 200px; /* Full width */
     color: rgb(1, 79, 61);
