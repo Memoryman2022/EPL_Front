@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { API_URL } from "../config";
-//css
 import "../css/Profile.css";
+
 const fetchUserDetails = async (userId, token) => {
   const response = await fetch(`${API_URL}/users/protected/user/${userId}`, {
     headers: {
@@ -14,7 +14,7 @@ const fetchUserDetails = async (userId, token) => {
   return response.json();
 };
 
-function UserProfile() {
+function UserProfile({ triggerUpdate }) {
   const [userDetails, setUserDetails] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -37,12 +37,7 @@ function UserProfile() {
 
   useEffect(() => {
     fetchAndSetUserDetails();
-  }, []);
-
-  // Update user details based on leaderboard changes
-  const handleLeaderboardUpdate = (updatedUserDetails) => {
-    setUserDetails(updatedUserDetails);
-  };
+  }, [triggerUpdate]); // Refetch when `triggerUpdate` changes
 
   if (loading) {
     return <div>Loading...</div>;

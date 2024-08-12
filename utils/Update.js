@@ -9,14 +9,14 @@ export const updateScores = async (token, isLoggedIn, logOutUser) => {
     }
 
     // Fetch predictions and results from the API
-    const predictionsResponse = await axios.get(
-      `${import.meta.env.VITE_API_URL}/predictions`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    const resultsResponse = await axios.get(
-      `${import.meta.env.VITE_API_URL}/results`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
+    const [predictionsResponse, resultsResponse] = await Promise.all([
+      axios.get(`${import.meta.env.VITE_API_URL}/predictions`, {
+        headers: { Authorization: `Bearer ${token}` },
+      }),
+      axios.get(`${import.meta.env.VITE_API_URL}/results`, {
+        headers: { Authorization: `Bearer ${token}` },
+      }),
+    ]);
 
     const predictions = predictionsResponse.data;
     const results = resultsResponse.data;
@@ -42,12 +42,13 @@ export const updateScores = async (token, isLoggedIn, logOutUser) => {
           ) {
             score = 7;
             correctScores = 1;
+            correctOutcomes = 1;
           } else if (prediction.outcome === result.outcome) {
             score = 3;
             correctOutcomes = 1;
           }
 
-          // Update the userScores map
+          // Initialize userScores entry if not present
           if (!userScores[prediction.userId]) {
             userScores[prediction.userId] = {
               score: 0,
@@ -56,6 +57,7 @@ export const updateScores = async (token, isLoggedIn, logOutUser) => {
             };
           }
 
+          // Accumulate scores
           userScores[prediction.userId].score += score;
           userScores[prediction.userId].correctScores += correctScores;
           userScores[prediction.userId].correctOutcomes += correctOutcomes;
@@ -66,11 +68,13 @@ export const updateScores = async (token, isLoggedIn, logOutUser) => {
     // Send the updated scores to the backend
     await Promise.all(
       Object.keys(userScores).map(async (userId) => {
-        await axios.post(
+        await axios.put(
           `${import.meta.env.VITE_API_URL}/users/updateScore`,
           {
             userId: userId,
-            ...userScores[userId],
+            score: userScores[userId].score,
+            correctScores: userScores[userId].correctScores,
+            correctOutcomes: userScores[userId].correctOutcomes,
           },
           { headers: { Authorization: `Bearer ${token}` } }
         );
