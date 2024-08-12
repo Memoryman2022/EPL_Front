@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../authContext/authContext";
+import { updateScores } from "../../utils/Update"; // Import the updateScores function
 import "../css/Navbar.css";
 
 function Navbar() {
@@ -8,10 +9,10 @@ function Navbar() {
   const [navbarText, setNavbarText] = useState(
     "THE PREMIER LEAGUE PREDICTOR MODULE"
   );
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
-  const { isLoggedIn, user, authenticateUser } = useContext(AuthContext);
+  const token = localStorage.getItem("jwtToken");
 
-  // Refs for the burger menu and the navbar menu
   const burgerMenuRef = useRef(null);
   const navbarMenuRef = useRef(null);
   const hideTimeoutRef = useRef(null);
@@ -19,12 +20,6 @@ function Navbar() {
   const toggleMenu = () => {
     setMenuActive(!menuActive);
   };
-
-  useEffect(() => {
-    if (isLoggedIn && !user) {
-      authenticateUser();
-    }
-  }, [isLoggedIn, user, authenticateUser]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,22 +38,24 @@ function Navbar() {
   }, []);
 
   const handleMouseEnter = () => {
-    // Clear any existing timeout to prevent the menu from hiding
     if (hideTimeoutRef.current) {
       clearTimeout(hideTimeoutRef.current);
     }
   };
 
   const handleMouseLeave = () => {
-    // Set a timeout to hide the menu after a delay
     hideTimeoutRef.current = setTimeout(() => {
       setMenuActive(false);
-    }, 200); // Adjust delay as needed (e.g., 200ms)
+    }, 200);
+  };
+
+  const handleUpdateScores = () => {
+    updateScores(token, isLoggedIn, logOutUser); // Pass logOutUser as a parameter
   };
 
   return (
     <div className="navbar">
-      <img src={"/icons/predict.png"} />
+      <img src={"/icons/predict.png"} alt="Predictor Icon" />
       <p>{navbarText}</p>
       <div
         className="burger-menu"
@@ -94,6 +91,13 @@ function Navbar() {
                 Confirmed Predictions
               </Link>
             </li>
+            {user && user.role === "admin" && (
+              <li className="menu-list-item">
+                <button onClick={handleUpdateScores} className="update-button">
+                  Update Scores
+                </button>
+              </li>
+            )}
             <li className="menu-list-item">
               <Link to="/logout" onClick={toggleMenu}>
                 Logout

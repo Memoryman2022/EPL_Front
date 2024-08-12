@@ -11,9 +11,10 @@
     "stop:frontend": "kill-port 5173",
     "stop:backend": "kill-port 3000",
     "start:frontend": "vite",
-    "start:backend": "npm run dev --prefix ../EPL_Backend",
+    "restart:backend": "npm run dev --prefix ../EPL_Backend",
     "stop": "concurrently \"npm run stop:frontend\" \"npm run stop:backend\"",
-    "start:all": "npm run stop && concurrently \"npm run start:frontend\" \"npm run start:backend\""
+    "start:all": "concurrently \"npm run start:frontend\" \"npm run restart:backend\"",
+    "restart:all": "npm run stop && sleep 5 && npm run start:all"
   },
   "dependencies": {
     "axios": "^1.7.2",

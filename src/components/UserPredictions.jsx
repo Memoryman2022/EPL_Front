@@ -26,15 +26,22 @@ function UserPredictions({ fixtureId }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (isLoggedIn && user) {
+    if (isLoggedIn && user && fixtureId) {
       fetchPredictions(fixtureId);
     } else {
-      setError("User not authenticated");
+      setError("User not authenticated or fixtureId is missing");
       setLoading(false);
     }
   }, [isLoggedIn, user, fixtureId]);
 
   const fetchPredictions = async (fixtureId) => {
+    if (!fixtureId) {
+      console.error("No fixtureId provided");
+      setError("No fixtureId provided");
+      setLoading(false);
+      return;
+    }
+
     try {
       const token = localStorage.getItem("jwtToken");
       const response = await axios.get(
@@ -45,6 +52,9 @@ function UserPredictions({ fixtureId }) {
           },
         }
       );
+
+      console.log("Predictions data:", response.data); // Debugging line
+
       const predictions = response.data;
       setPredictions(predictions);
       fetchUserProfiles(predictions.map((p) => p.userId));
@@ -57,6 +67,11 @@ function UserPredictions({ fixtureId }) {
   };
 
   const fetchUserProfiles = async (userIds) => {
+    if (userIds.length === 0) {
+      console.log("No userIds to fetch profiles");
+      return;
+    }
+
     try {
       const token = localStorage.getItem("jwtToken");
       const profiles = {};
@@ -123,10 +138,6 @@ function UserPredictions({ fixtureId }) {
                 <span className="score-digit">
                   {prediction.homeScore} - {prediction.awayScore}
                 </span>
-                {/* <div className="score-digit"> {prediction.homeScore}</div>
-                <div>-</div>
-                <div className="score-digit"> {prediction.awayScore}</div> */}
-
                 <div className="outcome-box">
                   {getOutcomeLabel(prediction.outcome)}
                 </div>

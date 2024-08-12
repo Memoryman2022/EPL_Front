@@ -7,13 +7,13 @@ import DropdownMenu from "../components/DDP";
 import UserPredictions from "../components/UserPredictions";
 import MatchResult from "../components/MatchResult";
 import { AuthContext } from "../authContext/authContext";
-import { API_URL } from "../config/index"; // Ensure this path is correct
+import { API_URL } from "../config/index";
 
 import "../css/Fixtures.css";
 
 function FixtureDetails() {
   const { date } = useParams();
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext); // Expecting user to have _id
   const [fixtures, setFixtures] = useState([]);
   const [predictions, setPredictions] = useState({});
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,11 @@ function FixtureDetails() {
 
   useEffect(() => {
     fetchFixtures();
-    fetchPredictions();
+    if (user && user._id) {
+      fetchPredictions(user._id);
+    } else {
+      console.warn("User is not logged in or user._id is missing.");
+    }
   }, [date, user]);
 
   const fetchFixtures = async () => {
@@ -42,29 +46,37 @@ function FixtureDetails() {
       setLoading(false);
     } catch (error) {
       console.error("Error fetching fixtures:", error);
-      setError(error);
+      setError("Failed to fetch fixtures");
       setLoading(false);
     }
   };
 
-  const fetchPredictions = async () => {
+  const fetchPredictions = async (userId) => {
+    if (!userId) {
+      console.error("No userId provided");
+      return;
+    }
+
     try {
       const token = localStorage.getItem("jwtToken");
-      if (!token) {
-        console.error("No JWT token found");
-        return;
+      const response = await axios.get(`${API_URL}/predictions/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log("Predictions response:", response.data);
+
+      if (response.data.length === 0) {
+        console.log("No predictions found for the user.");
       }
-      const response = await axios.get(
-        `${API_URL}/predictions/${user.userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
 
       const userPredictions = response.data.reduce((acc, prediction) => {
-        acc[prediction.fixtureId] = prediction;
+        if (prediction.fixtureId) {
+          acc[prediction.fixtureId] = prediction;
+        } else {
+          console.warn("Prediction missing fixtureId:", prediction);
+        }
         return acc;
       }, {});
 
@@ -75,11 +87,7 @@ function FixtureDetails() {
   };
 
   const handlePredictionClick = (fixtureId) => {
-    if (predictions[fixtureId]) {
-      setOpenDropdown(openDropdown === fixtureId ? null : fixtureId);
-    } else {
-      setOpenDropdown(openDropdown === fixtureId ? null : fixtureId);
-    }
+    setOpenDropdown(openDropdown === fixtureId ? null : fixtureId);
     setSelectedFixtureId(fixtureId); // Set the selected fixture ID
   };
 
@@ -95,7 +103,7 @@ function FixtureDetails() {
       return;
     }
     const outcome = calculateOutcome(homeScore, awayScore);
-    const userId = user?.userId;
+    const userId = user?._id; // Use _id instead of userId
 
     const payload = {
       fixtureId,
@@ -126,7 +134,7 @@ function FixtureDetails() {
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error fetching fixtures</p>;
+  if (error) return <p>{error}</p>;
 
   const formattedDate = moment(date).format("DD.MM.YYYY");
 

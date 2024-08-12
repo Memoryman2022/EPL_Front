@@ -98,6 +98,20 @@
   transition: 0.4s;
 }
 
+/* Add this to your Navbar.css */
+.update-button {
+  background-color: #00ffc87d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.update-button:hover {
+  background-color: #e46301;
+}
+
 @media (max-width: 1040px) {
   .burger-menu {
     display: flex; /* Show burger menu on smaller screens */
