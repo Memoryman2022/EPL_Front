@@ -81,16 +81,7 @@ function Navbar() {
                 Central Hub
               </Link>
             </li>
-            <li className="menu-list-item">
-              <Link to="/predictions" onClick={toggleMenu}>
-                User Predictions
-              </Link>
-            </li>
-            <li className="menu-list-item">
-              <Link to="/confirmed-predictions" onClick={toggleMenu}>
-                Confirmed Predictions
-              </Link>
-            </li>
+
             {user && user.role === "admin" && (
               <li className="menu-list-item">
                 <button onClick={handleUpdateScores} className="update-button">

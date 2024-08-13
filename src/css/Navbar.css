@@ -100,11 +100,10 @@
 
 /* Add this to your Navbar.css */
 .update-button {
-  background-color: #00ffc87d;
-  color: white;
+  background-color: #023765bc;
+  color: rgb(241, 234, 214);
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 2px;
   cursor: pointer;
 }
 
