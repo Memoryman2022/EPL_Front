@@ -147,11 +147,12 @@
     padding: 10px; /* Add padding for smaller screens */
   }
   .leaderboard-table th {
-    font-size: 1em; /* Adjust font size for smaller screens */
+    font-size: 0.8em; /* Adjust font size for smaller screens */
   }
   .leaderboard-table th,
   .leaderboard-table td {
     padding: 8px;
+    font-size: 0.8em;
   }
 
   .leadbrd-btn {
@@ -176,6 +177,7 @@
   .leaderboard-table th,
   .leaderboard-table td {
     padding: 6px;
+    font-size: 10px;
   }
 
   .leadbrd-btn {
