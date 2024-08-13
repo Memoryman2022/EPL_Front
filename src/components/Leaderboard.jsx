@@ -25,10 +25,10 @@ function Leaderboard({ onUserUpdate }) {
         const fetchedUsers = await axios.get(`${API_URL}/users`);
         const sortedUsers = fetchedUsers.data.sort((a, b) => b.score - a.score);
 
+        // Initialize previousUsers with current positions
         const usersWithPositions = sortedUsers.map((user, index) => ({
           ...user,
           position: index + 1,
-          movement: user.movement || "", // Ensure default value is set
           previousPosition: user.previousPosition || index + 1,
         }));
 
@@ -44,34 +44,51 @@ function Leaderboard({ onUserUpdate }) {
 
   const updateUserMovements = async () => {
     try {
+      // Fetch updated user list
       const fetchedUsers = await axios.get(`${API_URL}/users`);
       const sortedUsers = fetchedUsers.data.sort((a, b) => b.score - a.score);
 
       const usersWithMovement = sortedUsers.map((user, index) => {
         const prevUser = previousUsers.find((prev) => prev._id === user._id);
         let movement = "";
+
         if (prevUser) {
-          if (index + 1 < prevUser.position) {
+          const newPosition = index + 1;
+          const previousPosition = prevUser.position;
+
+          if (newPosition < previousPosition) {
             movement = "up";
-          } else if (index + 1 > prevUser.position) {
+          } else if (newPosition > previousPosition) {
             movement = "down";
           }
+
+          return {
+            ...user,
+            position: newPosition,
+            previousPosition: previousPosition,
+            movement, // Set movement dynamically
+          };
         }
+
+        // Initialize movement for new users
         return {
           ...user,
           position: index + 1,
-          movement,
-          previousPosition: prevUser ? prevUser.position : index + 1,
+          previousPosition: index + 1,
+          movement: "",
         };
       });
 
+      // Update local state with the latest data
       setPreviousUsers(usersWithMovement);
       setUsers(usersWithMovement);
 
-      await axios.put(`${API_URL}/users/update-movements`, {
-        users: usersWithMovement,
-      });
+      // Optionally update the backend if needed
+      // await axios.put(`${API_URL}/users/update-movements`, {
+      //   users: usersWithMovement,
+      // });
 
+      // Update the current user in the parent component
       const token = localStorage.getItem("jwtToken");
       const userId = localStorage.getItem("userId");
       const currentUser = sortedUsers.find((user) => user._id === userId);
@@ -97,8 +114,8 @@ function Leaderboard({ onUserUpdate }) {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
-              <tr key={user._id}>
+            {users.map((user, index) => (
+              <tr key={index}>
                 <td className="position">{user.position}</td>
                 <td className="name">
                   <img
@@ -107,10 +124,17 @@ function Leaderboard({ onUserUpdate }) {
                     className="profile-pic"
                   />
                   {user.userName}
-                  {user.movement && (
+                  {user.position < user.previousPosition && (
                     <img
-                      src={`/gifs/${user.movement}.gif`}
-                      alt={user.movement === "up" ? "Moved Up" : "Moved Down"}
+                      src={`/gifs/up.gif`}
+                      alt="up"
+                      className="movement-icon"
+                    />
+                  )}
+                  {user.position > user.previousPosition && (
+                    <img
+                      src={`/gifs/down.gif`}
+                      alt="down"
                       className="movement-icon"
                     />
                   )}
