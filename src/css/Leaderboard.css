@@ -131,6 +131,14 @@
   border: 2px solid #04394c;
 }
 
+/* Leaderboard.css */
+.movement-icon {
+  width: 24px; /* Size of the GIF */
+  height: 24px; /* Size of the GIF */
+  margin-left: 10px; /* Spacing between username and GIF */
+  vertical-align: middle; /* Aligns GIF with text */
+}
+
 /* Responsive Styling */
 @media (max-width: 680px) {
   .leaderboard-container {

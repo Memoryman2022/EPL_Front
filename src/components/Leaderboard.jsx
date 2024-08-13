@@ -14,7 +14,6 @@ function Leaderboard({ onUserUpdate }) {
     };
 
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -29,7 +28,7 @@ function Leaderboard({ onUserUpdate }) {
         const usersWithPositions = sortedUsers.map((user, index) => ({
           ...user,
           position: index + 1,
-          movement: user.movement || "",
+          movement: user.movement || "", // Ensure default value is set
           previousPosition: user.previousPosition || index + 1,
         }));
 
@@ -98,8 +97,8 @@ function Leaderboard({ onUserUpdate }) {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
-              <tr key={index}>
+            {users.map((user) => (
+              <tr key={user._id}>
                 <td className="position">{user.position}</td>
                 <td className="name">
                   <img
@@ -108,13 +107,10 @@ function Leaderboard({ onUserUpdate }) {
                     className="profile-pic"
                   />
                   {user.userName}
-                  {user.movement === "up" && (
-                    <img src="/up.svg.png" alt="Up" className="movement-icon" />
-                  )}
-                  {user.movement === "down" && (
+                  {user.movement && (
                     <img
-                      src="/down.svg.png"
-                      alt="Down"
+                      src={`/gifs/${user.movement}.gif`}
+                      alt={user.movement === "up" ? "Moved Up" : "Moved Down"}
                       className="movement-icon"
                     />
                   )}
