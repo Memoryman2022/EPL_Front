@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../authContext/authContext";
 import { useNavigate } from "react-router-dom";
-//css
+// CSS
 import "../css/Forms.css";
 
 function Register() {
@@ -15,8 +15,18 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    await registerUser(userName, email, password, profileImage);
-    navigate("/base"); // Redirect to /base upon successful registration
+
+    if (!profileImage) {
+      alert("Please upload a profile image.");
+      return;
+    }
+
+    try {
+      await registerUser(userName, email, password, profileImage);
+      navigate("/base"); // Redirect to /base upon successful registration
+    } catch (error) {
+      console.error("Registration error:", error);
+    }
   };
 
   const handleImageChange = (e) => {
@@ -74,6 +84,7 @@ function Register() {
               id="profileImageInput"
               onChange={handleImageChange}
               style={{ display: "none" }}
+              accept="image/*" // Ensure that only image files are accepted
               required
             />
             <button className="auth-btn" onClick={handleImageClick}>
