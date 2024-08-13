@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ResponsiveTeamName from "../components/ResponsiveTeamName";
+const API_URL = import.meta.env.VITE_API_URL;
+
 //css
 import "../css/EPL_Table.css";
 
@@ -15,22 +17,12 @@ function EPL_Table() {
 
   useEffect(() => {
     const fetchStandings = async () => {
-      const options = {
-        method: "GET",
-        url: "/api/v4/competitions/2021/standings", // Endpoint for Premier League standings
-        headers: {
-          "X-Auth-Token": "ab607df2daca41f9963fc2acce71bd52", // Your API token
-        },
-      };
-      try {
-        const response = await axios.request(options);
-        // console.log("API Response:", response.data);
+      const endpoint = `${API_URL}/competitions/2021/standings`; // Backend URL
 
-        // Inspect the response structure to find the exact path to the standings
+      try {
+        const response = await axios.get(endpoint);
         if (response.data && response.data.standings) {
-          // Assuming the first standings object contains the table data
           const standingsData = response.data.standings[0]?.table || [];
-          // console.log("Standings Data:", standingsData);
           setStandings(standingsData);
         } else {
           console.error("Standings data not found in the response");

@@ -7,7 +7,8 @@ import DropdownMenu from "../components/DDP";
 import UserPredictions from "../components/UserPredictions";
 import MatchResult from "../components/MatchResult";
 import { AuthContext } from "../authContext/authContext";
-import { API_URL } from "../config/index";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 import "../css/Fixtures.css";
 
@@ -32,11 +33,7 @@ function FixtureDetails() {
 
   const fetchFixtures = async () => {
     try {
-      const response = await axios.get(`/api/v4/competitions/2021/matches`, {
-        headers: {
-          "X-Auth-Token": "ab607df2daca41f9963fc2acce71bd52",
-        },
-      });
+      const response = await axios.get(`${API_URL}/competitions/2021/matches`);
 
       const matches = response.data.matches.filter(
         (fixture) => moment(fixture.utcDate).format("YYYY-MM-DD") === date

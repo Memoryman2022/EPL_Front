@@ -6,6 +6,8 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../css/Calendar.css";
 import { useNavigate } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const localizer = momentLocalizer(moment);
 
 function FixtureCalendar() {
@@ -22,12 +24,7 @@ function FixtureCalendar() {
 
   const fetchFixtures = async () => {
     try {
-      const response = await axios.get("/api/v4/competitions/2021/matches", {
-        headers: {
-          "X-Auth-Token": "ab607df2daca41f9963fc2acce71bd52",
-        },
-      });
-
+      const response = await axios.get(`${API_URL}/competitions/2021/matches`);
       const matches = response.data.matches;
 
       // Organize fixtures by date
