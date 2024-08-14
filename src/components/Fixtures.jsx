@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useMatchDays } from "../context/MatchDaysContext"; // Import the custom hook
+import { AuthContext } from "../authContext/authContext";
 import moment from "moment";
 import ResponsiveTeamName from "../components/ResponsiveTeamName";
 import DropdownMenu from "../components/DDP";
 import UserPredictions from "../components/UserPredictions";
 import MatchResult from "../components/MatchResult";
-import { AuthContext } from "../authContext/authContext";
+import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -14,7 +15,13 @@ import "../css/Fixtures.css";
 
 function FixtureDetails() {
   const { date } = useParams();
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext); // Expecting user to have _id
+  const {
+    matchDays,
+    loading: contextLoading,
+    error: contextError,
+  } = useMatchDays(); // Use the custom hook
   const [fixtures, setFixtures] = useState([]);
   const [predictions, setPredictions] = useState({});
   const [loading, setLoading] = useState(true);
@@ -23,30 +30,20 @@ function FixtureDetails() {
   const [selectedFixtureId, setSelectedFixtureId] = useState(null);
 
   useEffect(() => {
-    fetchFixtures();
+    if (matchDays[date]) {
+      setFixtures(matchDays[date]);
+      setLoading(false);
+    } else {
+      setLoading(contextLoading);
+      setError(contextError);
+    }
+
     if (user && user._id) {
       fetchPredictions(user._id);
     } else {
       console.warn("User is not logged in or user._id is missing.");
     }
-  }, [date, user]);
-
-  const fetchFixtures = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/competitions/2021/matches`);
-
-      const matches = response.data.matches.filter(
-        (fixture) => moment(fixture.utcDate).format("YYYY-MM-DD") === date
-      );
-
-      setFixtures(matches);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching fixtures:", error);
-      setError("Failed to fetch fixtures");
-      setLoading(false);
-    }
-  };
+  }, [date, user, matchDays, contextLoading, contextError]);
 
   const fetchPredictions = async (userId) => {
     if (!userId) {
@@ -130,6 +127,40 @@ function FixtureDetails() {
     }
   };
 
+  // Helper function to find nearest date with fixtures
+  const findNearestDate = (direction) => {
+    const dates = Object.keys(matchDays).sort(
+      (a, b) => new Date(a) - new Date(b)
+    );
+    const currentIndex = dates.indexOf(date);
+
+    let targetDate = null;
+    if (direction === "next") {
+      targetDate = dates.find((d, index) => index > currentIndex);
+    } else if (direction === "prev") {
+      targetDate = dates
+        .slice(0, currentIndex)
+        .reverse()
+        .find((d) => d < date);
+    }
+
+    return targetDate;
+  };
+
+  const handlePrevDate = () => {
+    const prevDate = findNearestDate("prev");
+    if (prevDate) {
+      navigate(`/fixtures/${prevDate}`);
+    }
+  };
+
+  const handleNextDate = () => {
+    const nextDate = findNearestDate("next");
+    if (nextDate) {
+      navigate(`/fixtures/${nextDate}`);
+    }
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
@@ -137,6 +168,14 @@ function FixtureDetails() {
 
   return (
     <div className="fixtures-container">
+      <div className="navigation-buttons">
+        <button onClick={handlePrevDate} disabled={!findNearestDate("prev")}>
+          Previous
+        </button>
+        <button onClick={handleNextDate} disabled={!findNearestDate("next")}>
+          Next
+        </button>
+      </div>
       <h5>FIXTURES FOR {formattedDate}</h5>
       <ul className="fixtures-list">
         {fixtures.map((fixture) => (

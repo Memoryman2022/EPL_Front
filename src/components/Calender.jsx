@@ -1,52 +1,21 @@
-import React, { useState, useEffect } from "react";
+// FixtureCalendar.js
+import React from "react";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import moment from "moment";
-import axios from "axios";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../css/Calendar.css";
 import { useNavigate } from "react-router-dom";
-
-const API_URL = import.meta.env.VITE_API_URL;
+import { useMatchDays } from "../context/MatchDaysContext"; // Import the custom hook
 
 const localizer = momentLocalizer(moment);
 
 function FixtureCalendar() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [fixturesByDate, setFixturesByDate] = useState({});
+  const { matchDays, loading, error } = useMatchDays(); // Use the custom hook
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchFixtures();
-    const intervalId = setInterval(fetchFixtures, 3600000); // Refresh every hour
-    return () => clearInterval(intervalId);
-  }, []);
-
-  const fetchFixtures = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/competitions/2021/matches`);
-      const matches = response.data.matches;
-
-      // Organize fixtures by date
-      const fixturesMap = matches.reduce((acc, fixture) => {
-        const date = moment(fixture.utcDate).format("YYYY-MM-DD");
-        if (!acc[date]) acc[date] = [];
-        acc[date].push(fixture);
-        return acc;
-      }, {});
-
-      setFixturesByDate(fixturesMap);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching fixtures:", error);
-      setError(error);
-      setLoading(false);
-    }
-  };
 
   const handleDayClick = (date) => {
     const formattedDate = moment(date).format("YYYY-MM-DD");
-    if (fixturesByDate[formattedDate]) {
+    if (matchDays[formattedDate]) {
       navigate(`/fixtures/${formattedDate}`);
     }
   };
@@ -54,7 +23,7 @@ function FixtureCalendar() {
   const CustomDayWrapper = ({ children, value }) => {
     const formattedDate = moment(value).format("YYYY-MM-DD");
     const hasFixtures =
-      fixturesByDate[formattedDate] && fixturesByDate[formattedDate].length > 0;
+      matchDays[formattedDate] && matchDays[formattedDate].length > 0;
     const isCurrentDay = moment(value).isSame(moment(), "day");
 
     return (
