@@ -6,7 +6,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 //css
 import "../css/EPL_Table.css";
 
-// Mapping function here
+// Mapping function here //
 const teamNameToImageMap = {
   "Arsenal FC": "Arsenal.png",
   "Aston Villa FC": "Aston Villa.png",
