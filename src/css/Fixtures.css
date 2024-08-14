@@ -12,8 +12,7 @@
   margin-top: 0px;
   color: #1ab5ab;
 }
-
-.navigation-buttons {
+* .navigation-buttons {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px; /* Adjust as needed */
