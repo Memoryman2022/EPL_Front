@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useMatchDays } from "../context/MatchDaysContext"; // Import the custom hook
+import { useMatchDays } from "../context/MatchDaysContext";
 import { AuthContext } from "../authContext/authContext";
 import moment from "moment";
 import ResponsiveTeamName from "../components/ResponsiveTeamName";
@@ -8,26 +8,43 @@ import DropdownMenu from "../components/DDP";
 import UserPredictions from "../components/UserPredictions";
 import MatchResult from "../components/MatchResult";
 import axios from "axios";
-
-const API_URL = import.meta.env.VITE_API_URL;
-
 import "../css/Fixtures.css";
 
 function FixtureDetails() {
   const { date } = useParams();
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext); // Expecting user to have _id
+  const { user } = useContext(AuthContext);
   const {
     matchDays,
     loading: contextLoading,
     error: contextError,
-  } = useMatchDays(); // Use the custom hook
+  } = useMatchDays();
   const [fixtures, setFixtures] = useState([]);
   const [predictions, setPredictions] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [selectedFixtureId, setSelectedFixtureId] = useState(null);
+
+  const findNearestDate = (direction) => {
+    const dates = Object.keys(matchDays);
+    const currentIndex = dates.indexOf(date);
+    if (direction === "prev" && currentIndex > 0)
+      return dates[currentIndex - 1];
+    if (direction === "next" && currentIndex < dates.length - 1)
+      return dates[currentIndex + 1];
+    return null;
+  };
+
+  const handlePrevDate = () => {
+    const prevDate = findNearestDate("prev");
+    if (prevDate) navigate(`/fixtures/${prevDate}`);
+  };
+
+  const handleNextDate = () => {
+    const nextDate = findNearestDate("next");
+    if (nextDate) navigate(`/fixtures/${nextDate}`);
+  };
 
   useEffect(() => {
     if (matchDays[date]) {
@@ -59,12 +76,6 @@ function FixtureDetails() {
         },
       });
 
-      console.log("Predictions response:", response.data);
-
-      if (response.data.length === 0) {
-        console.log("No predictions found for the user.");
-      }
-
       const userPredictions = response.data.reduce((acc, prediction) => {
         if (prediction.fixtureId) {
           acc[prediction.fixtureId] = prediction;
@@ -82,7 +93,7 @@ function FixtureDetails() {
 
   const handlePredictionClick = (fixtureId) => {
     setOpenDropdown(openDropdown === fixtureId ? null : fixtureId);
-    setSelectedFixtureId(fixtureId); // Set the selected fixture ID
+    setSelectedFixtureId(fixtureId);
   };
 
   const calculateOutcome = (homeScore, awayScore) => {
@@ -97,7 +108,7 @@ function FixtureDetails() {
       return;
     }
     const outcome = calculateOutcome(homeScore, awayScore);
-    const userId = user?._id; // Use _id instead of userId
+    const userId = user?._id;
 
     const payload = {
       fixtureId,
@@ -109,7 +120,7 @@ function FixtureDetails() {
 
     try {
       const token = localStorage.getItem("jwtToken");
-      const response = await axios.post(`${API_URL}/predictions`, payload, {
+      await axios.post(`${API_URL}/predictions`, payload, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -127,40 +138,6 @@ function FixtureDetails() {
     }
   };
 
-  // Helper function to find nearest date with fixtures
-  const findNearestDate = (direction) => {
-    const dates = Object.keys(matchDays).sort(
-      (a, b) => new Date(a) - new Date(b)
-    );
-    const currentIndex = dates.indexOf(date);
-
-    let targetDate = null;
-    if (direction === "next") {
-      targetDate = dates.find((d, index) => index > currentIndex);
-    } else if (direction === "prev") {
-      targetDate = dates
-        .slice(0, currentIndex)
-        .reverse()
-        .find((d) => d < date);
-    }
-
-    return targetDate;
-  };
-
-  const handlePrevDate = () => {
-    const prevDate = findNearestDate("prev");
-    if (prevDate) {
-      navigate(`/fixtures/${prevDate}`);
-    }
-  };
-
-  const handleNextDate = () => {
-    const nextDate = findNearestDate("next");
-    if (nextDate) {
-      navigate(`/fixtures/${nextDate}`);
-    }
-  };
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
@@ -169,14 +146,10 @@ function FixtureDetails() {
   return (
     <div className="fixtures-container">
       <div className="navigation-buttons">
-        <button onClick={handlePrevDate} disabled={!findNearestDate("prev")}>
-          Previous
-        </button>
-        <button onClick={handleNextDate} disabled={!findNearestDate("next")}>
-          Next
-        </button>
+        <div className="nav-button nav-prev" onClick={handlePrevDate} />
+        <h5>FIXTURES FOR {formattedDate}</h5>
+        <div className="nav-button nav-next" onClick={handleNextDate} />
       </div>
-      <h5>FIXTURES FOR {formattedDate}</h5>
       <ul className="fixtures-list">
         {fixtures.map((fixture) => (
           <React.Fragment key={fixture.id}>

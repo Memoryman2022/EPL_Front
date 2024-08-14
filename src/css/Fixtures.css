@@ -13,6 +13,47 @@
   color: #1ab5ab;
 }
 
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px; /* Adjust as needed */
+  position: relative;
+}
+
+.nav-button {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  cursor: pointer;
+  background: transparent;
+  border: 10px solid transparent; /* Adjust size */
+}
+
+.nav-prev {
+  border-right-color: #00ffbf;
+}
+
+.nav-next {
+  border-left-color: #00ffbf;
+}
+
+.nav-prev {
+  border-width: 10px 15px 10px 0;
+}
+
+.nav-next {
+  border-width: 10px 0 10px 15px;
+}
+
+.nav-button:hover {
+  border-color: #fee501;
+}
+
+.nav-button:disabled {
+  border-color: #c0c0c0;
+  cursor: not-allowed;
+}
+
 .fixtures-list {
   list-style: none;
   padding: 0;
