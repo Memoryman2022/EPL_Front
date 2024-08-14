@@ -119,7 +119,11 @@ function Leaderboard({ onUserUpdate }) {
                 <td className="position">{user.position}</td>
                 <td className="name">
                   <img
-                    src={`${API_URL.replace("/api", "")}${user.profileImage}`}
+                    src={
+                      user.profileImage
+                        ? `${API_URL.replace("/api", "")}${user.profileImage}`
+                        : "/default-profile.png" // Use default profile image
+                    }
                     alt="Profile"
                     className="profile-pic"
                   />

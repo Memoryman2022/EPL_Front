@@ -126,10 +126,10 @@ function UserPredictions({ fixtureId }) {
                   <img
                     src={
                       userProfiles[prediction.userId]?.profileImage
-                        ? `${API_URL.replace("/api", "")}${
+                        ? `${API_URL}${
                             userProfiles[prediction.userId].profileImage
                           }`
-                        : "/default-profile.png"
+                        : "/default-profile.png" // This is the fallback if the profileImage is not available
                     }
                     alt="User Profile"
                     className="profile-picture-CP"

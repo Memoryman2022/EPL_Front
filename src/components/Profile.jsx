@@ -48,7 +48,11 @@ function UserProfile({ triggerUpdate }) {
       <div className="profile-pic-home">
         {userDetails && (
           <img
-            src={`${API_URL.replace("/api", "")}${userDetails.profileImage}`}
+            src={
+              userDetails && userDetails.profileImage
+                ? `${API_URL.replace("/api", "")}${userDetails.profileImage}`
+                : "/default-profile.png" // Fallback image
+            }
             alt="Profile"
           />
         )}
