@@ -5,7 +5,7 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../css/Calendar.css";
 import { useNavigate } from "react-router-dom";
-import { useMatchDays } from "../context/MatchDaysContext"; // Import the custom hook
+import { useMatchDays } from "../context/MatchDayContext"; // Import the custom hook
 
 const localizer = momentLocalizer(moment);
 

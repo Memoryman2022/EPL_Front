@@ -5,7 +5,7 @@ import "./index.css";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProviderWrapper } from "./authContext/authContext.jsx";
-import { MatchDaysProvider } from "./context/MatchDayContext.js";
+import { MatchDaysProvider } from "./context/MatchDayContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useMatchDays } from "../context/MatchDaysContext";
+import { useMatchDays } from "../context/MatchDayContext";
 import { AuthContext } from "../authContext/authContext";
 import moment from "moment";
 import ResponsiveTeamName from "../components/ResponsiveTeamName";
@@ -8,6 +8,9 @@ import DropdownMenu from "../components/DDP";
 import UserPredictions from "../components/UserPredictions";
 import MatchResult from "../components/MatchResult";
 import axios from "axios";
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 import "../css/Fixtures.css";
 
 function FixtureDetails() {
