@@ -6,6 +6,34 @@ const API_URL = import.meta.env.VITE_API_URL;
 //css
 import "../css/EPL_Table.css";
 
+// Mapping function here
+const teamNameToImageMap = {
+  "Arsenal FC": "Arsenal.png",
+  "Aston Villa FC": "Aston Villa.png",
+  "AFC Bournemouth": "Bournemouth.png",
+  "Brentford FC": "Brentford.png",
+  "Brighton & Hove Albion FC": "Brighton.png",
+  "Chelsea FC": "Chelsea.png",
+  "Crystal Palace FC": "Crystal Palace.png",
+  "Everton FC": "Everton.png",
+  "Fulham FC": "Fulham.png",
+  "Ipswich Town FC": "Ipswich.png",
+  "Leicester City FC": "Leicester.png",
+  "Liverpool FC": "Liverpool.png",
+  "Manchester City FC": "Manchester City.png",
+  "Manchester United FC": "Manchester United.png",
+  "Newcastle United FC": "Newcastle United.png",
+  "Nottingham Forest FC": "Nottm Forest.png",
+  "Southampton FC": "Southampton.png",
+  "Tottenham Hotspur FC": "Tottenham Hotspur.png",
+  "West Ham United FC": "West Ham United.png",
+  "Wolverhampton Wanderers FC": "Wolves.png",
+};
+
+const getTeamImage = (teamName) => {
+  return `teams/${teamNameToImageMap[teamName] || "default.png"}`;
+};
+
 function EPL_Table() {
   const [standings, setStandings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +46,7 @@ function EPL_Table() {
   useEffect(() => {
     const fetchStandings = async () => {
       const endpoint = `${API_URL}/competitions/2021/standings`; // Backend URL
-
+      console.log(endpoint);
       try {
         const response = await axios.get(endpoint);
         if (response.data && response.data.standings) {
@@ -88,6 +116,11 @@ function EPL_Table() {
               <tr key={index}>
                 <td className="col-position">{team.position ?? "N/A"}</td>
                 <td className="col-team">
+                  <img
+                    src={`/${getTeamImage(team.team?.name)}`}
+                    className="team-logo"
+                    alt={`${team.team?.name} logo`}
+                  />
                   <ResponsiveTeamName name={team.team?.name ?? "N/A"} />
                 </td>
                 <td className="col-gp">{team.playedGames ?? "N/A"}</td>

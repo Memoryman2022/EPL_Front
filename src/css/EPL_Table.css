@@ -29,6 +29,13 @@ thead th {
   font-weight: bold;
 }
 
+.team-logo {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
 thead th.col-team {
   text-align: left;
   font-size: 10px;
@@ -64,7 +71,7 @@ tbody td {
 }
 
 .col-position {
-  width: 12%; /* Adjust width as needed */
+  width: 8%; /* Adjust width as needed */
 }
 
 .col-team {
