@@ -76,6 +76,7 @@ function UserPredictions({ fixtureId }) {
       const token = localStorage.getItem("jwtToken");
       const profiles = {};
 
+      // Fetch profiles for all userIds
       await Promise.all(
         userIds.map(async (userId) => {
           try {
@@ -87,7 +88,7 @@ function UserPredictions({ fixtureId }) {
                 },
               }
             );
-            profiles[userId] = response.data;
+            profiles[userId] = response.data; // Save profile data
           } catch (error) {
             console.error(
               `Error fetching profile for userId ${userId}:`,
@@ -97,7 +98,7 @@ function UserPredictions({ fixtureId }) {
         })
       );
 
-      setUserProfiles(profiles);
+      setUserProfiles(profiles); // Set profiles for all users
     } catch (error) {
       console.error("Error fetching user profiles:", error);
       setError("Failed to fetch user profiles");
@@ -125,12 +126,14 @@ function UserPredictions({ fixtureId }) {
                 <div className="user-profile-CP">
                   <img
                     src={
-                      user.profileImage
-                        ? `${API_URL.replace("/api", "")}${user.profileImage}`
-                        : "/default-profile.png" // Use default profile image
+                      userProfiles[prediction.userId]?.profileImage
+                        ? `${API_URL.replace("/api", "")}${
+                            userProfiles[prediction.userId].profileImage
+                          }`
+                        : "/default-profile.png" // Fallback if no profileImage
                     }
-                    alt="Profile"
-                    className="profile-pic"
+                    alt="User Profile"
+                    className="profile-picture-CP"
                   />
                 </div>
                 <span className="score-digit">
