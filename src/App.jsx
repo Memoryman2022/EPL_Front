@@ -6,6 +6,7 @@ import Landing from "./pages/Landing";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Base from "./pages/Base";
+import About from "./pages/About";
 import Logout from "./pages/Logout";
 //COMPONENTS
 import Navbar from "./components/Navbar";
@@ -14,7 +15,6 @@ import UserProfile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
 import FixtureCalendar from "./components/Calender";
 import FixturesByDate from "./components/Fixtures";
-// import ConfirmedPredictions from "./components/ConfirmedPredictions";
 //CSS
 import "./App.css";
 
@@ -27,16 +27,13 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/base" element={<Base />} />
             <Route path="/user/:userId" element={<UserProfile />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/calendar" element={<FixtureCalendar />} />
             <Route path="/fixtures/:date" element={<FixturesByDate />} />
-            {/* <Route
-              path="/confirmed-predictions"
-              element={<ConfirmedPredictions />}
-            /> */}
             <Route path="/logout" element={<Logout />} />
           </Route>
         </Routes>

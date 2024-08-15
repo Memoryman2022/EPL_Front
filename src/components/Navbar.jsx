@@ -81,6 +81,11 @@ function Navbar() {
                 Central Hub
               </Link>
             </li>
+            <li className="menu-list-item">
+              <Link to="/about" onClick={toggleMenu}>
+                App Info
+              </Link>
+            </li>
 
             {user && user.role === "admin" && (
               <li className="menu-list-item">
