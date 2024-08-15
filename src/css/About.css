@@ -1,11 +1,43 @@
+.about-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.gif-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gif-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1; /* Adjust this value to make the GIF more or less visible */
+}
+
+.about-content {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+}
+
 .about-container {
-  margin: 5px 40px;
+  margin: 5px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #06bcc9;
   font-size: 9px;
   max-width: 600px;
+  background-color: rgba(0, 0, 0, 0.472);
+  border-radius: 10px;
+  padding: 0 10px;
 }
 
 h3 {
@@ -21,10 +53,11 @@ h5 {
 }
 
 .highlighted-text a {
-  color: #01f3cf; /* Example color: Tomato */
+  color: #01f3cf;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .highlighted-text .about-link:hover {
-  color: #48fcc6; /* Darker shade of the color when hovered */
+  color: #48fcc6;
 }
