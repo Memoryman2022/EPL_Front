@@ -57,7 +57,10 @@ const About = () => {
         as I work on expanding my skills and showcasing my abilities. Thank you.
         Now get out there and start{" "}
         <strong className="highlighted-text">
-          <Link to="/base"> PREDICTING! </Link>
+          <Link to="/base" className="about-link">
+            {" "}
+            PREDICTING!{" "}
+          </Link>
         </strong>
       </p>
     </div>

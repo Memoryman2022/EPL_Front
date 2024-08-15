@@ -5,6 +5,7 @@
   align-items: center;
   color: #06bcc9;
   font-size: 9px;
+  max-width: 600px;
 }
 
 h3 {
@@ -25,5 +26,5 @@ h5 {
 }
 
 .highlighted-text .about-link:hover {
-  color: #00ffcc; /* Darker shade of the color when hovered */
+  color: #48fcc6; /* Darker shade of the color when hovered */
 }
