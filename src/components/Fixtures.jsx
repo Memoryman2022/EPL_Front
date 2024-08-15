@@ -13,11 +13,6 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 import "../css/Fixtures.css";
 
-// Helper function to format team names
-const formatTeamName = (name) => {
-  return name === "Crystal Palace FC" ? "Palace" : name;
-};
-
 function FixtureDetails() {
   const { date } = useParams();
   const navigate = useNavigate();
@@ -169,15 +164,11 @@ function FixtureDetails() {
                 {moment(fixture.utcDate).format("HH:mm")}
               </span>
               <span className="fixture-home">
-                <ResponsiveTeamName
-                  name={formatTeamName(fixture.homeTeam.name)}
-                />
+                <ResponsiveTeamName name={fixture.homeTeam.name} />
               </span>
               <span className="fixture-vs">vs</span>
               <span className="fixture-away">
-                <ResponsiveTeamName
-                  name={formatTeamName(fixture.awayTeam.name)}
-                />
+                <ResponsiveTeamName name={fixture.awayTeam.name} />
               </span>
               <div
                 className={`prediction-box ${
