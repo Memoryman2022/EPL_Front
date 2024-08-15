@@ -86,7 +86,11 @@ function Navbar() {
                 App Info
               </Link>
             </li>
-
+            <li className="menu-list-item">
+              <Link to="/rules" onClick={toggleMenu}>
+                Rules
+              </Link>
+            </li>
             {user && user.role === "admin" && (
               <li className="menu-list-item">
                 <button onClick={handleUpdateScores} className="update-button">

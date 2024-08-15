@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Base from "./pages/Base";
 import About from "./pages/About";
+import Rules from "./pages/Rules";
 import Logout from "./pages/Logout";
 //COMPONENTS
 import Navbar from "./components/Navbar";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/rules" element={<Rules />} />
           <Route path="/about" element={<About />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/base" element={<Base />} />
