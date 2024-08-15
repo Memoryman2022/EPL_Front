@@ -21,7 +21,7 @@ const getOutcomeLabel = (outcome) => {
 function UserPredictions({ fixtureId }) {
   const { user, isLoggedIn } = useContext(AuthContext);
   const [predictions, setPredictions] = useState([]);
-  const [userProfiles, setUserProfiles] = useState({});
+  const [userProfiles, setUserProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -53,11 +53,12 @@ function UserPredictions({ fixtureId }) {
         }
       );
 
-      console.log("Predictions data:", response.data); // Debugging line
-
       const predictions = response.data;
       setPredictions(predictions);
-      fetchUserProfiles(predictions.map((p) => p.userId));
+
+      // Extract user IDs to fetch profiles
+      const userIds = predictions.map((p) => p.userId);
+      fetchUserProfiles(userIds);
     } catch (error) {
       console.error("Error fetching predictions:", error);
       setError("Failed to fetch predictions");
@@ -74,28 +75,25 @@ function UserPredictions({ fixtureId }) {
 
     try {
       const token = localStorage.getItem("jwtToken");
-      const profiles = {};
-
-      await Promise.all(
-        userIds.map(async (userId) => {
-          try {
-            const response = await axios.get(
-              `${API_URL}/users/protected/user/${userId}`,
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              }
-            );
-            profiles[userId] = response.data;
-          } catch (error) {
-            console.error(
-              `Error fetching profile for userId ${userId}:`,
-              error
-            );
-          }
-        })
+      const fetchedProfiles = await Promise.all(
+        userIds.map((userId) =>
+          axios.get(`${API_URL}/users/protected/user/${userId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+        )
       );
+
+      const profiles = fetchedProfiles.reduce((acc, { data }) => {
+        acc[data._id] = {
+          ...data,
+          profileImage: data.profileImage
+            ? `${API_URL.replace("/api", "")}${data.profileImage}`
+            : "/default-profile.png", // Fallback image
+        };
+        return acc;
+      }, {});
 
       setUserProfiles(profiles);
     } catch (error) {
@@ -125,9 +123,8 @@ function UserPredictions({ fixtureId }) {
                 <div className="user-profile-CP">
                   <img
                     src={
-                      userProfiles[prediction.userId]?.profileImage
-                        ? `${userProfiles[prediction.userId].profileImage}`
-                        : "/default-profile.png" // This is the fallback if the profileImage is not available//
+                      userProfiles[prediction.userId]?.profileImage ||
+                      "/default-profile.png" // Fallback image
                     }
                     alt="User Profile"
                     className="profile-picture-CP"
