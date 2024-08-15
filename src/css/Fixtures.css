@@ -17,6 +17,7 @@
   justify-content: space-between;
   margin-bottom: 20px; /* Adjust as needed */
   position: relative;
+  margin: 10px;
 }
 
 .nav-button {
