@@ -21,7 +21,7 @@ const getOutcomeLabel = (outcome) => {
 function UserPredictions({ fixtureId }) {
   const { user, isLoggedIn } = useContext(AuthContext);
   const [predictions, setPredictions] = useState([]);
-  const [userProfiles, setUserProfiles] = useState([]);
+  const [userProfiles, setUserProfiles] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -53,12 +53,11 @@ function UserPredictions({ fixtureId }) {
         }
       );
 
+      console.log("Predictions data:", response.data); // Debugging line
+
       const predictions = response.data;
       setPredictions(predictions);
-
-      // Extract user IDs to fetch profiles
-      const userIds = predictions.map((p) => p.userId);
-      fetchUserProfiles(userIds);
+      fetchUserProfiles(predictions.map((p) => p.userId));
     } catch (error) {
       console.error("Error fetching predictions:", error);
       setError("Failed to fetch predictions");
@@ -75,25 +74,28 @@ function UserPredictions({ fixtureId }) {
 
     try {
       const token = localStorage.getItem("jwtToken");
-      const fetchedProfiles = await Promise.all(
-        userIds.map((userId) =>
-          axios.get(`${API_URL}/users/protected/user/${userId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-        )
-      );
+      const profiles = {};
 
-      const profiles = fetchedProfiles.reduce((acc, { data }) => {
-        acc[data._id] = {
-          ...data,
-          profileImage: data.profileImage
-            ? `${API_URL.replace("/api", "")}${data.profileImage}`
-            : "/default-profile.png", // Fallback image
-        };
-        return acc;
-      }, {});
+      await Promise.all(
+        userIds.map(async (userId) => {
+          try {
+            const response = await axios.get(
+              `${API_URL}/users/protected/user/${userId}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
+            profiles[userId] = response.data;
+          } catch (error) {
+            console.error(
+              `Error fetching profile for userId ${userId}:`,
+              error
+            );
+          }
+        })
+      );
 
       setUserProfiles(profiles);
     } catch (error) {
@@ -123,11 +125,12 @@ function UserPredictions({ fixtureId }) {
                 <div className="user-profile-CP">
                   <img
                     src={
-                      userProfiles[prediction.userId]?.profileImage ||
-                      "/default-profile.png" // Fallback image
+                      user.profileImage
+                        ? `${API_URL.replace("/api", "")}${user.profileImage}`
+                        : "/default-profile.png" // Use default profile image
                     }
-                    alt="User Profile"
-                    className="profile-picture-CP"
+                    alt="Profile"
+                    className="profile-pic"
                   />
                 </div>
                 <span className="score-digit">
