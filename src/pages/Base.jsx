@@ -5,6 +5,7 @@ import EPL_Table from "../components/EPL_Table";
 import Leaderboard from "../components/Leaderboard";
 import FixtureCalendar from "../components/Calender";
 import FixtureDetails from "../components/Fixtures";
+import Rules from "./Rules";
 
 //css
 import "../css/base.css";
@@ -45,6 +46,7 @@ function Base() {
       label: "CALENDAR",
       content: <FixtureCalendar onDateSelect={handleDateSelect} />,
     },
+    { label: "RULES", content: <Rules /> },
   ];
 
   return (

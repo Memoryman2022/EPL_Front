@@ -18,7 +18,6 @@
 }
 
 .tabs-container {
-  width: 100%;
   max-width: 900px;
   height: 100%; /* Adjust this to the appropriate height */
   background: linear-gradient(
