@@ -127,7 +127,7 @@ function UserPredictions({ fixtureId }) {
                     src={
                       userProfiles[prediction.userId]?.profileImage
                         ? `${userProfiles[prediction.userId].profileImage}`
-                        : "/default-profile.png" // This is the fallback if the profileImage is not available
+                        : "/default-profile.png" // This is the fallback if the profileImage is not available//
                     }
                     alt="User Profile"
                     className="profile-picture-CP"
