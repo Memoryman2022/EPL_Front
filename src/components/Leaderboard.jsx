@@ -108,8 +108,8 @@ function Leaderboard({ onUserUpdate }) {
             <tr>
               <th className="position"></th>
               <th className="name">User</th>
-              <th className="correct-outcomes">Scores</th>
-              <th className="correct-scores">Outcomes</th>
+              <th className="correct-scores">Scores</th>
+              <th className="correct-outcomes">Outcomes</th>
               <th className="user-score">{isSmallScreen ? "P" : "Points"}</th>
             </tr>
           </thead>
