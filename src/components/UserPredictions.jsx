@@ -4,7 +4,6 @@ import { AuthContext } from "../authContext/authContext";
 import { API_URL } from "../config/index";
 import "../css/UserPredictions.css";
 
-// Helper function to map outcome to "H", "D", or "A"
 const getOutcomeLabel = (outcome) => {
   switch (outcome) {
     case "homeWin":
@@ -27,6 +26,7 @@ function UserPredictions({ fixtureId }) {
 
   useEffect(() => {
     if (isLoggedIn && user && fixtureId) {
+      console.log("Fetching predictions for fixtureId:", fixtureId);
       fetchPredictions(fixtureId);
     } else {
       setError("User not authenticated or fixtureId is missing");
@@ -59,7 +59,10 @@ function UserPredictions({ fixtureId }) {
       setPredictions(predictions);
       fetchUserProfiles(predictions.map((p) => p.userId));
     } catch (error) {
-      console.error("Error fetching predictions:", error);
+      console.error(
+        "Error fetching predictions:",
+        error.response ? error.response.data : error.message
+      );
       setError("Failed to fetch predictions");
     } finally {
       setLoading(false);
@@ -76,7 +79,6 @@ function UserPredictions({ fixtureId }) {
       const token = localStorage.getItem("jwtToken");
       const profiles = {};
 
-      // Fetch profiles for all userIds
       await Promise.all(
         userIds.map(async (userId) => {
           try {
@@ -92,7 +94,7 @@ function UserPredictions({ fixtureId }) {
           } catch (error) {
             console.error(
               `Error fetching profile for userId ${userId}:`,
-              error
+              error.response ? error.response.data : error.message
             );
           }
         })
@@ -105,7 +107,6 @@ function UserPredictions({ fixtureId }) {
     }
   };
 
-  // Sort predictions to show the current user's prediction first
   const sortedPredictions = predictions.sort((a, b) =>
     a.userId === user.userId ? -1 : 1
   );

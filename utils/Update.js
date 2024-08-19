@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_URL } from "../src/config";
 
 // Function to update user scores
 export const updateScores = async (token, isLoggedIn, logOutUser) => {
@@ -10,10 +11,10 @@ export const updateScores = async (token, isLoggedIn, logOutUser) => {
 
     // Fetch predictions and results from the API
     const [predictionsResponse, resultsResponse] = await Promise.all([
-      axios.get(`${import.meta.env.VITE_API_URL}/predictions`, {
+      axios.get(`${API_URL}/predictions`, {
         headers: { Authorization: `Bearer ${token}` },
       }),
-      axios.get(`${import.meta.env.VITE_API_URL}/results`, {
+      axios.get(`${API_URL}/results`, {
         headers: { Authorization: `Bearer ${token}` },
       }),
     ]);
@@ -69,7 +70,7 @@ export const updateScores = async (token, isLoggedIn, logOutUser) => {
     await Promise.all(
       Object.keys(userScores).map(async (userId) => {
         await axios.put(
-          `${import.meta.env.VITE_API_URL}/users/updateScore`,
+          `${API_URL}/users/updateScore`,
           {
             userId: userId,
             score: userScores[userId].score,
@@ -80,6 +81,11 @@ export const updateScores = async (token, isLoggedIn, logOutUser) => {
         );
       })
     );
+
+    // After updating scores, update user positions and movements
+    await axios.put(`${API_URL}/users/updatePositions`, null, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
     // Alert the user that scores have been updated
     alert("Scores updated successfully!");

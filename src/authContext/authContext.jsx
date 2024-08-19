@@ -88,6 +88,7 @@ function AuthProviderWrapper(props) {
         setUser(user);
         setIsLoggedIn(true);
         navigate(`/base`);
+        await authenticateUser(); // Ensure synchronization
       } else {
         setAuthError("No token or userId received");
       }
@@ -125,7 +126,7 @@ function AuthProviderWrapper(props) {
         setUser(user);
         setIsLoggedIn(true);
         navigate(`/base`);
-        await authenticateUser();
+        await authenticateUser(); // Ensure synchronization
       } else {
         setAuthError("No token or userId received");
       }

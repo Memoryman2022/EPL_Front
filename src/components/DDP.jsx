@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../css/DDP.css"; // Ensure the CSS file path is correct
 
-function DropdownMenu({ isOpen, onClose, fixture, onConfirm }) {
+function DropdownMenu({ isOpen, onClose, fixture, onConfirm, userId }) {
   const dropdownRef = useRef(null);
   const [homeScore, setHomeScore] = useState("");
   const [awayScore, setAwayScore] = useState("");
@@ -23,10 +23,12 @@ function DropdownMenu({ isOpen, onClose, fixture, onConfirm }) {
       dropdown.style.maxHeight = "0";
       dropdown.style.opacity = 0;
     }
+
+    console.log("user id: ", userId);
   }, [isOpen]);
 
   const handleConfirm = () => {
-    onConfirm(fixture.id, homeScore, awayScore);
+    onConfirm(fixture.id, userId, homeScore, awayScore);
   };
 
   return (

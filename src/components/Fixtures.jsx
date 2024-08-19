@@ -8,15 +8,14 @@ import DropdownMenu from "../components/DDP";
 import UserPredictions from "../components/UserPredictions";
 import MatchResult from "../components/MatchResult";
 import axios from "axios";
-
-const API_URL = import.meta.env.VITE_API_URL;
+import { API_URL } from "../config";
 
 import "../css/Fixtures.css";
 
 function FixtureDetails() {
   const { date } = useParams();
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const { user, isLoading: authLoading } = useContext(AuthContext);
   const {
     matchDays,
     loading: contextLoading,
@@ -50,6 +49,10 @@ function FixtureDetails() {
   };
 
   useEffect(() => {
+    console.log("user is : ", user.userId);
+  }, []);
+
+  useEffect(() => {
     if (matchDays[date]) {
       setFixtures(matchDays[date]);
       setLoading(false);
@@ -58,12 +61,10 @@ function FixtureDetails() {
       setError(contextError);
     }
 
-    if (user && user._id) {
+    if (!authLoading && user && user._id) {
       fetchPredictions(user._id);
-    } else {
-      console.warn("User is not logged in or user._id is missing.");
     }
-  }, [date, user, matchDays, contextLoading, contextError]);
+  }, [date, user, matchDays, contextLoading, contextError, authLoading]);
 
   const fetchPredictions = async (userId) => {
     if (!userId) {
@@ -105,21 +106,22 @@ function FixtureDetails() {
     return "draw";
   };
 
-  const handleConfirm = async (fixtureId, homeScore, awayScore) => {
+  const handleConfirm = async (fixtureId, userId, homeScore, awayScore) => {
     if (homeScore === "" || awayScore === "") {
       alert("Please enter both home and away scores.");
       return;
     }
     const outcome = calculateOutcome(homeScore, awayScore);
-    const userId = user?._id;
 
     const payload = {
       fixtureId,
       userId,
-      homeScore,
-      awayScore,
+      homeScore: Number(homeScore), // Ensure homeScore is a number
+      awayScore: Number(awayScore), // Ensure awayScore is a number
       outcome,
     };
+
+    console.log("Sending payload:", payload); // Log payload for debugging
 
     try {
       const token = localStorage.getItem("jwtToken");
@@ -141,7 +143,7 @@ function FixtureDetails() {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading || authLoading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   const formattedDate = moment(date).format("DD.MM.YYYY");
@@ -196,6 +198,7 @@ function FixtureDetails() {
                     onClose={() => setOpenDropdown(null)}
                     fixture={{ ...fixture, image: "/icons/predict.png" }}
                     onConfirm={handleConfirm}
+                    userId={user.userId} // Pass userId to DropdownMenu
                   />
                 ) : (
                   <div className="user-prediction-dropdown">
