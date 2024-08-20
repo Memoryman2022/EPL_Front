@@ -57,6 +57,9 @@ function AuthProviderWrapper(props) {
       const response = await axios.get(`${API_URL}/auth/verify`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
+
+      console.log("Authenticated user response:", response.data);
+
       setIsLoggedIn(true);
       setUser(response.data);
     } catch (error) {
@@ -82,6 +85,7 @@ function AuthProviderWrapper(props) {
         password,
       });
       const { token, userId, user } = response.data;
+      console.log("Login response:", response.data);
       if (token && userId && user) {
         storeToken(token);
         storeUserId(userId);
@@ -118,7 +122,7 @@ function AuthProviderWrapper(props) {
           "Content-Type": "multipart/form-data",
         },
       });
-
+      console.log("Register response:", response.data);
       const { token, userId, user } = response.data;
       if (token && userId && user) {
         storeToken(token);

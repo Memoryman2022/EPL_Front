@@ -61,8 +61,8 @@ function FixtureDetails() {
       setError(contextError);
     }
 
-    if (!authLoading && user && user._id) {
-      fetchPredictions(user._id);
+    if (!authLoading && user && user.userId) {
+      fetchPredictions(user.userId);
     }
   }, [date, user, matchDays, contextLoading, contextError, authLoading]);
 

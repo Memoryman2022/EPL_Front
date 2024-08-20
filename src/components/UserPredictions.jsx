@@ -122,7 +122,7 @@ function UserPredictions({ fixtureId }) {
       ) : (
         <ul>
           {sortedPredictions.map((prediction) => (
-            <li key={prediction._id} className="user-prediction-item">
+            <li key={prediction.userId} className="user-prediction-item">
               <div className="prediction-details">
                 <div className="user-profile-CP">
                   <img

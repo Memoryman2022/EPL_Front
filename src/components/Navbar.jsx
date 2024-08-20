@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../authContext/authContext";
-import { updateScores } from "../../utils/Update"; // Import the updateScores function
 import "../css/Navbar.css";
 
 function Navbar() {
@@ -49,10 +48,6 @@ function Navbar() {
     }, 200);
   };
 
-  const handleUpdateScores = () => {
-    updateScores(token, isLoggedIn, logOutUser); // Pass logOutUser as a parameter
-  };
-
   return (
     <div className="navbar">
       <img src={"/icons/predict.png"} alt="Predictor Icon" />
@@ -91,13 +86,7 @@ function Navbar() {
                 Rules
               </Link>
             </li>
-            {user && user.role === "admin" && (
-              <li className="menu-list-item">
-                <button onClick={handleUpdateScores} className="update-button">
-                  Update Scores
-                </button>
-              </li>
-            )}
+
             <li className="menu-list-item">
               <Link to="/logout" onClick={toggleMenu}>
                 Logout
