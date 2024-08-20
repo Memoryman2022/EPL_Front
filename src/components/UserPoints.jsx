@@ -128,7 +128,7 @@ const UserPoints = () => {
                         ))}
                     </div>
                   ) : (
-                    <p>No prediction made for this match.</p>
+                    <p className="SHIT">PREDICTION MISSING</p>
                   )}
                 </div>
               )}
