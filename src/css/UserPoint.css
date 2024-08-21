@@ -1,4 +1,9 @@
-/* UserPoints.css */
+.matchday-title {
+  font-size: 12px;
+  text-align: center;
+  background-color: #000;
+  border: 1px solid aqua;
+}
 
 /* General container styles */
 .user-points-container {
@@ -27,7 +32,7 @@
 .match-title {
   text-align: center;
   font-size: 13px;
-  color: #00ffb3;
+  color: #00ffd9;
   margin-top: 0px;
   margin-bottom: 5px;
 }
@@ -39,11 +44,54 @@
   color: #ff6a00;
 }
 
+/* Adding space between result score and outcome */
+.match-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; /* Ensures space between elements */
+  padding-left: 10px;
+  margin-bottom: 10px; /* Add some space between this row and the next content */
+}
+
 /* Prediction container styles */
 .prediction-container {
+  display: flex;
+  flex-direction: column;
   border-top: 1px solid #00cae1;
   padding-top: 10px;
   margin-top: 10px;
+}
+
+/* User info container to align profile picture and text */
+.user-info-scores {
+  display: flex;
+  align-items: center; /* Vertically align the image and text */
+  margin-bottom: 10px; /* Add space after each user-info block */
+}
+
+/* Profile picture styles */
+.profile-picture-scores {
+  height: 150px; /* Adjust size as needed */
+  width: 120px;
+  object-fit: cover;
+  overflow: hidden;
+  margin-right: 10px; /* Space between image and text */
+  border: 2px solid aquamarine;
+}
+
+/* User name styles */
+.user-name-scores {
+  font-size: 16px;
+  color: #00ffd9;
+  margin-bottom: 5px;
+}
+
+/* User column styles */
+.user-column {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px; /* Adjust the font size for the prediction details */
+  margin-left: 10px;
 }
 
 /* Prediction title styles */
@@ -51,16 +99,15 @@
   font-size: 10px;
   color: #04d8f0;
   margin-top: 0px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   text-align: center;
+  position: relative;
 }
 
 /* Prediction item styles */
 .prediction-item {
   border-bottom: 1px solid #04c6e4;
-  padding-bottom: 10px;
-  margin-bottom: 0px;
-  font-size: 10px;
+  margin-bottom: 10px;
 }
 
 /* No data message styles */
@@ -71,14 +118,14 @@
 
 /* Remove default list styling */
 ul {
-  list-style-type: none; /* Removes bullets */
-  padding: 0; /* Removes padding */
-  margin: 0; /* Removes margin */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* Optional: Add spacing for list items */
 li {
-  margin-bottom: 10px; /* Adjust spacing as needed */
+  margin-bottom: 10px;
 }
 
 .SHIT {

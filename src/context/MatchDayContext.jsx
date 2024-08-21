@@ -1,4 +1,3 @@
-// MatchDaysContext.js
 import React, { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import moment from "moment";
@@ -20,7 +19,7 @@ export const MatchDaysProvider = ({ children }) => {
         );
         const matches = response.data.matches;
 
-        // Organize fixtures by date
+        // Organize fixtures by date and include kickoff time
         const fixturesMap = matches.reduce((acc, fixture) => {
           const date = moment(fixture.utcDate).format("YYYY-MM-DD");
           if (!acc[date]) acc[date] = [];

@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../authContext/authContext";
 import { API_URL } from "../config/index";
+import { useMatchDays } from "../context/MatchDayContext";
+import Popup from "../components/Popup"; // Ensure you have a Popup component
+
 import "../css/UserPredictions.css";
 
 const getOutcomeLabel = (outcome) => {
@@ -19,10 +22,12 @@ const getOutcomeLabel = (outcome) => {
 
 function UserPredictions({ fixtureId }) {
   const { user, isLoggedIn } = useContext(AuthContext);
+  const { matchDays } = useMatchDays(); // Use the context to get match days
   const [predictions, setPredictions] = useState([]);
   const [userProfiles, setUserProfiles] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     if (isLoggedIn && user && fixtureId) {
@@ -53,11 +58,23 @@ function UserPredictions({ fixtureId }) {
         }
       );
 
-      console.log("Predictions data:", response.data); // Debugging line
+      console.log("Predictions data:", response.data);
 
       const predictions = response.data;
       setPredictions(predictions);
       fetchUserProfiles(predictions.map((p) => p.userId));
+
+      // Determine if predictions are closed based on match start time
+      const match = Object.values(matchDays)
+        .flat()
+        .find((m) => m.id === fixtureId);
+      if (match) {
+        const matchStartTime = new Date(match.utcDate); // Parse the fixture's UTC date
+        const now = new Date(); // Current time in UTC
+        if (matchStartTime <= now) {
+          setShowPopup(true); // Show popup if the match has started
+        }
+      }
     } catch (error) {
       console.error(
         "Error fetching predictions:",
@@ -111,12 +128,22 @@ function UserPredictions({ fixtureId }) {
     a.userId === user.userId ? -1 : 1
   );
 
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div className="user-predictions-container">
       <h4 className="pred-H4">____PREDICTIONS</h4>
+      {showPopup && (
+        <Popup
+          message="Predictions are closed for this fixture."
+          onClose={handleClosePopup}
+        />
+      )}
       {sortedPredictions.length === 0 ? (
         <p>No predictions found for this fixture.</p>
       ) : (
