@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.303);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,12 +13,13 @@
 }
 
 .popup-content {
-  background: white;
+  background: rgba(2, 127, 110, 0.201);
   padding: 20px;
   border-radius: 8px;
   position: relative;
   max-width: 500px;
-  width: 90%;
+  width: 60%;
+  text-align: center;
 }
 
 .popup-close-button {
