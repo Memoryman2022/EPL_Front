@@ -101,12 +101,7 @@ const UserPoints = () => {
   };
 
   // Calculate the score based on predictions
-  const calculatePoints = (matchId) => {
-    const userPrediction = predictions.find(
-      (pred) => pred.fixtureId === matchId
-    );
-    if (!userPrediction) return 0;
-
+  const calculatePoints = (prediction, matchId) => {
     const match = Object.values(matchesByDay)
       .flat()
       .find((m) => m.fixtureId === matchId);
@@ -114,11 +109,11 @@ const UserPoints = () => {
 
     let score = 0;
     if (
-      userPrediction.homeScore === match.homeScore &&
-      userPrediction.awayScore === match.awayScore
+      prediction.homeScore === match.homeScore &&
+      prediction.awayScore === match.awayScore
     ) {
       score = 7;
-    } else if (userPrediction.outcome === match.outcome) {
+    } else if (prediction.outcome === match.outcome) {
       score = 3;
     }
 
@@ -208,6 +203,7 @@ const UserPoints = () => {
                                           prediction.outcome
                                         )}`}</p>
                                         <p>{`POINTS: ${calculatePoints(
+                                          prediction,
                                           match.fixtureId
                                         )}`}</p>
                                       </div>
