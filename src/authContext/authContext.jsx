@@ -9,6 +9,7 @@ function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [userId, setUserId] = useState(null); // Added userId state
   const [authError, setAuthError] = useState(null);
   const navigate = useNavigate();
 
@@ -42,6 +43,7 @@ function AuthProviderWrapper(props) {
       setIsLoggedIn(false);
       setIsLoading(false);
       setUser(null);
+      setUserId(null); // Clear userId
       return;
     }
 
@@ -51,6 +53,7 @@ function AuthProviderWrapper(props) {
       });
       setIsLoggedIn(true);
       setUser(response.data.user);
+      setUserId(response.data.user._id); // Set userId from the user data
     } catch (error) {
       if (error.response?.status === 401) {
         await refreshToken(); // Refresh token if unauthorized
@@ -58,6 +61,7 @@ function AuthProviderWrapper(props) {
         setAuthError(error.response?.data.message || "Failed to authenticate");
         setIsLoggedIn(false);
         setUser(null);
+        setUserId(null); // Clear userId
       }
     } finally {
       setIsLoading(false);
@@ -80,6 +84,7 @@ function AuthProviderWrapper(props) {
         storeToken(token);
         storeUserId(userId);
         setUser(user);
+        setUserId(userId); // Set userId
         setIsLoggedIn(true);
         navigate(`/base`);
       } else {
@@ -115,6 +120,7 @@ function AuthProviderWrapper(props) {
         storeToken(token);
         storeUserId(userId);
         setUser(user);
+        setUserId(userId); // Set userId
         setIsLoggedIn(true);
         navigate(`/base`);
       } else {
@@ -134,6 +140,7 @@ function AuthProviderWrapper(props) {
     removeUserId();
     setIsLoggedIn(false);
     setUser(null);
+    setUserId(null); // Clear userId
     navigate("/");
   };
 
@@ -148,6 +155,7 @@ function AuthProviderWrapper(props) {
         isLoggedIn,
         isLoading,
         user,
+        userId, // Added userId to context
         storeToken,
         storeUserId,
         authenticateUser,

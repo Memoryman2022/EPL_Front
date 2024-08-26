@@ -50,6 +50,7 @@ function FixtureDetails() {
 
   useEffect(() => {
     console.log("user is : ", user.userId);
+    console.log("User from context:", user);
   }, []);
 
   useEffect(() => {
