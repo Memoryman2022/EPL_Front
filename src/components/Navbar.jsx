@@ -81,6 +81,8 @@ function Navbar() {
     }
   };
 
+  console.log("User context in Navbar:", { isLoggedIn, user }); // Debugging
+
   return (
     <div className="navbar">
       <img src={"/icons/predict.png"} alt="Predictor Icon" />
@@ -124,10 +126,20 @@ function Navbar() {
             {user?.role === "admin" && (
               <>
                 <li className="menu-list-item">
-                  <button onClick={handleUpdateResults}>Update Results</button>
+                  <button
+                    className="update-button"
+                    onClick={handleUpdateResults}
+                  >
+                    Update Results
+                  </button>
                 </li>
                 <li className="menu-list-item">
-                  <button onClick={handleUpdateScores}>Update Scores</button>
+                  <button
+                    className="update-button"
+                    onClick={handleUpdateScores}
+                  >
+                    Update Scores
+                  </button>
                 </li>
               </>
             )}
