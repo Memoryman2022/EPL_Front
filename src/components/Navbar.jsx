@@ -51,9 +51,9 @@ function Navbar() {
 
   const handleUpdateResults = async () => {
     try {
-      await axios.post(
-        "https://eplbackend.adaptable.app/api/admin/updateResults",
-        {},
+      // Make a GET request to the backend route
+      await axios.get(
+        "https://eplbackend.adaptable.app/api/results/updateResults",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -67,8 +67,8 @@ function Navbar() {
 
   const handleUpdateScores = async () => {
     try {
-      await axios.post(
-        "https://eplbackend.adaptable.app/api/admin/updateScores",
+      await axios.get(
+        "https://eplbackend.adaptable.app/api/updateScores",
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
