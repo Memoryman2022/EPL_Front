@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../authContext/authContext";
+import axios from "axios";
 import "../css/Navbar.css";
 
 function Navbar() {
@@ -48,6 +49,40 @@ function Navbar() {
     }, 200);
   };
 
+  // Function to trigger update results
+  const handleUpdateResults = async () => {
+    try {
+      await axios.post(
+        "https://eplbackend.adaptable.app/api/admin/updateResults",
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      alert("Match results updated successfully.");
+    } catch (error) {
+      console.error("Error updating results:", error);
+      alert("Error updating results.");
+    }
+  };
+
+  // Function to trigger update scores
+  const handleUpdateScores = async () => {
+    try {
+      await axios.post(
+        "https://eplbackend.adaptable.app/api/admin/updateScores",
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      alert("User scores updated successfully.");
+    } catch (error) {
+      console.error("Error updating scores:", error);
+      alert("Error updating scores.");
+    }
+  };
+
   return (
     <div className="navbar">
       <img src={"/icons/predict.png"} alt="Predictor Icon" />
@@ -86,6 +121,18 @@ function Navbar() {
                 Rules
               </Link>
             </li>
+
+            {/* Admin buttons */}
+            {user?.isAdmin && (
+              <>
+                <li className="menu-list-item">
+                  <button onClick={handleUpdateResults}>Update Results</button>
+                </li>
+                <li className="menu-list-item">
+                  <button onClick={handleUpdateScores}>Update Scores</button>
+                </li>
+              </>
+            )}
 
             <li className="menu-list-item">
               <Link to="/logout" onClick={toggleMenu}>
