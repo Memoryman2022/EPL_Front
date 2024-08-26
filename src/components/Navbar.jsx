@@ -49,7 +49,6 @@ function Navbar() {
     }, 200);
   };
 
-  // Function to trigger update results
   const handleUpdateResults = async () => {
     try {
       await axios.post(
@@ -66,7 +65,6 @@ function Navbar() {
     }
   };
 
-  // Function to trigger update scores
   const handleUpdateScores = async () => {
     try {
       await axios.post(
@@ -123,7 +121,7 @@ function Navbar() {
             </li>
 
             {/* Admin buttons */}
-            {user?.isAdmin && (
+            {user?.role === "admin" && (
               <>
                 <li className="menu-list-item">
                   <button onClick={handleUpdateResults}>Update Results</button>
@@ -135,7 +133,7 @@ function Navbar() {
             )}
 
             <li className="menu-list-item">
-              <Link to="/logout" onClick={toggleMenu}>
+              <Link to="/logout" onClick={logOutUser}>
                 Logout
               </Link>
             </li>
