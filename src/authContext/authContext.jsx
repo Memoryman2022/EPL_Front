@@ -12,22 +12,13 @@ function AuthProviderWrapper(props) {
   const [authError, setAuthError] = useState(null);
   const navigate = useNavigate();
 
-  const storeToken = (token) => {
-    localStorage.setItem("jwtToken", token);
-  };
+  // Utility functions to handle tokens and user ID in localStorage
+  const storeToken = (token) => localStorage.setItem("jwtToken", token);
+  const storeUserId = (userId) => localStorage.setItem("userId", userId);
+  const removeToken = () => localStorage.removeItem("jwtToken");
+  const removeUserId = () => localStorage.removeItem("userId");
 
-  const storeUserId = (userId) => {
-    localStorage.setItem("userId", userId);
-  };
-
-  const removeToken = () => {
-    localStorage.removeItem("jwtToken");
-  };
-
-  const removeUserId = () => {
-    localStorage.removeItem("userId");
-  };
-
+  // Function to refresh the token if it's expired
   const refreshToken = async () => {
     try {
       const response = await axios.get(`${API_URL}/auth/refresh`, {
@@ -37,13 +28,14 @@ function AuthProviderWrapper(props) {
       });
       const { token } = response.data;
       storeToken(token);
-      await authenticateUser();
+      await authenticateUser(); // Re-authenticate after refreshing token
     } catch (error) {
       console.error("Error refreshing token:", error);
       logOutUser();
     }
   };
 
+  // Function to authenticate the user based on the JWT token
   const authenticateUser = async () => {
     const storedToken = localStorage.getItem("jwtToken");
     if (!storedToken) {
@@ -57,14 +49,11 @@ function AuthProviderWrapper(props) {
       const response = await axios.get(`${API_URL}/auth/verify`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
-
-      console.log("Authenticated user response:", response.data);
-
       setIsLoggedIn(true);
       setUser(response.data.user);
     } catch (error) {
       if (error.response?.status === 401) {
-        await refreshToken();
+        await refreshToken(); // Refresh token if unauthorized
       } else {
         setAuthError(error.response?.data.message || "Failed to authenticate");
         setIsLoggedIn(false);
@@ -75,6 +64,7 @@ function AuthProviderWrapper(props) {
     }
   };
 
+  // Function to log in the user
   const loginUser = async (email, password) => {
     setAuthError(null);
     setIsLoading(true);
@@ -85,14 +75,13 @@ function AuthProviderWrapper(props) {
         password,
       });
       const { token, userId, user } = response.data;
-      console.log("Login response:", response.data);
+
       if (token && userId && user) {
         storeToken(token);
         storeUserId(userId);
         setUser(user);
         setIsLoggedIn(true);
         navigate(`/base`);
-        await authenticateUser(); // Ensure synchronization
       } else {
         setAuthError("No token or userId received");
       }
@@ -104,6 +93,7 @@ function AuthProviderWrapper(props) {
     }
   };
 
+  // Function to register a new user
   const registerUser = async (userName, email, password, profileImage) => {
     setAuthError(null);
     setIsLoading(true);
@@ -113,24 +103,20 @@ function AuthProviderWrapper(props) {
       formData.append("userName", userName);
       formData.append("email", email);
       formData.append("password", password);
-      if (profileImage) {
-        formData.append("profileImage", profileImage);
-      }
+      if (profileImage) formData.append("profileImage", profileImage);
 
       const response = await axios.post(`${API_URL}/auth/register`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
-      console.log("Register response:", response.data);
+
       const { token, userId, user } = response.data;
+
       if (token && userId && user) {
         storeToken(token);
         storeUserId(userId);
         setUser(user);
         setIsLoggedIn(true);
         navigate(`/base`);
-        await authenticateUser(); // Ensure synchronization
       } else {
         setAuthError("No token or userId received");
       }
@@ -142,6 +128,7 @@ function AuthProviderWrapper(props) {
     }
   };
 
+  // Function to log out the user
   const logOutUser = () => {
     removeToken();
     removeUserId();
@@ -150,6 +137,7 @@ function AuthProviderWrapper(props) {
     navigate("/");
   };
 
+  // Authenticate the user on component mount
   useEffect(() => {
     authenticateUser();
   }, []);
