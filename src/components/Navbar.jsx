@@ -68,7 +68,7 @@ function Navbar() {
   const handleUpdateScores = async () => {
     try {
       await axios.put(
-        "https://eplbackend.adaptable.app/api/updateScores",
+        "https://eplbackend.adaptable.app/api/users/updateScores",
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
