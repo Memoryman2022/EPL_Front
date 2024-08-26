@@ -67,7 +67,7 @@ function Navbar() {
 
   const handleUpdateScores = async () => {
     try {
-      await axios.get(
+      await axios.put(
         "https://eplbackend.adaptable.app/api/updateScores",
         {},
         {
