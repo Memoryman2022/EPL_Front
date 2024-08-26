@@ -15,7 +15,7 @@ import "../css/Fixtures.css";
 function FixtureDetails() {
   const { date } = useParams();
   const navigate = useNavigate();
-  const { user, isLoading: authLoading } = useContext(AuthContext);
+  const { userId, user, isLoading: authLoading } = useContext(AuthContext); // Use userId directly from context
   const {
     matchDays,
     loading: contextLoading,
@@ -49,9 +49,9 @@ function FixtureDetails() {
   };
 
   useEffect(() => {
-    console.log("user is : ", user.userId);
+    console.log("userId is : ", userId);
     console.log("User from context:", user);
-  }, []);
+  }, [userId, user]);
 
   useEffect(() => {
     if (matchDays[date]) {
@@ -62,10 +62,10 @@ function FixtureDetails() {
       setError(contextError);
     }
 
-    if (!authLoading && user && user.userId) {
-      fetchPredictions(user.userId);
+    if (!authLoading && userId) {
+      fetchPredictions(userId);
     }
-  }, [date, user, matchDays, contextLoading, contextError, authLoading]);
+  }, [date, userId, matchDays, contextLoading, contextError, authLoading]);
 
   const fetchPredictions = async (userId) => {
     if (!userId) {
@@ -107,7 +107,7 @@ function FixtureDetails() {
     return "draw";
   };
 
-  const handleConfirm = async (fixtureId, userId, homeScore, awayScore) => {
+  const handleConfirm = async (fixtureId, homeScore, awayScore) => {
     if (homeScore === "" || awayScore === "") {
       alert("Please enter both home and away scores.");
       return;
@@ -116,7 +116,7 @@ function FixtureDetails() {
 
     const payload = {
       fixtureId,
-      userId,
+      userId, // Use userId from context
       homeScore: Number(homeScore), // Ensure homeScore is a number
       awayScore: Number(awayScore), // Ensure awayScore is a number
       outcome,
@@ -199,7 +199,7 @@ function FixtureDetails() {
                     onClose={() => setOpenDropdown(null)}
                     fixture={{ ...fixture, image: "/icons/predict.png" }}
                     onConfirm={handleConfirm}
-                    userId={user.userId} // Pass userId to DropdownMenu
+                    userId={userId} // Pass userId to DropdownMenu
                   />
                 ) : (
                   <div className="user-prediction-dropdown">
