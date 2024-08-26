@@ -52,7 +52,7 @@ function Navbar() {
   const handleUpdateResults = async () => {
     try {
       await axios.post(
-        "https://eplbackend.adaptable.app/api/admin/updateResults",
+        "https://eplbackend.adaptable.app/api/updateResults",
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -68,7 +68,7 @@ function Navbar() {
   const handleUpdateScores = async () => {
     try {
       await axios.post(
-        "https://eplbackend.adaptable.app/api/admin/updateScores",
+        "https://eplbackend.adaptable.app/api/updateScores",
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
