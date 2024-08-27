@@ -28,7 +28,7 @@ function DropdownMenu({ isOpen, onClose, fixture, onConfirm, userId }) {
   }, [isOpen]);
 
   const handleConfirm = () => {
-    onConfirm(fixture.id, userId, homeScore, awayScore);
+    onConfirm(fixture.id, homeScore, awayScore);
   };
 
   return (

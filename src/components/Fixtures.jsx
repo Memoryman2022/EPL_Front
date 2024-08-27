@@ -108,6 +108,8 @@ function FixtureDetails() {
   };
 
   const handleConfirm = async (fixtureId, homeScore, awayScore) => {
+    console.log("homeScore:", homeScore, "awayScore:", awayScore);
+
     if (homeScore === "" || awayScore === "") {
       alert("Please enter both home and away scores.");
       return;
