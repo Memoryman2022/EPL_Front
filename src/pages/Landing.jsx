@@ -28,7 +28,7 @@ const Landing = () => {
           LOGIN
         </button>
         <button className="auth-btn" onClick={handleGuest}>
-          GUEST
+          GUEST ONLY
         </button>
       </div>
     </div>
