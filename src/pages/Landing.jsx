@@ -11,8 +11,11 @@ const Landing = () => {
     navigate("/login"); // Navigate to Login page
   };
 
-  const handleRegister = () => {
-    navigate("/register"); // Navigate to Register page
+  // const handleRegister = () => {
+  //   navigate("/register"); // Navigate to Register page
+  // };
+  const handleGuest = () => {
+    navigate("/guest-view-only"); // Navigate to Guest mode
   };
 
   return (
@@ -24,8 +27,8 @@ const Landing = () => {
         <button className="auth-btn" onClick={handleLogin}>
           LOGIN
         </button>
-        <button className="auth-btn" onClick={handleRegister}>
-          REGISTER
+        <button className="auth-btn" onClick={handleGuest}>
+          GUEST
         </button>
       </div>
     </div>

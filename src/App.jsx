@@ -16,6 +16,7 @@ import UserProfile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
 import FixtureCalendar from "./components/Calender";
 import FixturesByDate from "./components/Fixtures";
+import GuestViewOnly from "./components/GuestViewOnly";
 //CSS
 import "./App.css";
 
@@ -30,6 +31,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/rules" element={<Rules />} />
           <Route path="/about" element={<About />} />
+
+          <Route path="/guest-view-only" element={<GuestViewOnly />} />
+
           <Route element={<ProtectedRoute />}>
             <Route path="/base" element={<Base />} />
             <Route path="/user/:userId" element={<UserProfile />} />
