@@ -28,6 +28,8 @@ function FixtureDetails() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [selectedFixtureId, setSelectedFixtureId] = useState(null);
 
+  const isGuest = user?.role === "guest"; // Check if user is a guest
+
   const findNearestDate = (direction) => {
     const dates = Object.keys(matchDays);
     const currentIndex = dates.indexOf(date);
@@ -109,6 +111,10 @@ function FixtureDetails() {
 
   const handleConfirm = async (fixtureId, homeScore, awayScore) => {
     console.log("homeScore:", homeScore, "awayScore:", awayScore);
+    if (isGuest) {
+      alert("Guests may not make predictions."); // Alert for guest users
+      return;
+    }
 
     if (homeScore === "" || awayScore === "") {
       alert("Please enter both home and away scores.");
