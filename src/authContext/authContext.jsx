@@ -128,10 +128,10 @@ function AuthProviderWrapper(props) {
     }
   };
 
-  const guestLogin = async () => {
+  // Log in as guest
+  const logInGuest = () => {
+    setUser({ role: "guest" });
     setIsLoggedIn(true);
-    setUser({ role: "guest", name: "Guest User" });
-    navigate(`/base`); // Direct guest users to the main app
   };
 
   // Function to log out the user
@@ -158,7 +158,7 @@ function AuthProviderWrapper(props) {
         storeToken,
         storeUserId,
         authenticateUser,
-        guestLogin,
+        logInGuest,
         logOutUser,
         loginUser,
         registerUser,

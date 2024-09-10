@@ -10,11 +10,11 @@ const ProtectedRoute = () => {
   }
 
   // Redirect guests to a read-only view
-  if (isLoggedIn && user?.role === "guest") {
-    return <Navigate to="/guest-view-only" />;
+  if (isLoggedIn) {
+    return <Outlet />;
   }
 
-  return isLoggedIn ? <Outlet /> : <Navigate to="/login" />;
+  return <Navigate to="/login" />;
 };
 
 export default ProtectedRoute;
