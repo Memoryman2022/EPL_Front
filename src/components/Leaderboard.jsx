@@ -115,10 +115,7 @@ function Leaderboard({ onUserUpdate }) {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr
-                key={index}
-                className={index > 0 && index <= 6 ? "top-six" : ""}
-              >
+              <tr key={index} className={index < 6 ? "top-six" : ""}>
                 <td className="position">{user.position}</td>
                 <td className="name">
                   <img
