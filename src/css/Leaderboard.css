@@ -190,4 +190,26 @@
     height: 25px;
     margin-right: 3px; /* Adjust margin further */
   }
+
+  @keyframes flash {
+    0%,
+    100% {
+      border-color: gold;
+      background-color: #fffbea;
+    }
+    50% {
+      border-color: yellow;
+      background-color: #ffffe0;
+    }
+  }
+
+  .leaderboard-table tr.top-six {
+    animation: flash 1.5s infinite;
+  }
+
+  @media (max-width: 420px) {
+    .leaderboard-table tr.top-six {
+      animation: flash 1s infinite; /* Faster animation for smaller screens */
+    }
+  }
 }
