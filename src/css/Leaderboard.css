@@ -138,7 +138,27 @@
   margin-left: 10px; /* Spacing between username and GIF */
   vertical-align: middle; /* Aligns GIF with text */
 }
+@keyframes flash {
+  0%,
+  100% {
+    border-color: gold;
+    background-color: gold;
+  }
+  50% {
+    border-color: yellow;
+    background-color: #aa5d00;
+  }
+}
 
+.leaderboard-table tr.top-six {
+  animation: flash 2.5s infinite;
+}
+
+@media (max-width: 420px) {
+  .leaderboard-table tr.top-six {
+    animation: flash 2s infinite; /* Faster animation for smaller screens */
+  }
+}
 /* Responsive Styling */
 @media (max-width: 680px) {
   .leaderboard-container {
@@ -189,27 +209,5 @@
     width: 25px; /* Adjust size for very small screens */
     height: 25px;
     margin-right: 3px; /* Adjust margin further */
-  }
-
-  @keyframes flash {
-    0%,
-    100% {
-      border-color: gold;
-      background-color: gold;
-    }
-    50% {
-      border-color: yellow;
-      background-color: #aa5d00;
-    }
-  }
-
-  .leaderboard-table tr.top-six {
-    animation: flash 2.5s infinite;
-  }
-
-  @media (max-width: 420px) {
-    .leaderboard-table tr.top-six {
-      animation: flash 2s infinite; /* Faster animation for smaller screens */
-    }
   }
 }
