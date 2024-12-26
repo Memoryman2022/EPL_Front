@@ -204,12 +204,12 @@
   }
 
   .leaderboard-table tr.top-six {
-    animation: flash 1.5s infinite;
+    animation: flash 2.5s infinite;
   }
 
   @media (max-width: 420px) {
     .leaderboard-table tr.top-six {
-      animation: flash 1s infinite; /* Faster animation for smaller screens */
+      animation: flash 2s infinite; /* Faster animation for smaller screens */
     }
   }
 }
