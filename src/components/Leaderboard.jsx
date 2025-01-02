@@ -8,6 +8,23 @@ function Leaderboard({ onUserUpdate }) {
   const [previousUsers, setPreviousUsers] = useState([]);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 680);
 
+  const championshipGroupNames = [
+    "FC Butterbean",
+    "Willson",
+    "Jd1985",
+    "Macci",
+    "ARon",
+    "Ralphinthehouse",
+  ];
+  const bottomGroupNames = [
+    "Rob",
+    "Siiiiiiiu Later",
+    "Slexahields",
+    "Katja",
+    "Ajax Treesdown",
+    "PAOK FC 1926",
+  ];
+
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 680);
@@ -100,8 +117,17 @@ function Leaderboard({ onUserUpdate }) {
     }
   };
 
+  const championshipGroup = users
+    .filter((user) => championshipGroupNames.includes(user.userName))
+    .sort((a, b) => b.score - a.score);
+
+  const relegationGroup = users
+    .filter((user) => bottomGroupNames.includes(user.userName))
+    .sort((a, b) => b.score - a.score);
+
   return (
     <div className="leaderboard-page">
+      <h2>Championship Group</h2>
       <div className="leaderboard-container">
         <table className="leaderboard-table">
           <thead>
@@ -114,8 +140,8 @@ function Leaderboard({ onUserUpdate }) {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
-              <tr key={index} className={index < 6 ? "top-six" : ""}>
+            {championshipGroup.map((user, index) => (
+              <tr key={index}>
                 <td className="position">{user.position}</td>
                 <td className="name">
                   <img
@@ -123,6 +149,56 @@ function Leaderboard({ onUserUpdate }) {
                       user.profileImage
                         ? `${API_URL.replace("/api", "")}${user.profileImage}`
                         : "/default-profile.png" // Use default profile image
+                    }
+                    alt="Profile"
+                    className="profile-pic"
+                  />
+                  {user.userName}
+                  {user.position < user.previousPosition && (
+                    <img
+                      src={`/gifs/up.gif`}
+                      alt="up"
+                      className="movement-icon"
+                    />
+                  )}
+                  {user.position > user.previousPosition && (
+                    <img
+                      src={`/gifs/down.gif`}
+                      alt="down"
+                      className="movement-icon"
+                    />
+                  )}
+                </td>
+                <td className="correct-scores">{user.correctScores}</td>
+                <td className="correct-outcomes">{user.correctOutcomes}</td>
+                <td className="score">{user.score}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <h2>Relegation Group</h2>
+      <div className="leaderboard-container">
+        <table className="leaderboard-table">
+          <thead>
+            <tr>
+              <th className="position"></th>
+              <th className="name">User</th>
+              <th className="correct-scores">Scores</th>
+              <th className="correct-outcomes">Outcomes</th>
+              <th className="user-score">{isSmallScreen ? "P" : "Points"}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {relegationGroup.map((user, index) => (
+              <tr key={index}>
+                <td className="position">{user.position}</td>
+                <td className="name">
+                  <img
+                    src={
+                      user.profileImage
+                        ? `${API_URL.replace("/api", "")}${user.profileImage}`
+                        : "/default-profile.png"
                     }
                     alt="Profile"
                     className="profile-pic"
