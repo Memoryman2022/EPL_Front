@@ -53,7 +53,7 @@ function Navbar() {
     try {
       // Make a GET request to the backend route
       await axios.get(
-        "https://eplback-production.up.railway.app/api/results/updateResults",
+        "https://epl-back-0jvz.onrender.com/api/results/updateResults",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -68,7 +68,7 @@ function Navbar() {
   const handleUpdateScores = async () => {
     try {
       await axios.put(
-        "https://eplback-production.up.railway.app/api/users/updateScores",
+        "https://epl-back-0jvz.onrender.com/api/users/updateScores",
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
