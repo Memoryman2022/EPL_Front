@@ -18,7 +18,7 @@ s .tab-buttons {
   background-color: rgb(3, 2, 2);
   display: flex;
   align-items: flex-end;
-  justify-content: space-between; /* Align buttons to the right */
+  justify-content: space-between; 
   position: relative;
   margin: 0px 10px;
   width: 100%;
@@ -31,7 +31,7 @@ s .tab-buttons {
   border-radius: 2px;
   background-color: rgb(3, 26, 26);
   padding: 0px 10px;
-  font-size: 14px;
+  font-size: 10px;
   outline: none; /* Remove default focus outline */
   position: relative;
 }
