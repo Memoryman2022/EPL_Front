@@ -21,7 +21,7 @@ s .tab-buttons {
   justify-content: flex-end; /* Align buttons to the right */
   position: relative;
   margin: 0px 10px;
-  width: 96%;
+  width: 100%;
   z-index: 2;
 }
 

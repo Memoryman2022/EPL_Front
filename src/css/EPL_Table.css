@@ -40,7 +40,7 @@ thead th.col-team {
 }
 
 tbody tr:nth-child(even) {
-  background-color: #000000;
+  background-color: #2121213b;
 }
 
 tbody tr:hover {
