@@ -32,9 +32,9 @@
 
 .rbc-calendar {
   background-color: #0198932b;
-  border: 3px solid aqua;
+  border: 3px solid rgb(250, 250, 250);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  color: rgb(2, 187, 197);
+  color: rgb(249, 249, 249);
   width: 100%;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .rbc-header {
-  background-color: #01e4ab;
+  background-color: #0e2a52;
   color: rgb(1, 74, 78);
   font-weight: bold;
 }

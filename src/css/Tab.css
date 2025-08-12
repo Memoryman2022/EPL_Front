@@ -18,7 +18,7 @@ s .tab-buttons {
   background-color: rgb(3, 2, 2);
   display: flex;
   align-items: flex-end;
-  justify-content: flex-end; /* Align buttons to the right */
+  justify-content: space-between; /* Align buttons to the right */
   position: relative;
   margin: 0px 10px;
   width: 100%;
