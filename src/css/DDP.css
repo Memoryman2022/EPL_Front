@@ -1,9 +1,8 @@
 /* Dropdown Menu Styling */
 .dropdown-menu {
   grid-column: 1 / -1; /* Span all columns */
-  background-color: #022e365d; /* Match the background color */
+  background-color: #062b62; /* Match the background color */
   padding: 10px 10px 10px 20px; /* Match the padding */
-  transition: max-height 3s ease, opacity 1.5s ease; /* Animate the height and opacity */
   overflow: hidden;
   max-height: 0;
   opacity: 0;
@@ -19,12 +18,11 @@
   padding: 10px;
   padding-left: 20px;
   margin-bottom: 2px;
-  border: 2px solid #00fdd7;
+  border: 2px solid #ffffff;
   border-top: none;
-  border-radius: 2px;
-  background-color: #090909b2;
+  border-radius: 5px;
+  background-color: #092663;
   gap: 25px; /* Add some spacing between columns */
-  clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%, 0 26px);
   position: relative;
   overflow: hidden;
 }
@@ -36,65 +34,48 @@
   justify-content: center; /* Center items */
 }
 
-/* Keyframes for box-shadow animation */
-@keyframes boxShadowAnimation {
-  0% {
-    box-shadow: 0 0 0 #00fdd7;
-  }
-  50% {
-    box-shadow: 0 0 15px #00fdd7;
-  }
-  100% {
-    box-shadow: 0 0 0 #00fdd7;
-  }
-}
+
 
 /* Score input styling */
 .score-input {
   max-width: 50px;
-  background: linear-gradient(
-    to right,
-    #000000,
-    #0002023b
-  ); /* Transition from black to specified color */
+  background: 
+    #000000; 
   box-shadow: 0 0 5px #00fdd7; /* Uniform box-shadow */
   border: none; /* Ensure border does not interfere */
   border-radius: 5px;
-  color: #04ff9a; /* Default text color */
+  color: #ffffff; /* Default text color */
   padding: 5px;
   font-size: 12px; /* Adjust font size as needed */
-  transition: color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
-  animation: boxShadowAnimation 3s ease-in-out infinite;
   outline: none;
 }
 
 /* On hover */
 .score-input:hover {
-  background: #00fdd7; /* Light teal color */
+  background: #0a1060; /* Light teal color */
   color: #004d00; /* Dark green text color */
-  box-shadow: 0 0 10px #00fdd7; /* Increased box-shadow intensity */
+  box-shadow: 0 0 10px #dedede; /* Increased box-shadow intensity */
   animation: boxShadowAnimation 1s ease-in-out infinite; /* Ensure infinite animation on hover */
 }
 
 /* On focus */
 .score-input:focus {
-  background: #00fdd7; /* Light teal color */
-  color: #004d2c; /* Dark green text color */
+  background: #232525; /* Light teal color */
+  color: #ffffff; /* Dark green text color */
   box-shadow: 0 0 10px #00fdd7;
   outline: none; /* Remove default outline */
-  animation: boxShadowAnimation 1s ease-in-out infinite; /* Ensure infinite animation on focus */
 }
 
 /* Remove transitions after input */
 .score-input:focus:not(:placeholder-shown) {
   transition: none; /* Disable transition effects when input is focused and has text */
-  box-shadow: 0 0 5px #00fdd7; /* Ensure box-shadow is uniform when input is not empty */
+  box-shadow: 0 0 5px #6f7271; /* Ensure box-shadow is uniform when input is not empty */
   animation: none; /* Disable animation when input has text */
 }
 
 .dropdown-text {
   font-weight: bold;
-  color: #03c9ae;
+  color: #ffffff;
   text-align: center;
   margin-bottom: 4px;
 }
@@ -105,7 +86,7 @@
 
 .dropdown-home,
 .dropdown-away {
-  color: #02fcd2;
+  color: #f8fafa;
 }
 
 .dropdown-vs {
@@ -126,8 +107,8 @@
 }
 
 .prediction-box:hover {
-  background-color: #037b6dfc;
-  box-shadow: 0 0 10px rgb(36, 255, 255);
+  background-color: #7b7c7cfc;
+  box-shadow: 0 0 10px rgb(87, 89, 89);
 }
 
 .prediction-box img {
