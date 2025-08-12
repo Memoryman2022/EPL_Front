@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import ResponsiveTeamName from "../components/ResponsiveTeamName";
 const API_URL = import.meta.env.VITE_API_URL;

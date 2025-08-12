@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../authContext/authContext";
 import { useNavigate } from "react-router-dom";
 
@@ -25,9 +25,7 @@ function Login() {
 
   return (
     <div className="auth-container">
-      <div className="animation-container-log">
-        <img src="/gifs/stadium.gif" alt="Animation" />
-      </div>
+      
       <form onSubmit={handleSubmit} className="auth-form">
         <div className="form-group">
           <input

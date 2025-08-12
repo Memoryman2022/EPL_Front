@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../authContext/authContext";
 //css
@@ -16,9 +16,7 @@ const Logout = () => {
 
   return (
     <div className="auth-container">
-      <div className="animation-container-log">
-        <img src="/gifs/stadium.gif" alt="Animation" />
-      </div>
+     
       <div className="auth-form">
         <button className="auth-btn" onClick={handleLogout}>
           LOGOUT

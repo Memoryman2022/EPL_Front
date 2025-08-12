@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "../authContext/authContext";
 import { useNavigate } from "react-router-dom";
 // CSS
@@ -46,9 +46,7 @@ function Register() {
 
   return (
     <div className="auth-container">
-      <div className="animation-container-log">
-        <img src="/gifs/stadium.gif" alt="Animation" />
-      </div>
+      
       <div className="auth-form">
         <form onSubmit={handleRegister}>
           <div className="form-group">
@@ -100,7 +98,7 @@ function Register() {
         {showModal && (
           <div className="modal-overlay">
             <div className="modal-content">
-              <h4 className="typewriter-text">
+              <h4 >
                 Please crop your image to a square for optimal results
               </h4>
               <button className="auth-btn" onClick={handleModalConfirm}>

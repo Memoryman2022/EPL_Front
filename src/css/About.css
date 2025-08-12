@@ -41,7 +41,7 @@
 }
 
 h3 {
-  color: rgb(0, 255, 238);
+  color: rgb(236, 241, 241);
 }
 
 h5 {
@@ -49,15 +49,15 @@ h5 {
 }
 
 .highlighted-text {
-  color: #06fcfc;
+  color: #ffffff;
 }
 
 .highlighted-text a {
-  color: #01f3cf;
+  color: #ffffff;
   font-weight: bold;
   text-decoration: none;
 }
 
 .highlighted-text .about-link:hover {
-  color: #48fcc6;
+  color: #ffffff;
 }

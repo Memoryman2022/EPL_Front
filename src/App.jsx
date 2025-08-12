@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //PAGES
@@ -22,7 +21,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div>
+    <>
       <Navbar />
       <div className="BIG">
         <Routes>
@@ -31,7 +30,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/rules" element={<Rules />} />
           <Route path="/about" element={<About />} />
-
           <Route path="/guest-view-only" element={<GuestViewOnly />} />
 
           <Route element={<ProtectedRoute />}>
@@ -44,7 +42,7 @@ function App() {
           </Route>
         </Routes>
       </div>
-    </div>
+    </>
   );
 }
 

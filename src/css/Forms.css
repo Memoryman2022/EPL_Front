@@ -9,30 +9,8 @@
   width: 100%;
   position: relative;
 }
-.animation-container-log {
-  height: 40vh;
-}
-.animation-container-log img {
-  width: 100%;
-}
-/* Keyframes for box shadow rotation animation */
-@keyframes rotateBoxShadow {
-  0% {
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset -60px 0 120px #0ff;
-  }
-  25% {
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 -60px 120px #0ff;
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 60px 0 120px #0ff;
-  }
-  75% {
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 60px 120px #0ff;
-  }
-  100% {
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset -60px 0 120px #0ff;
-  }
-}
+
+
 
 /* Form styling */
 .auth-form {
@@ -43,7 +21,6 @@
   padding: 30px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  animation: rotateBoxShadow 5s infinite linear;
   position: relative;
 }
 
@@ -53,16 +30,16 @@
 
 .auth-form input {
   padding: 10px;
-  border: 1px solid rgba(2, 255, 242, 0.3);
-  background-color: rgba(15, 15, 15, 0.618);
-  color: #00f6fe;
+ 
+  background-color: rgba(15, 15, 15, 1);
+  color: #ffffff;
   border-radius: 5px;
   position: relative;
   overflow: hidden;
 }
 
 .auth-form input::placeholder {
-  color: rgba(2, 255, 242, 0.83);
+  color: rgba(255, 213, 62, 0.83);
 }
 
 .auth-form input::before {
@@ -71,41 +48,30 @@
   top: 50%;
   left: 10px;
   transform: translateY(-50%);
-  background-image: linear-gradient(
-    to right,
-    rgb(160, 251, 227),
-    rgba(2, 255, 242, 0.3)
-  );
+
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  animation: pulsePlaceholder 3s infinite linear;
+ 
   pointer-events: none; /* Prevents the pseudo-element from blocking input field interactions */
 }
 
-@keyframes pulsePlaceholder {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
+
 
 .auth-btn {
-  color: #02fff2;
-  background-color: rgba(0, 255, 255, 0.1);
+  color: #ffffff;
+  background-color: rgb(1, 51, 82);
   border: none;
   padding: 12px;
   margin-bottom: 0px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   border-radius: 5px;
   text-align: center;
+  position: relative;
 }
 
 .auth-btn:hover {
-  background-color: rgba(0, 255, 255, 0.2);
+  background-color: rgb(1, 14, 33);
 }
 
 .auth-form h4 {
@@ -122,12 +88,12 @@
 
 .form-group label {
   margin: 8px 0px 8px;
-  color: #02fff2;
+  color: #024aff;
 }
 
 /* Error message styling */
 .error {
-  color: rgb(0, 187, 255);
+  color: rgb(255, 225, 0);
   text-align: center;
 }
 
@@ -155,22 +121,14 @@
 .modal-btn {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #02fff2;
+  background-color: #0340a9;
   color: rgb(0, 0, 0);
   border: none;
   cursor: pointer;
   border-radius: 5px;
 }
 
-/* Typewriter effect styling */
-.typewriter-text {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 3px solid;
-  animation: typing 4s steps(44, end);
-}
+
 
 @keyframes typing {
   from {
@@ -190,7 +148,7 @@
 
 .modal-content {
   color: #a4fcff;
-  background-color: rgba(0, 182, 163, 0.991);
+  background-color: rgba(1, 146, 131, 0.991);
 }
 
 @media (max-width: 480px) {

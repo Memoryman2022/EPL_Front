@@ -6,32 +6,12 @@
   z-index: 1;
 }
 
-@keyframes wave {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 .tabs-container {
   max-width: 900px;
-  height: 100%; /* Adjust this to the appropriate height */
-  background: linear-gradient(
-    270deg,
-    #3a7bd500,
-    #134a664a,
-    #00c8ff49,
-    #00ffe566
-  );
+  height: 100%;
+  background-color: rgb(6, 23, 34);
   background-size: 400% 400%;
-  animation: wave 40s ease-in-out infinite;
   border-radius: 1px; /* Optional: adds rounded corners */
-  box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.7);
   z-index: 1;
 }
 s .tab-buttons {
@@ -46,14 +26,12 @@ s .tab-buttons {
 }
 
 .tab-button {
-  color: aquamarine;
-  border: 2px solid aqua;
+  color: rgb(254, 254, 254);
+  border: 2px solid rgb(255, 255, 255);
   border-radius: 2px;
-  background-color: rgba(11, 92, 92, 0.815);
-  /* clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%, 0 26px); */
+  background-color: rgb(3, 26, 26);
   padding: 0px 10px;
   font-size: 14px;
-  transition: all 2s ease; /* 2-second transition */
   outline: none; /* Remove default focus outline */
   position: relative;
 }
@@ -66,17 +44,7 @@ s .tab-buttons {
   outline: none; /* Remove yellow default border highlight */
 }
 
-.tab-button.active {
-  width: 100px;
-  font-size: 11px;
-  height: 45px;
-}
 
-.tab-button:not(.active) {
-  height: 35px; /* Set the height for inactive tabs */
-  font-size: 8px;
-  opacity: 0.8;
-}
 @media (max-width: 500px) {
   .tab-button {
     padding: 5px;

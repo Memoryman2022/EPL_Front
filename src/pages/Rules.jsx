@@ -1,13 +1,11 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
-import "../css/Rules.css"; // Make sure you have a CSS file for styling
+import "../css/Rules.css"; 
 
 const Rules = () => {
   return (
     <div className="rules-page">
-      <div className="gif-background">
-        <img src="/gifs/goal.gif" alt="goal gif" />
-      </div>
+    
       <div className="rules-content">
         <div className="Rules-container">
           <h3>MODULE UTILISATION, RULES AND PRIZES</h3>
@@ -55,7 +53,7 @@ const Rules = () => {
           </ul>
 
           <p>
-            <strong className="highlighted-text">
+            <strong>
               <Link to="/base">BACK TO BASE</Link>
             </strong>
           </p>

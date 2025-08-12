@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { API_URL } from "../config";
 import { AuthContext } from "../authContext/authContext"; // Import your AuthContext for user role
 import "../css/Profile.css";
@@ -88,9 +88,7 @@ function UserProfile({ triggerUpdate }) {
           </span>
         </div>
       </div>
-      <div className="animation-container">
-        <img src="/gifs/kick.gif" alt="Animation" />
-      </div>
+      
     </div>
   );
 }

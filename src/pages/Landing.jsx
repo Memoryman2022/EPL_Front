@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../authContext/authContext";
 
@@ -23,15 +23,12 @@ const Landing = () => {
 
   return (
     <div className="auth-container">
-      <div className="animation-container-log">
-        <img src="/gifs/stadium.gif" alt="Animation" />
-      </div>
       <div className="auth-form">
         <button className="auth-btn" onClick={handleLogin}>
           LOGIN
         </button>
         <button className="auth-btn" onClick={handleGuest}>
-          GUEST ONLY
+          REGISTER
         </button>
       </div>
     </div>

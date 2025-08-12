@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import UserProfile from "../components/Profile";
 import Tabs from "../components/Tabs";
 import EPL_Table from "../components/EPL_Table";
 import Leaderboard from "../components/Leaderboard";
 import FixtureCalendar from "../components/Calender";
 import FixtureDetails from "../components/Fixtures";
-import UserPoints from "../components/UserPoints";
+// import UserPoints from "../components/UserPoints";
 
 //css
 import "../css/base.css";
@@ -40,13 +40,13 @@ function Base() {
   };
 
   const tabs = [
-    { label: "EPL TABLE", content: <EPL_Table /> },
+    { label: "TABLE", content: <EPL_Table /> },
     { label: "LEADERBOARD", content: <Leaderboard /> },
     {
       label: "CALENDAR",
       content: <FixtureCalendar onDateSelect={handleDateSelect} />,
     },
-    { label: "SCORE", content: <UserPoints /> },
+    
   ];
 
   return (
