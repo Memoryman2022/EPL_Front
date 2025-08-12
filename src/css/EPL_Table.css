@@ -2,14 +2,12 @@
   margin: 10px;
   background-color: #1981d100;
   border-radius: 2px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-size: 12px;
 }
 
 .table-container h2 {
   text-align: center;
   margin-bottom: 2px;
-  color: #333;
 }
 
 table {
@@ -20,7 +18,7 @@ table {
 
 thead {
   background-color: #00a7b078;
-  color: #0effe7;
+  color: #fdfdfd;
 }
 
 thead th {
@@ -42,16 +40,16 @@ thead th.col-team {
 }
 
 tbody tr:nth-child(even) {
-  background-color: #079ff030;
+  background-color: #000000;
 }
 
 tbody tr:hover {
-  background-color: #0c727f80;
+  background-color: #0320232b;
 }
 
 tbody td {
   padding: 2px;
-  border-bottom: 1px solid #318a8a;
+  border-bottom: 1px solid #f9f9f96f;
   text-align: center; /* Center align all table cells */
 }
 tbody td:first-child,

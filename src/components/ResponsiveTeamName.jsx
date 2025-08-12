@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { truncateTeamName } from "../../utils/truncateTeamName";
 
 const ResponsiveTeamName = ({ name }) => {

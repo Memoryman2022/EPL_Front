@@ -9,7 +9,7 @@
 .tabs-container {
   max-width: 900px;
   height: 100%;
-  background-color: rgb(6, 23, 34);
+  background-color: rgba(6, 23, 34, 0.234);
   background-size: 400% 400%;
   border-radius: 1px; /* Optional: adds rounded corners */
   z-index: 1;
